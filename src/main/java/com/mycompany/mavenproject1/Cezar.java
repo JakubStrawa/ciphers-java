@@ -31,6 +31,8 @@ public class Cezar {
     public String getMessage(){
         return msg;
     }
+    
+    
     public Boolean getIsEncrypted(){
         return isEncrypted;
     }

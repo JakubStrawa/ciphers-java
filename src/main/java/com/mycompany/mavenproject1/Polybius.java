@@ -5,6 +5,7 @@
  */
 package com.mycompany.mavenproject1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -13,12 +14,42 @@ import java.util.Arrays;
  */
 public class Polybius {
     private String msg;
-    private char[] table = {'a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    private Character [] table = {'a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     private Boolean isEncrypted; // Flag showing if we have encrypted or decoded message
     
-    public Polybius(String m, Boolean f){
+    public Polybius(String m, Boolean f, String s){
         msg = m.toLowerCase();
         isEncrypted = f;   
+        if (s != "") {
+            setTable(s.toLowerCase());
+        }
+    }
+    
+    private void setTable(String str){  //uzyc array list
+        char tmp_char;
+        ArrayList<Character> tmp_table = new ArrayList<Character>();
+        tmp_table.add(str.charAt(0));
+        
+        for (int i = 1; i < str.length(); i++) {
+            tmp_char = str.charAt(i);
+            if (tmp_char == 'j') {   // polybius square uses 'i' as 'i' and 'j'
+                    tmp_char--;  
+            }
+            if (! tmp_table.contains(tmp_char)) {   
+                tmp_table.add(tmp_char);
+            }
+            
+        }
+        if (tmp_table.size() < 25) {
+            for (int j = 0; j < table.length; j++) {
+                if (! tmp_table.contains(table[j])) {
+                    tmp_table.add(table[j]);
+                }
+            }
+        }
+        Character[] tab = tmp_table.toArray(new Character[tmp_table.size()]);
+        table = tab;
+        
     }
     
     public String getMessage(){
@@ -27,15 +58,28 @@ public class Polybius {
     public Boolean getIsEncrypted(){
         return isEncrypted;
     }
+    public Character[] getTable(){
+        return table;
+    }
+    
+    private int search(Character[] table, Character key){
+        for (int i = 0; i < table.length; i++) {
+            if (table[i] == key) {
+                return i;
+            }
+        }
+        return -1;
+    }
      
     public void changeMessage(){
         String tmp_string ="";
-        char tmp_char1, tmp_char2;
+        Character tmp_char1, tmp_char2;
         int tmp_int1, tmp_int2;
         if (isEncrypted){ //message decoder
             for(int i = 0; i < msg.length(); i = i+2){
                 
                 tmp_char1 = msg.charAt(i);
+                
                 if (tmp_char1 < '1' || tmp_char1 > '5') {   // For reading number with spaces eg. "12 34 25"
                     i++;
                     tmp_char1 = msg.charAt(i);
@@ -49,13 +93,14 @@ public class Polybius {
         } else { //message encrypther
             for(int i = 0; i < msg.length(); i++){
                 
-                tmp_char1 = msg.charAt(i);
+                tmp_char1 =  msg.charAt(i);
                 if (tmp_char1 >= 'a' && tmp_char1 <= 'z') {
                     if (tmp_char1 == 'j') {   // polybius square uses 'i' as 'i' and 'j'
                         tmp_char1--;  
                     }
-                    tmp_int1 = (Arrays.binarySearch(table, tmp_char1) / 5) + 1;
-                    tmp_int2 = (Arrays.binarySearch(table, tmp_char1) % 5) + 1;
+                    
+                    tmp_int1 = (search(table, tmp_char1) / 5) + 1;
+                    tmp_int2 = (search(table, tmp_char1) % 5) + 1;
                     tmp_string += tmp_int1;
                     tmp_string += tmp_int2;
                     tmp_string += ' ';
