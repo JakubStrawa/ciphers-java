@@ -276,15 +276,21 @@ public class CezarFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        JOptionPane.showMessageDialog(null, "WIP");
+        new PolybiusFrame().setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         JOptionPane.showMessageDialog(null, "WIP");
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         JOptionPane.showMessageDialog(null, "WIP");
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**

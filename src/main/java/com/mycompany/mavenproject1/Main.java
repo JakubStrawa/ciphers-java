@@ -14,19 +14,10 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args){
         
-        Polybius pol = new Polybius("11 12 13 14 15 21 22 23 24", true, "kopia");
-        pol.changeMessage();
-
-
-        Polybius pol2 = new Polybius("helloworld", false, "defjam");
-        Polybius pol3 = new Polybius("test string", false, "xyz");
-        pol2.changeMessage();
-        pol3.changeMessage();;
-       /*
         System.out.println("Hello Maven!");
         Cezar kod = new Cezar(5, "abcdefgh", false);
         kod.changeMessage();
         new MainFrame().setVisible(true);
-*/
+
     }
 }
