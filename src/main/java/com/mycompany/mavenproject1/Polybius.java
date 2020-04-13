@@ -18,7 +18,7 @@ public class Polybius {
     private Boolean isEncrypted; // Flag showing if we have encrypted or decoded message
     
     public Polybius(String m, Boolean f, String s){
-        msg = m.toLowerCase();
+        msg = m.trim().toLowerCase();
         isEncrypted = f;   
         if (s != "") {
             setTable(s.toLowerCase());
