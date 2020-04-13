@@ -45,7 +45,7 @@ public class PolybiusTest {
      */
     @Test
     public void testGetTable() {
-        assertEquals(table, pol3.getTable());
+        assertArrayEquals(table, pol3.getTable());
     }
 
     /**

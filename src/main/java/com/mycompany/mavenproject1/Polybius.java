@@ -21,7 +21,7 @@ public class Polybius {
         msg = m.trim().toLowerCase();
         isEncrypted = f;   
         if (s != "") {
-            setTable(s.toLowerCase());
+            setTable(s.trim().toLowerCase());
         }
     }
     
@@ -108,7 +108,7 @@ public class Polybius {
                 
             }
         }
-        msg = tmp_string;
+        msg = tmp_string.trim();
         isEncrypted = !isEncrypted;
         System.out.println("New message is : " + msg);
     }
