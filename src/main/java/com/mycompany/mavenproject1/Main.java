@@ -5,15 +5,19 @@
  */
 package com.mycompany.mavenproject1;
 
+import java.util.Arrays;
+
 /**
  *
  * @author kuba
  */
 public class Main {
     public static void main(String[] args){
+        
         System.out.println("Hello Maven!");
         Cezar kod = new Cezar(5, "abcdefgh", false);
         kod.changeMessage();
         new MainFrame().setVisible(true);
+
     }
 }
