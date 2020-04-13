@@ -57,6 +57,7 @@ public class PolybiusFrame extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -180,6 +181,9 @@ public class PolybiusFrame extends javax.swing.JFrame {
             }
         });
         jMenu7.add(jMenuItem1);
+
+        jCheckBoxMenuItem2.setText("Run step by step");
+        jMenu7.add(jCheckBoxMenuItem2);
 
         jMenuBar2.add(jMenu7);
 
@@ -330,6 +334,7 @@ public class PolybiusFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
