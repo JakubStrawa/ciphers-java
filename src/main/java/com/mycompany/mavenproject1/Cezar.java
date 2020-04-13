@@ -14,7 +14,7 @@ public class Cezar {
     private int key;
     private Boolean isEncrypted; // Flag showing if we have encrypted or decoded message
     public Cezar(int k, String m, Boolean f){
-        if (k < 0){
+        while (k < 0){
             k = 26+k;
         }
         key = k;
