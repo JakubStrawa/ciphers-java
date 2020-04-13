@@ -33,24 +33,18 @@ public class Polybius {
         char tmp_char1, tmp_char2;
         int tmp_int1, tmp_int2;
         if (isEncrypted){ //message decoder
-//            if (msg.length() % 2 != 0) {
-//                System.out.println("Wrong message");
-//            }
             for(int i = 0; i < msg.length(); i = i+2){
                 
                 tmp_char1 = msg.charAt(i);
-                if (tmp_char1 > '0' && tmp_char1 < '6') {
+                if (tmp_char1 < '1' || tmp_char1 > '5') {   // For reading number with spaces eg. "12 34 25"
+                    i++;
+                    tmp_char1 = msg.charAt(i);
+                }
                     tmp_char2 = msg.charAt(i+1);
-                   
                     tmp_int1 = (int) tmp_char1 - '0';
                     tmp_int2 = (int) tmp_char2 - '0';
                     tmp_int2 = ((tmp_int1 - 1) * 5) + tmp_int2 - 1;
                     tmp_string += table[tmp_int2];
-                } else {
-                    i++;
-                }
-                
-                
             }
         } else { //message encrypther
             for(int i = 0; i < msg.length(); i++){

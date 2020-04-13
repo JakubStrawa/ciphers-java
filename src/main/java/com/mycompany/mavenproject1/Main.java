@@ -16,15 +16,15 @@ public class Main {
         char [] table = {'a','b','c','d','e'};
         int a = 29/5;
         int test = Arrays.binarySearch(table, ' ');
-        Polybius pol = new Polybius("113144532433", true);
+        Polybius pol = new Polybius("11 31 44 53 24 33", true);
         pol.changeMessage();
 
         System.out.print(test);
-       
+       /*
         System.out.println("Hello Maven!");
         Cezar kod = new Cezar(5, "abcdefgh", false);
         kod.changeMessage();
         new MainFrame().setVisible(true);
-
+*/
     }
 }
