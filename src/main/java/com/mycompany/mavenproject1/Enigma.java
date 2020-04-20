@@ -26,7 +26,17 @@ public class Enigma {
 
     private ArrayList<char []> rotorList;
     
+    private ArrayList<Pair> plugBoard;
+    
     public Enigma(){
+        rotor1 = new Rotor();
+        rotor2 = new Rotor();
+        rotor3 = new Rotor();
+        rotor4 = new Rotor();
+        rotor5 = new Rotor();
+        rotorList = new ArrayList<char []>();
+        plugBoard = new ArrayList<Pair>();
+        
         rotor1.setTable(tab1);
         rotor2.setTable(tab2);
         rotor3.setTable(tab3);
@@ -36,6 +46,15 @@ public class Enigma {
         rotorList.add(tab1);
         rotorList.add(tab2);
         rotorList.add(tab3);
+        
+        plugBoard.clear();
+        
+    }
+    
+    public void addToPlugBoard(char a, char b){
+        plugBoard.removeIf(p -> (p.getFirst() == a || p.getSecond() == a));
+        plugBoard.removeIf(p -> (p.getFirst() == b || p.getSecond() == b));
+        plugBoard.add(new Pair(a,b));
         
     }
 }

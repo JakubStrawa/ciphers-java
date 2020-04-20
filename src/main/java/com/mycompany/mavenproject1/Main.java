@@ -13,7 +13,11 @@ import java.util.Arrays;
  */
 public class Main {
     public static void main(String[] args){
-        
+        Enigma test = new Enigma();
+        test.addToPlugBoard('a', 'f');
+        test.addToPlugBoard('x', 'z');
+        test.addToPlugBoard('g', 'm');
+        test.addToPlugBoard('f', 'g');
         
         /*
         System.out.println("Hello Maven!");
