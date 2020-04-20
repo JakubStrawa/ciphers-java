@@ -36,5 +36,6 @@ public class Enigma {
         rotorList.add(tab1);
         rotorList.add(tab2);
         rotorList.add(tab3);
+        
     }
 }
