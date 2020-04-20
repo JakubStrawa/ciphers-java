@@ -5,6 +5,8 @@
  */
 package com.mycompany.mavenproject1;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kuba
@@ -22,6 +24,7 @@ public class Enigma {
     //V Z B R G I T Y U P S D N H L X A W M J Q O F E C K
     private char [] tab5 = {'v','z','b','r','g','i','t','y','u','p','s','d','n','h','l','x','a','w','m','j','q','o','f','e','c','k'};
 
+    private ArrayList<char []> rotorList;
     
     public Enigma(){
         rotor1.setTable(tab1);
@@ -29,5 +32,9 @@ public class Enigma {
         rotor3.setTable(tab3);
         rotor4.setTable(tab4);
         rotor5.setTable(tab5);
+        
+        rotorList.add(tab1);
+        rotorList.add(tab2);
+        rotorList.add(tab3);
     }
 }

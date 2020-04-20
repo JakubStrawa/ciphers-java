@@ -11,21 +11,21 @@ package com.mycompany.mavenproject1;
  */
 public class Rotor {
     private char [] table = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-    private int offset;
+    private int rotation;
     
     public Rotor(){
-        offset = 1;
+        rotation = 1;
     }
     public void rotate(){
-        if (offset == 26) {
-            offset = 1;
+        if (rotation == 26) {
+            rotation = 1;
         } else {
-            offset++;
+            rotation++;
         }
         
     }
-    public int getRotate(){
-        return offset;
+    public int getRotatation(){
+        return rotation;
     }
     public char getChar(int index){
         return table[index];

@@ -18,6 +18,7 @@ public class RotorTest {
     }
     char [] tab = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     Rotor test = new Rotor();
+    Rotor test2 = new Rotor();
     
 
     /**
@@ -25,23 +26,24 @@ public class RotorTest {
      */
     @Test
     public void testRotate() {
-        test.rotate();
-        assertEquals(test.getRotate(), 2);
+        test2.rotate();
+        assertEquals(test2.getRotatation(), 2);
     }
 
     /**
-     * Test of getRotate method, of class Rotor.
+     * Test of getRotatation method, of class Rotor.
      */
     @Test
-    public void testGetRotate() {
+    public void testGetRotatation() {
         test.rotate();
-        assertEquals(test.getRotate(), 3);
+        test.rotate();
+        assertEquals(test.getRotatation(), 3);
         for (int i = 0; i < 23; i++) {
             test.rotate();
         }
-        assertEquals(test.getRotate(), 26);
+        assertEquals(test.getRotatation(), 26);
         test.rotate();
-        assertEquals(test.getRotate(), 1);
+        assertEquals(test.getRotatation(), 1);
     }
 
     /**
