@@ -26,6 +26,8 @@ public class Enigma {
     // electric current flows through all rotors, reflector, all rotors again and through plugboard to bubble(showing encoded letter)
     // each letter increases leftmost rotor rotation by 1
     // one full rotor rotation rotates left rotor by 1
+    // to decode message Enigma needs to be pluged the same way with the same rotor order and rotations
+    // then user just needs to type encoded message to receive decoded one
     //
     //E K M F L G D Q V Z N T O W Y H X U S P A I B R C J
     private char [] tab1 = {'e','k','m','f','l','g','d','q','v','z','n','t','o','w','y','h','x','u','s','p','a','i','b','r','c','j'};
