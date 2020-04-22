@@ -7,6 +7,12 @@ package com.mycompany.mavenproject1;
 
 import java.util.ArrayList;
 
+//TODO:
+// change tables to arraylist of pairs
+// make enigma working +
+// optimalization
+// comments in english
+
 /**
  *
  * @author kuba
@@ -31,7 +37,7 @@ public class Enigma {
     //
     // Enigma deflector types:
     // UKW B ->  AY  BR  CU  DH  EQ  FS  GL  IP  JX  KN  MO  TZ  VW
-    private char [] deflect1 = {'y','r','u','h','q','s','l','d','p','x','n','g','o','k','m','i','e','b','z','p','c','w','v','j','a','t'};
+    private char [] deflect1 = {'y','r','u','h','q','s','l','d','p','x','n','g','o','k','m','i','e','b','f','z','c','w','v','j','a','t'};
     // UKW C ->  AF  BV  CP  DJ  EI  GO  HY  KR  LZ  MX  NW  QT  SU
     private char [] deflect2 = {'f','v','p','j','i','a','o','y','e','d','r','z','x','w','g','c','t','k','u','q','s','b','n','m','h','l'};
     // Enigma rotor types:
@@ -188,8 +194,22 @@ public class Enigma {
         return c;
     }
     private char subRotation(char c, int rot){
-        c = addRotation(c, 26 - rot);
+        c = addRotation(c, 26 - rot + 1);
         return c;
+    }
+    
+    public void testRot(){
+        String tmp_add = "";
+        String tmp_sub = "";
+        char tmp_c;
+        for (int i = 0; i < message.length(); i++) {
+            tmp_c = message.charAt(i);
+            tmp_add += addRotation(tmp_c, 15);
+            tmp_sub += subRotation(tmp_c, 15);
+        }
+        System.out.println("Add: " + tmp_add);
+        System.out.println("Sub: " + tmp_sub);
+
     }
     
     public void changeMessage(){
@@ -198,52 +218,65 @@ public class Enigma {
         for (int i = 0; i < message.length(); i++) {
             tmp_char = message.charAt(i);
             if (tmp_char >= 'a' && tmp_char <= 'z') {
+                System.out.println("New char: " + tmp_char);
                 // Przejscie po plugboardzie
                 for (Pair p : plugBoard) {
                     if (p.getFirst() == tmp_char) {
                         tmp_char = p.getSecond();
                     }
-                    if (p.getSecond() == tmp_char) {
+                    else if (p.getSecond() == tmp_char) {
                         tmp_char = p.getFirst();
                     }
                 }
+                System.out.println("1st plugboard: " + tmp_char);
                 // Przejscie po rotorach w kierunku do deflektora
                 for (int j = rotorList.size() - 1; j >= 0; j--) {
                     // dostosowanie chara do rotacji rotora
                     tmp_char = addRotation(tmp_char, rotorList.get(j).getRotatation());
+                    System.out.println("Rotor: " + rotorList.get(j).getNumber() + " char: " + tmp_char);
                     // znalezienie chara po 2 stronie rotora
                     tmp_char = rotorList.get(j).getChar(tmp_char - 97);
+                    System.out.println("Rotor: " + rotorList.get(j).getNumber() + " char: " + tmp_char);
                     // odjecie rotacji
-                    tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation());
+                    tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation()-1);
+                    System.out.println("Rotor: " + rotorList.get(j).getNumber() + " char: " + tmp_char);
+                    
                 }
+                //System.out.println(tmp_char);
                 // Przejście przez deflektor
                 if (deflectorUsed == 1) {
                     tmp_char = addRotation(tmp_char, deflector1.getRotatation());
                     tmp_char = deflector1.getChar(tmp_char - 97);
-                    tmp_char = subRotation(tmp_char, deflector1.getRotatation());
+                    tmp_char = subRotation(tmp_char, deflector1.getRotatation()-1);
                 } else {
                     tmp_char = addRotation(tmp_char, deflector2.getRotatation());
                     tmp_char = deflector2.getChar(tmp_char - 97);
-                    tmp_char = subRotation(tmp_char, deflector2.getRotatation());
+                    tmp_char = subRotation(tmp_char, deflector2.getRotatation()-1);
                 }
+                System.out.println("Deflector: " + tmp_char);
                 // Przejscie po rotorach w kierunku od deflektora
                 for (int j = 0; j < rotorList.size(); j++) {
                     // dostosowanie chara do rotacji rotora
                     tmp_char = addRotation(tmp_char, rotorList.get(j).getRotatation());
+                    System.out.println("Rotor: " + rotorList.get(j).getNumber() + " char: " + tmp_char);
                     // znalezienie chara po 2 stronie rotora
                     tmp_char = rotorList.get(j).getCounterChar(tmp_char);
+                    System.out.println("Rotor: " + rotorList.get(j).getNumber() + " char: " + tmp_char);
                     // odjecie rotacji
-                    tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation());
+                    tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation()-1);
+                    System.out.println("Rotor: " + rotorList.get(j).getNumber() + " char: " + tmp_char);
                 }
+                
                 // Przejscie po plugboardzie
                 for (Pair p : plugBoard) {
                     if (p.getFirst() == tmp_char) {
                         tmp_char = p.getSecond();
                     }
-                    if (p.getSecond() == tmp_char) {
+                    else if (p.getSecond() == tmp_char) {
                         tmp_char = p.getFirst();
                     }
                 }
+                System.out.println("2nd plugboard: " + tmp_char);
                 tmp_string += tmp_char;
                 moveRotors();
             }

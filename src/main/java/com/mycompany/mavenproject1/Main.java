@@ -22,23 +22,22 @@ public class Main {
         test.addRotor(2);
         test.addRotor(4);
         test.addRotor(1);
-        test.printEnigma();
+        //test.printEnigma();
         
         test.setDeflector(1);
-        test.changeMessage();
+        //test.changeMessage();
         
-        Enigma test2 = new Enigma("Test message", false);
+        Enigma test2 = new Enigma("hzlnwsqipab", false);
+        //test2.testRot();
         
-        test2.addToPlugBoard('a', 'f');
-        test2.addToPlugBoard('x', 'z');
-        test2.addToPlugBoard('g', 'm');
+        test2.addToPlugBoard('e', 'x');
+        test2.addToPlugBoard('b', 'm');
         test2.addToPlugBoard('f', 'g');
-        test2.addToPlugBoard('e', 's');
         
-        test2.addRotor(2);
+        test2.addRotor(5);
         test2.addRotor(4);
         test2.addRotor(1);  
-        test2.printEnigma();
+        //test2.printEnigma();
         
         test2.setDeflector(1);
         test2.changeMessage();
