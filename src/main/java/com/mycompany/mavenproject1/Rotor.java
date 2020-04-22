@@ -13,22 +13,30 @@ public class Rotor {
     private char [] table = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     private int rotation;
     private boolean isUsed;
+    private int number;
     
-    public Rotor(){
+    public Rotor(int num){
         rotation = 1;
         isUsed = false;
+        number = num;
     }
+    
     public void rotate(){
         if (rotation == 26) {
             rotation = 1;
         } else {
             rotation++;
         }
-        
     }
+    
     public int getRotatation(){
         return rotation;
     }
+    
+    public void setRotation(int i){
+        rotation = i;
+    }
+    
     public char getChar(int index){
         return table[index];
     }
@@ -48,5 +56,9 @@ public class Rotor {
         } else {
             isUsed = true;
         }
+    }
+    
+    public int getNumber(){
+        return number;
     }
 }

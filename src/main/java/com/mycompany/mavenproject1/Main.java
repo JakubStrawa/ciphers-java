@@ -23,6 +23,7 @@ public class Main {
         test.addRotor(7);
         test.addRotor(0);
         test.addRotor(2);
+        test.printEnigma();
 
         
         /*

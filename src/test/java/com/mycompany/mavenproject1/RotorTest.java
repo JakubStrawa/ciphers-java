@@ -17,8 +17,8 @@ public class RotorTest {
     public RotorTest() {
     }
     char [] tab = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-    Rotor test = new Rotor();
-    Rotor test2 = new Rotor();
+    Rotor test = new Rotor(1);
+    Rotor test2 = new Rotor(2);
     
 
     /**
@@ -60,7 +60,7 @@ public class RotorTest {
      */
     @Test
     public void testSetTable() {
-        Rotor rot = new Rotor();
+        Rotor rot = new Rotor(1);
         char [] rot_tab = {'x','d','a','c','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','e','f'};
         rot.setTable(rot_tab);
         assertEquals(rot.getChar(0), 'x');

@@ -47,11 +47,11 @@ public class Enigma {
     public Enigma(String msg, boolean isEncr){
         message = msg;
         isEncrypted = isEncr;
-        rotor1 = new Rotor();
-        rotor2 = new Rotor();
-        rotor3 = new Rotor();
-        rotor4 = new Rotor();
-        rotor5 = new Rotor();
+        rotor1 = new Rotor(1);
+        rotor2 = new Rotor(2);
+        rotor3 = new Rotor(3);
+        rotor4 = new Rotor(4);
+        rotor5 = new Rotor(5);
         rotorList = new ArrayList<Rotor>();
         plugBoard = new ArrayList<Pair>();
         
@@ -77,7 +77,7 @@ public class Enigma {
     public void clearRotorList(){
         rotorList.clear();
     }
-    
+    // CHANGE
     public void addRotor(int num){
         if (num <= 0 || num >= 6) {
             System.out.println("Rotor does not exist! Use only numbers from 1 to 5");
@@ -141,6 +141,21 @@ public class Enigma {
             }
             rot = rotorList.get(size).getRotatation();
         } while (rot == 26 && size >= 0);
+    }
+    
+    public void printEnigma(){
+        System.out.println("Enigma state:");
+        System.out.println("Rotors order:");
+        for (Rotor rot : rotorList) {
+            System.out.println("Rotor: " + rot.getNumber() + " rotation: " + rot.getRotatation());
+        }
+        System.out.println("Plugboard:");
+        for (Pair p : plugBoard) {
+            String temp = "";
+            temp += p.getFirst();
+            temp += p.getSecond();
+            System.out.println(temp.toUpperCase());
+        }
     }
     
 }
