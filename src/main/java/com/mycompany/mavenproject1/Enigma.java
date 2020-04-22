@@ -23,7 +23,7 @@ public class Enigma {
     
     private Rotor rotor1,rotor2,rotor3,rotor4,rotor5,deflector1,deflector2;
     //
-    //Rotor an Enigma rules:
+    //Rotor and Enigma rules:
     // each letter has its counterletter
     // eg. for tab1: A->E, B->K, C->M, D->F etc.
     // but neither relation is transitive, meaning that E->L, F->G, G->D, not E-/>A or F-/>D
@@ -223,9 +223,11 @@ public class Enigma {
                 for (Pair p : plugBoard) {
                     if (p.getFirst() == tmp_char) {
                         tmp_char = p.getSecond();
+                        break;
                     }
-                    else if (p.getSecond() == tmp_char) {
+                    if (p.getSecond() == tmp_char) {
                         tmp_char = p.getFirst();
+                        break;
                     }
                 }
                 System.out.println("1st plugboard: " + tmp_char);
@@ -271,9 +273,11 @@ public class Enigma {
                 for (Pair p : plugBoard) {
                     if (p.getFirst() == tmp_char) {
                         tmp_char = p.getSecond();
+                        break;
                     }
-                    else if (p.getSecond() == tmp_char) {
+                    if (p.getSecond() == tmp_char) {
                         tmp_char = p.getFirst();
+                        break;
                     }
                 }
                 System.out.println("2nd plugboard: " + tmp_char);

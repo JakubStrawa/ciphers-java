@@ -24,22 +24,23 @@ public class Main {
         test.addRotor(1);
         //test.printEnigma();
         
-        test.setDeflector(1);
+        test.setDeflector(2);
         //test.changeMessage();
         
-        Enigma test2 = new Enigma("hzlnwsqipab", false);
+        Enigma test2 = new Enigma("vcgpcrbwlji", false);
         //test2.testRot();
         
         test2.addToPlugBoard('e', 'x');
         test2.addToPlugBoard('b', 'm');
-        test2.addToPlugBoard('f', 'g');
+        test2.addToPlugBoard('f', 't');
+        test2.addToPlugBoard('s', 'a');
         
         test2.addRotor(5);
         test2.addRotor(4);
         test2.addRotor(1);  
         //test2.printEnigma();
         
-        test2.setDeflector(1);
+        test2.setDeflector(2);
         test2.changeMessage();
         /*
         System.out.println("Hello Maven!");
