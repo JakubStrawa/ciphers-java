@@ -18,13 +18,14 @@ public class Main {
         test.addToPlugBoard('x', 'z');
         test.addToPlugBoard('g', 'm');
         test.addToPlugBoard('f', 'g');
+
         
-        /*
+        
         System.out.println("Hello Maven!");
         Cezar kod = new Cezar(5, "abcdefgh", false);
         kod.changeMessage();
         new MainFrame().setVisible(true);
-*/
+
 
     }
 }
