@@ -15,7 +15,7 @@ public class Enigma {
     private String message;
     private boolean isEncrypted;
     
-    private Rotor rotor1,rotor2,rotor3,rotor4,rotor5;
+    private Rotor rotor1,rotor2,rotor3,rotor4,rotor5,deflector1,deflector2;
     //
     //Rotor an Enigma rules:
     // each letter has its counterletter
@@ -29,15 +29,21 @@ public class Enigma {
     // to decode message Enigma needs to be pluged the same way with the same rotor order and rotations
     // then user just needs to type encoded message to receive decoded one
     //
-    //E K M F L G D Q V Z N T O W Y H X U S P A I B R C J
+    // Enigma deflector types:
+    // UKW B ->  AY  BR  CU  DH  EQ  FS  GL  IP  JX  KN  MO  TZ  VW
+    private char [] deflect1 = {'y','r','u','h','q','s','l','d','p','x','n','g','o','k','m','i','e','b','z','p','c','w','v','j','a','t'};
+    // UKW C ->  AF  BV  CP  DJ  EI  GO  HY  KR  LZ  MX  NW  QT  SU
+    private char [] deflect2 = {'f','v','p','j','i','a','o','y','e','d','r','z','x','w','g','c','t','k','u','q','s','b','n','m','h','l'};
+    // Enigma rotor types:
+    // I:  E K M F L G D Q V Z N T O W Y H X U S P A I B R C J
     private char [] tab1 = {'e','k','m','f','l','g','d','q','v','z','n','t','o','w','y','h','x','u','s','p','a','i','b','r','c','j'};
-    //A J D K S I R U X B L H W T M C Q G Z N P Y F V O E
+    // II:  A J D K S I R U X B L H W T M C Q G Z N P Y F V O E
     private char [] tab2 = {'a','j','d','k','s','i','r','u','x','b','l','h','w','t','m','c','q','g','z','n','p','y','f','v','o','e'};
-    //B D F H J L C P R T X V Z N Y E I W G A K M U S Q O
+    // III:  B D F H J L C P R T X V Z N Y E I W G A K M U S Q O
     private char [] tab3 = {'b','d','f','h','j','l','c','p','r','t','x','v','z','n','y','e','i','w','g','a','k','m','u','s','q','o'};
-    //E S O V P Z J A Y Q U I R H X L N F T G K D C M W B
+    // IV:  E S O V P Z J A Y Q U I R H X L N F T G K D C M W B
     private char [] tab4 = {'e','s','o','v','p','z','j','a','y','q','u','i','r','h','x','l','n','f','t','g','k','d','c','m','w','b'};
-    //V Z B R G I T Y U P S D N H L X A W M J Q O F E C K
+    // V:  V Z B R G I T Y U P S D N H L X A W M J Q O F E C K
     private char [] tab5 = {'v','z','b','r','g','i','t','y','u','p','s','d','n','h','l','x','a','w','m','j','q','o','f','e','c','k'};
 
     private ArrayList<Rotor> rotorList;
@@ -52,6 +58,8 @@ public class Enigma {
         rotor3 = new Rotor(3);
         rotor4 = new Rotor(4);
         rotor5 = new Rotor(5);
+        deflector1 = new Rotor(101);
+        deflector2 = new Rotor(102);
         rotorList = new ArrayList<Rotor>();
         plugBoard = new ArrayList<Pair>();
         
@@ -60,6 +68,9 @@ public class Enigma {
         rotor3.setTable(tab3);
         rotor4.setTable(tab4);
         rotor5.setTable(tab5);
+        
+        deflector1.setTable(deflect1);
+        deflector2.setTable(deflect2);
                 
     }
     
