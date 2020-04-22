@@ -18,14 +18,21 @@ public class Main {
         test.addToPlugBoard('x', 'z');
         test.addToPlugBoard('g', 'm');
         test.addToPlugBoard('f', 'g');
+        
+        test.addRotor(2);
+        test.addRotor(4);
+        test.addRotor(1);
+        test.addRotor(7);
+        test.addRotor(0);
+        test.addRotor(2);
 
         
-        
+        /*
         System.out.println("Hello Maven!");
         Cezar kod = new Cezar(5, "abcdefgh", false);
         kod.changeMessage();
         new MainFrame().setVisible(true);
 
-
+*/
     }
 }

@@ -12,9 +12,11 @@ package com.mycompany.mavenproject1;
 public class Rotor {
     private char [] table = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     private int rotation;
+    private boolean isUsed;
     
     public Rotor(){
         rotation = 1;
+        isUsed = false;
     }
     public void rotate(){
         if (rotation == 26) {
@@ -33,6 +35,18 @@ public class Rotor {
     public void setTable(char [] tab){
         if (tab.length == 26) {
             table = tab;
+        }
+    }
+    
+    public boolean getIsUsed(){
+        return isUsed;
+    }
+    
+    public void changeIsUsed(){
+        if (isUsed) {
+            isUsed = false;
+        } else {
+            isUsed = true;
         }
     }
 }

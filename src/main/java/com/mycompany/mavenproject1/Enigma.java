@@ -24,7 +24,7 @@ public class Enigma {
     //V Z B R G I T Y U P S D N H L X A W M J Q O F E C K
     private char [] tab5 = {'v','z','b','r','g','i','t','y','u','p','s','d','n','h','l','x','a','w','m','j','q','o','f','e','c','k'};
 
-    private ArrayList<char []> rotorList;
+    private ArrayList<Rotor> rotorList;
     
     private ArrayList<Pair> plugBoard;
     
@@ -34,7 +34,7 @@ public class Enigma {
         rotor3 = new Rotor();
         rotor4 = new Rotor();
         rotor5 = new Rotor();
-        rotorList = new ArrayList<char []>();
+        rotorList = new ArrayList<Rotor>();
         plugBoard = new ArrayList<Pair>();
         
         rotor1.setTable(tab1);
@@ -42,13 +42,7 @@ public class Enigma {
         rotor3.setTable(tab3);
         rotor4.setTable(tab4);
         rotor5.setTable(tab5);
-        
-        rotorList.add(tab1);
-        rotorList.add(tab2);
-        rotorList.add(tab3);
-        
-        plugBoard.clear();
-        
+                
     }
     
     public void addToPlugBoard(char a, char b){
@@ -56,5 +50,53 @@ public class Enigma {
         plugBoard.removeIf(p -> (p.getFirst() == b || p.getSecond() == b));
         plugBoard.add(new Pair(a,b));
         
+    }
+    
+    public void clearPlugBoard(){
+        plugBoard.clear();
+    }
+    
+    public void clearRotorList(){
+        rotorList.clear();
+    }
+    
+    public void addRotor(int num){
+        if (num <= 0 || num >= 6) {
+            System.out.println("Rotor does not exist! Use only numbers from 1 to 5");
+        }
+        switch(num){
+            case 1:
+                if (!rotor1.getIsUsed()) {
+                    rotorList.add(rotor1);
+                    rotor1.changeIsUsed(); 
+                }
+                break;
+            case 2:
+                if (!rotor2.getIsUsed()) {
+                    rotorList.add(rotor2);
+                    rotor2.changeIsUsed();
+                }
+                break;
+            case 3:
+                if (!rotor3.getIsUsed()) {
+                    rotorList.add(rotor3);
+                    rotor3.changeIsUsed();
+                }
+                break;
+            case 4:
+                if (!rotor4.getIsUsed()) {
+                    rotorList.add(rotor4);
+                    rotor4.changeIsUsed();
+                }
+                break;
+            case 5:
+                if (!rotor5.getIsUsed()) {
+                    rotorList.add(rotor5);
+                    rotor5.changeIsUsed();
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
