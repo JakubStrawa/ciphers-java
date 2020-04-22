@@ -12,6 +12,8 @@ import java.util.ArrayList;
  * @author kuba
  */
 public class Enigma {
+    private String message;
+    
     private Rotor rotor1,rotor2,rotor3,rotor4,rotor5;
     //E K M F L G D Q V Z N T O W Y H X U S P A I B R C J
     private char [] tab1 = {'e','k','m','f','l','g','d','q','v','z','n','t','o','w','y','h','x','u','s','p','a','i','b','r','c','j'};
@@ -28,7 +30,8 @@ public class Enigma {
     
     private ArrayList<Pair> plugBoard;
     
-    public Enigma(){
+    public Enigma(String msg){
+        message = msg;
         rotor1 = new Rotor();
         rotor2 = new Rotor();
         rotor3 = new Rotor();
@@ -98,5 +101,12 @@ public class Enigma {
             default:
                 break;
         }
+    }
+    
+    public String getMessage(){
+        return message;
+    }
+    public void changeMessage(String msg){
+        message = msg;
     }
 }

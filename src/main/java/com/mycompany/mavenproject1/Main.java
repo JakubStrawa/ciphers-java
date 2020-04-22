@@ -5,15 +5,13 @@
  */
 package com.mycompany.mavenproject1;
 
-import java.util.Arrays;
-
 /**
  *
  * @author kuba
  */
 public class Main {
     public static void main(String[] args){
-        Enigma test = new Enigma();
+        Enigma test = new Enigma("Test");
         test.addToPlugBoard('a', 'f');
         test.addToPlugBoard('x', 'z');
         test.addToPlugBoard('g', 'm');
