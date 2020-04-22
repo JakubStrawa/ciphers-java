@@ -11,7 +11,7 @@ package com.mycompany.mavenproject1;
  */
 public class Main {
     public static void main(String[] args){
-        Enigma test = new Enigma("Test");
+        Enigma test = new Enigma("Test", false);
         test.addToPlugBoard('a', 'f');
         test.addToPlugBoard('x', 'z');
         test.addToPlugBoard('g', 'm');

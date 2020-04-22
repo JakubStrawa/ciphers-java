@@ -13,8 +13,20 @@ import java.util.ArrayList;
  */
 public class Enigma {
     private String message;
+    private boolean isEncrypted;
     
     private Rotor rotor1,rotor2,rotor3,rotor4,rotor5;
+    //
+    //Rotor an Enigma rules:
+    // each letter has its counterletter
+    // eg. for tab1: A->E, B->K, C->M, D->F etc.
+    // but neither relation is transitive, meaning that E->L, F->G, G->D, not E-/>A or F-/>D
+    // rotor offset is indicated by rotation-1, eg. if all rotors have rotation of 1, all As are aligned
+    // if one rotor has rotation of 2 and others of 1, that is equal to one B being aligned to As
+    // electric current flows through all rotors, reflector, all rotors again and through plugboard to bubble(showing encoded letter)
+    // each letter increases leftmost rotor rotation by 1
+    // one full rotor rotation rotates left rotor by 1
+    //
     //E K M F L G D Q V Z N T O W Y H X U S P A I B R C J
     private char [] tab1 = {'e','k','m','f','l','g','d','q','v','z','n','t','o','w','y','h','x','u','s','p','a','i','b','r','c','j'};
     //A J D K S I R U X B L H W T M C Q G Z N P Y F V O E
@@ -30,8 +42,9 @@ public class Enigma {
     
     private ArrayList<Pair> plugBoard;
     
-    public Enigma(String msg){
+    public Enigma(String msg, boolean isEncr){
         message = msg;
+        isEncrypted = isEncr;
         rotor1 = new Rotor();
         rotor2 = new Rotor();
         rotor3 = new Rotor();
@@ -106,7 +119,26 @@ public class Enigma {
     public String getMessage(){
         return message;
     }
+    
     public void changeMessage(String msg){
         message = msg;
     }
+    
+    public void moveRotors(){
+        if (rotorList.isEmpty()) {
+            return;
+        }
+        int size = rotorList.size() - 1;
+        int rot = rotorList.get(size).getRotatation();
+        
+        do {            
+            rotorList.get(size).rotate();
+            size --;
+            if (size < 0) {
+                break;
+            }
+            rot = rotorList.get(size).getRotatation();
+        } while (rot == 26 && size >= 0);
+    }
+    
 }
