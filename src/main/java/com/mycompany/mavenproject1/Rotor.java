@@ -40,6 +40,17 @@ public class Rotor {
     public char getChar(int index){
         return table[index];
     }
+    
+    public char getCounterChar(char c){
+        char tmp = 'a';
+        for (int i = 0; i < table.length; i++) {
+            if (table[i] == c) {
+                tmp += i;
+            }
+        }
+        return tmp;
+    }
+    
     public void setTable(char [] tab){
         if (tab.length == 26) {
             table = tab;

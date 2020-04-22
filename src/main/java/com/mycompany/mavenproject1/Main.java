@@ -11,27 +11,42 @@ package com.mycompany.mavenproject1;
  */
 public class Main {
     public static void main(String[] args){
-        Enigma test = new Enigma("Test", false);
+        Enigma test = new Enigma("Test message", false);
+        
         test.addToPlugBoard('a', 'f');
         test.addToPlugBoard('x', 'z');
         test.addToPlugBoard('g', 'm');
         test.addToPlugBoard('f', 'g');
+        test.addToPlugBoard('e', 's');
         
         test.addRotor(2);
         test.addRotor(4);
         test.addRotor(1);
-        test.addRotor(7);
-        test.addRotor(0);
-        test.addRotor(2);
         test.printEnigma();
-
         
+        test.setDeflector(1);
+        test.changeMessage();
+        
+        Enigma test2 = new Enigma("Test message", false);
+        
+        test2.addToPlugBoard('a', 'f');
+        test2.addToPlugBoard('x', 'z');
+        test2.addToPlugBoard('g', 'm');
+        test2.addToPlugBoard('f', 'g');
+        test2.addToPlugBoard('e', 's');
+        
+        test2.addRotor(2);
+        test2.addRotor(4);
+        test2.addRotor(1);  
+        test2.printEnigma();
+        
+        test2.setDeflector(1);
+        test2.changeMessage();
         /*
         System.out.println("Hello Maven!");
         Cezar kod = new Cezar(5, "abcdefgh", false);
         kod.changeMessage();
         new MainFrame().setVisible(true);
-
-*/
+         */
     }
 }

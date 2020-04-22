@@ -50,8 +50,10 @@ public class Enigma {
     
     private ArrayList<Pair> plugBoard;
     
+    private int deflectorUsed;
+    
     public Enigma(String msg, boolean isEncr){
-        message = msg;
+        message = msg.trim().toLowerCase();
         isEncrypted = isEncr;
         rotor1 = new Rotor(1);
         rotor2 = new Rotor(2);
@@ -71,6 +73,8 @@ public class Enigma {
         
         deflector1.setTable(deflect1);
         deflector2.setTable(deflect2);
+        
+        deflectorUsed = 1;
                 
     }
     
@@ -130,10 +134,11 @@ public class Enigma {
     }
     
     public String getMessage(){
+        System.out.println(message);
         return message;
     }
     
-    public void changeMessage(String msg){
+    public void setMessage(String msg){
         message = msg;
     }
     
@@ -154,6 +159,15 @@ public class Enigma {
         } while (rot == 26 && size >= 0);
     }
     
+    public void setDeflector(int i){
+        if (i != 1 && i != 2) {
+            System.out.println("Deflector does not exist! Use 1 or 2.");
+            return;
+        } else {
+            deflectorUsed = i;
+        }
+    }
+    
     public void printEnigma(){
         System.out.println("Enigma state:");
         System.out.println("Rotors order:");
@@ -167,6 +181,75 @@ public class Enigma {
             temp += p.getSecond();
             System.out.println(temp.toUpperCase());
         }
+    }
+    
+    private char addRotation(char c, int rot){
+        c = (char) ('a' + ((c + rot - 1) % 97) % 26);
+        return c;
+    }
+    private char subRotation(char c, int rot){
+        c = addRotation(c, 26 - rot);
+        return c;
+    }
+    
+    public void changeMessage(){
+        String tmp_string = "";
+        char tmp_char;
+        for (int i = 0; i < message.length(); i++) {
+            tmp_char = message.charAt(i);
+            if (tmp_char >= 'a' && tmp_char <= 'z') {
+                // Przejscie po plugboardzie
+                for (Pair p : plugBoard) {
+                    if (p.getFirst() == tmp_char) {
+                        tmp_char = p.getSecond();
+                    }
+                    if (p.getSecond() == tmp_char) {
+                        tmp_char = p.getFirst();
+                    }
+                }
+                // Przejscie po rotorach w kierunku do deflektora
+                for (int j = rotorList.size() - 1; j >= 0; j--) {
+                    // dostosowanie chara do rotacji rotora
+                    tmp_char = addRotation(tmp_char, rotorList.get(j).getRotatation());
+                    // znalezienie chara po 2 stronie rotora
+                    tmp_char = rotorList.get(j).getChar(tmp_char - 97);
+                    // odjecie rotacji
+                    tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation());
+                }
+                // Przejście przez deflektor
+                if (deflectorUsed == 1) {
+                    tmp_char = addRotation(tmp_char, deflector1.getRotatation());
+                    tmp_char = deflector1.getChar(tmp_char - 97);
+                    tmp_char = subRotation(tmp_char, deflector1.getRotatation());
+                } else {
+                    tmp_char = addRotation(tmp_char, deflector2.getRotatation());
+                    tmp_char = deflector2.getChar(tmp_char - 97);
+                    tmp_char = subRotation(tmp_char, deflector2.getRotatation());
+                }
+                // Przejscie po rotorach w kierunku od deflektora
+                for (int j = 0; j < rotorList.size(); j++) {
+                    // dostosowanie chara do rotacji rotora
+                    tmp_char = addRotation(tmp_char, rotorList.get(j).getRotatation());
+                    // znalezienie chara po 2 stronie rotora
+                    tmp_char = rotorList.get(j).getCounterChar(tmp_char);
+                    // odjecie rotacji
+                    tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation());
+                }
+                // Przejscie po plugboardzie
+                for (Pair p : plugBoard) {
+                    if (p.getFirst() == tmp_char) {
+                        tmp_char = p.getSecond();
+                    }
+                    if (p.getSecond() == tmp_char) {
+                        tmp_char = p.getFirst();
+                    }
+                }
+                tmp_string += tmp_char;
+                moveRotors();
+            }
+        }
+        message = tmp_string;
+        System.out.println("New message is: " + tmp_string);
     }
     
 }
