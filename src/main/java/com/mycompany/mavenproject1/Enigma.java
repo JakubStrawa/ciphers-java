@@ -59,24 +59,15 @@ public class Enigma {
     
     public Enigma(String msg){
         message = msg.trim().toLowerCase();
-        rotor1 = new Rotor(1);
-        rotor2 = new Rotor(2);
-        rotor3 = new Rotor(3);
-        rotor4 = new Rotor(4);
-        rotor5 = new Rotor(5);
-        deflector1 = new Rotor(101);
-        deflector2 = new Rotor(102);
+        rotor1 = new Rotor(1,tab1);
+        rotor2 = new Rotor(2,tab2);
+        rotor3 = new Rotor(3,tab3);
+        rotor4 = new Rotor(4,tab4);
+        rotor5 = new Rotor(5,tab5);
+        deflector1 = new Rotor(101,deflect1);
+        deflector2 = new Rotor(102,deflect2);
         rotorList = new ArrayList<Rotor>();
         plugBoard = new ArrayList<Pair>();
-        
-        rotor1.setTable(tab1);
-        rotor2.setTable(tab2);
-        rotor3.setTable(tab3);
-        rotor4.setTable(tab4);
-        rotor5.setTable(tab5);
-        
-        deflector1.setTable(deflect1);
-        deflector2.setTable(deflect2);
         
         deflectorUsed = 1;
                 

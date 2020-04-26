@@ -18,15 +18,16 @@ public class Rotor {
     private boolean isUsed;
     private int number;
     
-    public Rotor(int num){
+    public Rotor(int num, char [] tab){
         table = new ArrayList<Pair>();
         rotation = 1;
         isUsed = false;
         number = num;
-        fillTable();
+        setTable(tab);
+        //fillTable();
     }
-    
-    private void fillTable(){
+    // Pairs : alphabetical order, counterletter (table1 is table of counterletters)
+    private void fillTable(char [] tab){
         int temp = 97;
         for (char c : table1) {
             table.add(new Pair((char) temp, c));
@@ -55,7 +56,8 @@ public class Rotor {
     }
     
     public char getChar(int index){
-        return table1[index];
+        return table.get(index).getSecond();
+        //return table1[index];
     }
     
     public char getCounterChar(char c){
@@ -70,8 +72,8 @@ public class Rotor {
     
     public void setTable(char [] tab){
         if (tab.length == 26) {
-            table1 = tab;
-            fillTable();
+            //table1 = tab;
+            fillTable(tab);
         }
     }
     
