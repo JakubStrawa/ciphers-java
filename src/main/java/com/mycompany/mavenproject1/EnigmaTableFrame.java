@@ -5,6 +5,8 @@
  */
 package com.mycompany.mavenproject1;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kuba
@@ -14,13 +16,49 @@ public class EnigmaTableFrame extends javax.swing.JFrame {
     /**
      * Creates new form EnigmaTableFrame
      */
-    public EnigmaTableFrame() {
+    public EnigmaTableFrame(boolean def, ArrayList<Rotor> rotors, ArrayList<Pair> plugboard) {
         initComponents();
-        jLabel5.setText("C 1 2 3");
-        jLabel6.setText("3 21 14");
-        jLabel7.setText("AB CD EF GH");
-        jLabel8.setText("AB CD EF GH");
-        jLabel9.setText("AB CD EF GH IJ");
+        char d = 'B';
+        if (!def) {
+            d = 'C';
+        }
+        String text1 = "";
+        text1 += d;
+        for (Rotor r : rotors) {
+            text1 = text1 + " " + r.getNumber();
+        }
+        String text2 = "";
+        for (Rotor r : rotors) {
+            text2 = text2 + " " + r.getRotatation();
+        }
+        String text3 = "";
+        int i = 0, j = 0;
+        for (Pair pair : plugboard) {
+            text3 = text3 + pair.getFirst() + pair.getSecond() + " ";
+            i++;
+            if (i == 4 && j != 2) {
+                j++;
+                i = 0;
+                text3 += ":";
+            }
+        }
+        String [] stable = {};
+        stable = text3.split(":", 3);
+        
+        
+        jLabel5.setText(text1);
+        jLabel6.setText(text2.trim());
+        jLabel7.setText(stable[0].trim().toUpperCase());
+        if (stable.length > 1) {
+            jLabel8.setText(stable[1].trim().toUpperCase());
+        } else {
+            jLabel8.setText("");
+        }
+        if (stable.length > 2) {
+            jLabel9.setText(stable[2].trim().toUpperCase());
+        } else {
+            jLabel9.setText("");
+        }
 
     }
 
@@ -157,7 +195,10 @@ public class EnigmaTableFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EnigmaTableFrame().setVisible(true);
+                boolean b = true;
+                ArrayList<Rotor> r = null;
+                ArrayList<Pair> p = null;
+                new EnigmaTableFrame(b,r,p).setVisible(true);
             }
         });
     }

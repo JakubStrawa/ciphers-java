@@ -48,11 +48,11 @@ public class Main {
         System.out.println(text);
         test2.addToPlugBoard(text);
         test2.printEnigma();
-        /*
+        
         System.out.println("Hello Maven!");
         Cezar kod = new Cezar(5, "abcdefgh", false);
         kod.changeMessage();
         new MainFrame().setVisible(true);
-         */
+         
     }
 }

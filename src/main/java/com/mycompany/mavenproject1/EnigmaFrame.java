@@ -16,6 +16,7 @@ public class EnigmaFrame extends javax.swing.JFrame {
      */
     public EnigmaFrame() {
         initComponents();
+        enigma = new Enigma("");
     }
 
     /**
@@ -249,16 +250,15 @@ public class EnigmaFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
@@ -287,7 +287,8 @@ public class EnigmaFrame extends javax.swing.JFrame {
                                     .addGap(61, 61, 61)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(41, Short.MAX_VALUE))))
+                        .addGap(0, 39, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,10 +325,10 @@ public class EnigmaFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -362,7 +363,8 @@ public class EnigmaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        new EnigmaTableFrame().setVisible(true);
+        EnigmaTableFrame etabframe = new EnigmaTableFrame(jCheckBox1.isSelected(), enigma.getRotorList(), enigma.getPlugBoard());
+        etabframe.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -396,8 +398,10 @@ public class EnigmaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        enigma.clearPlugBoard();
+        enigma.clearRotorList();
         String message = jTextField1.getText().trim().toLowerCase();
-        Enigma enigma = new Enigma(message);
+        enigma.setMessage(message);
         if (jComboBox1.getSelectedIndex() != -1) {
             enigma.addRotor(jComboBox1.getSelectedIndex() + 1);
             enigma.getRotor(jComboBox1.getSelectedIndex() + 1).setRotation(jComboBox4.getSelectedIndex() + 1);
@@ -405,12 +409,10 @@ public class EnigmaFrame extends javax.swing.JFrame {
         if (jComboBox2.getSelectedIndex() != -1) {
             enigma.addRotor(jComboBox2.getSelectedIndex() + 1);
             enigma.getRotor(jComboBox2.getSelectedIndex() + 1).setRotation(jComboBox5.getSelectedIndex() + 1);
-
         }
         if (jComboBox3.getSelectedIndex() != -1) {
             enigma.addRotor(jComboBox3.getSelectedIndex() + 1);
             enigma.getRotor(jComboBox3.getSelectedIndex() + 1).setRotation(jComboBox6.getSelectedIndex() + 1);
-
         }
         if (jCheckBox1.isSelected()) {
             enigma.setDeflector(1);
@@ -456,6 +458,7 @@ public class EnigmaFrame extends javax.swing.JFrame {
             }
         });
     }
+    public Enigma enigma;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -120,7 +120,16 @@ public class Enigma {
     }
     
     public void clearRotorList(){
+        for (Rotor r : rotorList) {
+            r.changeIsUsed();
+        }
         rotorList.clear();
+    }
+    public ArrayList<Rotor> getRotorList(){
+        return rotorList;
+    }
+    public ArrayList<Pair> getPlugBoard(){
+        return plugBoard;
     }
     
     public Rotor getRotor(int num){
