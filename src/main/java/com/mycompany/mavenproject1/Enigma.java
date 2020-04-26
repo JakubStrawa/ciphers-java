@@ -8,7 +8,7 @@ package com.mycompany.mavenproject1;
 import java.util.ArrayList;
 
 //TODO:
-// change tables to arraylist of pairs
+// change tables to arraylist of pairs +
 // make enigma working +
 // optimalization
 // comments in english
@@ -196,14 +196,26 @@ public class Enigma {
         int size = rotorList.size() - 1;
         int rot = rotorList.get(size).getRotatation();
         
-        do {            
-            rotorList.get(size).rotate();
-            size --;
-            if (size < 0) {
-                break;
-            }
+        rotorList.get(size).rotate();
+        if (rot == 26 && size != 0) {
+            size--;
             rot = rotorList.get(size).getRotatation();
-        } while (rot == 26 && size >= 0);
+            rotorList.get(size).rotate();
+            if (rot == 26 && size != 0) {
+                size--;
+                rotorList.get(size).rotate();
+            }
+            
+        }
+        
+//        do {            
+//            rotorList.get(size).rotate();
+//            size --;
+//            if (size < 0) {
+//                break;
+//            }
+//            rot = rotorList.get(size).getRotatation();
+//        } while (rot == 26 && size >= 0);
     }
     
     public void setDeflector(int i){
@@ -213,6 +225,10 @@ public class Enigma {
         } else {
             deflectorUsed = i;
         }
+    }
+    
+    public int getDeflector(){
+        return deflectorUsed;
     }
     
     public void printEnigma(){
@@ -237,20 +253,6 @@ public class Enigma {
     private char subRotation(char c, int rot){
         c = addRotation(c, 26 - rot + 1);
         return c;
-    }
-    
-    public void testRot(int r){
-        String tmp_add = "";
-        String tmp_sub = "";
-        char tmp_c;
-        for (int i = 0; i < message.length(); i++) {
-            tmp_c = message.charAt(i);
-            tmp_add += addRotation(tmp_c, r);
-            tmp_sub += subRotation(tmp_c, r);
-        }
-        System.out.println("Add: " + tmp_add);
-        System.out.println("Sub: " + tmp_sub);
-
     }
     
     public void changeMessage(){

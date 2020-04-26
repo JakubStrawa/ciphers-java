@@ -21,6 +21,8 @@ public class PolybiusTest {
     Polybius pol2 = new Polybius("helloworld", false, "defjam");
     Polybius pol3 = new Polybius("test string", false, "xyz");
     Character [] table = {'x','y','z','a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w'};
+    Polybius pol4 = new Polybius("   11 12 13 14 15 21 22 23 24", true, "kopia");
+    Polybius pol5 = new Polybius("helloworld", false, "defjam");
 
     /**
      * Test of getMessage method, of class Polybius.
@@ -36,8 +38,9 @@ public class PolybiusTest {
      */
     @Test
     public void testGetIsEncrypted() {
-        assertTrue(pol.getIsEncrypted());
-        assertFalse(pol2.getIsEncrypted());
+        
+        assertTrue(pol4.getIsEncrypted());
+        assertFalse(pol5.getIsEncrypted());
     }
 
     /**
