@@ -24,7 +24,7 @@ public class Rotor {
         number = num;
         setTable(tab);
     }
-    // Pairs : alphabetical order, counterletter (table1 is table of counterletters)
+    // Pairs : alphabetical order, counterletter
     private void fillTable(char [] tab){
         int temp = 97;
         for (char c : tab) {
@@ -55,9 +55,7 @@ public class Rotor {
     
     public char getChar(int index){
         return table.get(index).getSecond();
-        //return table1[index];
     }
-    // wrong
     public char getCounterChar(char c){
         char tmp = 'a';
         for (Pair pair : table) {
@@ -70,7 +68,6 @@ public class Rotor {
     
     public void setTable(char [] tab){
         if (tab.length == 26) {
-            //table1 = tab;
             fillTable(tab);
         }
     }

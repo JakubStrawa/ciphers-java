@@ -59,7 +59,6 @@ public class EnigmaFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -187,9 +186,6 @@ public class EnigmaFrame extends javax.swing.JFrame {
 
         jMenu3.setText("View");
 
-        jCheckBoxMenuItem1.setText("Decipher message");
-        jMenu3.add(jCheckBoxMenuItem1);
-
         jMenuItem9.setText("Show Enigma table");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,6 +227,11 @@ public class EnigmaFrame extends javax.swing.JFrame {
         jMenu4.setText("Run");
 
         jMenuItem5.setText("Run");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem5);
 
         jCheckBoxMenuItem2.setText("Run step by step");
@@ -424,6 +425,10 @@ public class EnigmaFrame extends javax.swing.JFrame {
         jTextField2.setText(enigma.getMessage());
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        jButton1ActionPerformed(evt);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -464,7 +469,6 @@ public class EnigmaFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;

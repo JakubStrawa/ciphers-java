@@ -7,11 +7,6 @@ package com.mycompany.mavenproject1;
 
 import java.util.ArrayList;
 
-//TODO:
-// change tables to arraylist of pairs +
-// make enigma working +
-// optimalization
-// comments in english
 
 /**
  *
@@ -139,44 +134,15 @@ public class Enigma {
                 return null;
         }
     }
-    // CHANGE
+    
     public void addRotor(int num){
         if (num <= 0 || num >= 6) {
             System.out.println("Rotor does not exist! Use only numbers from 1 to 5");
-        }
-        switch(num){
-            case 1:
-                if (!rotor1.getIsUsed()) {
-                    rotorList.add(rotor1);
-                    rotor1.changeIsUsed(); 
-                }
-                break;
-            case 2:
-                if (!rotor2.getIsUsed()) {
-                    rotorList.add(rotor2);
-                    rotor2.changeIsUsed();
-                }
-                break;
-            case 3:
-                if (!rotor3.getIsUsed()) {
-                    rotorList.add(rotor3);
-                    rotor3.changeIsUsed();
-                }
-                break;
-            case 4:
-                if (!rotor4.getIsUsed()) {
-                    rotorList.add(rotor4);
-                    rotor4.changeIsUsed();
-                }
-                break;
-            case 5:
-                if (!rotor5.getIsUsed()) {
-                    rotorList.add(rotor5);
-                    rotor5.changeIsUsed();
-                }
-                break;
-            default:
-                break;
+        } else {
+            if (!getRotor(num).getIsUsed()) {
+                rotorList.add(getRotor(num));
+                getRotor(num).changeIsUsed();
+            }
         }
     }
     
@@ -205,17 +171,7 @@ public class Enigma {
                 size--;
                 rotorList.get(size).rotate();
             }
-            
         }
-        
-//        do {            
-//            rotorList.get(size).rotate();
-//            size --;
-//            if (size < 0) {
-//                break;
-//            }
-//            rot = rotorList.get(size).getRotatation();
-//        } while (rot == 26 && size >= 0);
     }
     
     public void setDeflector(int i){
@@ -261,8 +217,7 @@ public class Enigma {
         for (int i = 0; i < message.length(); i++) {
             tmp_char = message.charAt(i);
             if (tmp_char >= 'a' && tmp_char <= 'z') {
-                System.out.println("New char: " + tmp_char);
-                // Przejscie po plugboardzie
+                // Plugboard
                 for (Pair p : plugBoard) {
                     if (p.getFirst() == tmp_char) {
                         tmp_char = p.getSecond();
@@ -273,22 +228,16 @@ public class Enigma {
                         break;
                     }
                 }
-                System.out.println("1st plugboard: " + tmp_char);
-                // Przejscie po rotorach w kierunku do deflektora
+                // Iteration through rotors to deflector
                 for (int j = rotorList.size() - 1; j >= 0; j--) {
-                    // dostosowanie chara do rotacji rotora
+                    // char adjustion to rotor rotation
                     tmp_char = addRotation(tmp_char, rotorList.get(j).getRotatation());
-                    System.out.println("Rotor: " + rotorList.get(j).getNumber() + " char: " + tmp_char);
-                    // znalezienie chara po 2 stronie rotora
+                    // finding char on the other side of rotor
                     tmp_char = rotorList.get(j).getChar(tmp_char - 97);
-                    System.out.println("Rotor: " + rotorList.get(j).getNumber() + " char: " + tmp_char);
-                    // odjecie rotacji
-                    tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation()-1);
-                    System.out.println("Rotor: " + rotorList.get(j).getNumber() + " char: " + tmp_char);
-                    
+                    // rotation substraction
+                    tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation()-1);                    
                 }
-                //System.out.println(tmp_char);
-                // Przejście przez deflektor
+                // Going through deflector
                 if (deflectorUsed == 1) {
                     tmp_char = addRotation(tmp_char, deflector1.getRotatation());
                     tmp_char = deflector1.getChar(tmp_char - 97);
@@ -298,21 +247,17 @@ public class Enigma {
                     tmp_char = deflector2.getChar(tmp_char - 97);
                     tmp_char = subRotation(tmp_char, deflector2.getRotatation()-1);
                 }
-                System.out.println("Deflector: " + tmp_char);
-                // Przejscie po rotorach w kierunku od deflektora
+                // Iteration through rotors from deflector
                 for (int j = 0; j < rotorList.size(); j++) {
-                    // dostosowanie chara do rotacji rotora
+                    // char adjustion to rotor rotation
                     tmp_char = addRotation(tmp_char, rotorList.get(j).getRotatation());
-                    System.out.println("Rotor: " + rotorList.get(j).getNumber() + " char: " + tmp_char);
-                    // znalezienie chara po 2 stronie rotora
+                    // finding char on the other side of rotor
                     tmp_char = rotorList.get(j).getCounterChar(tmp_char);
-                    System.out.println("Rotor: " + rotorList.get(j).getNumber() + " char: " + tmp_char);
-                    // odjecie rotacji
+                    // rotation substraction
                     tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation()-1);
-                    System.out.println("Rotor: " + rotorList.get(j).getNumber() + " char: " + tmp_char);
                 }
                 
-                // Przejscie po plugboardzie
+                // Plugboad
                 for (Pair p : plugBoard) {
                     if (p.getFirst() == tmp_char) {
                         tmp_char = p.getSecond();
@@ -323,7 +268,6 @@ public class Enigma {
                         break;
                     }
                 }
-                System.out.println("2nd plugboard: " + tmp_char);
                 tmp_string += tmp_char;
                 moveRotors();
             }
