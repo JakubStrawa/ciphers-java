@@ -23,7 +23,7 @@ public class RotorTest {
     ArrayList<Pair> testlist = new ArrayList<Pair>();
     Rotor test3 = new Rotor(3, tab);
     
-    char [] rot_tab = {'x','d','a','c','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','e','f'};
+    char [] rot_tab = {'e','k','m','f','l','g','d','q','v','z','n','t','o','w','y','h','x','u','s','p','a','i','b','r','c','j'};
     Rotor rot = new Rotor(1,tab);
  
     
@@ -96,8 +96,8 @@ public class RotorTest {
     @Test
     public void testGetChar() {
         test.setTable(tab);
-        assertEquals(test.getChar(0), 'a');
-        assertEquals(test.getChar(25), 'z');
+        assertEquals('a', test.getChar(0));
+        assertEquals('z', test.getChar(25));
     }
 
     /**
@@ -106,8 +106,8 @@ public class RotorTest {
     @Test
     public void testGetCounterChar() {
         test2.setTable(rot_tab);
-        assertEquals('x', test2.getCounterChar('x'));
-        assertEquals('f', test2.getCounterChar('f'));
+        assertEquals('a', test2.getCounterChar('e'));
+        assertEquals('b', test2.getCounterChar('k'));
     }
 
     /**

@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public class Rotor {
     private ArrayList<Pair> table;
-    private char [] table1 = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     private int rotation;
     private boolean isUsed;
     private int number;
@@ -24,12 +23,11 @@ public class Rotor {
         isUsed = false;
         number = num;
         setTable(tab);
-        //fillTable();
     }
     // Pairs : alphabetical order, counterletter (table1 is table of counterletters)
     private void fillTable(char [] tab){
         int temp = 97;
-        for (char c : table1) {
+        for (char c : tab) {
             table.add(new Pair((char) temp, c));
             temp++;
         }
@@ -59,7 +57,7 @@ public class Rotor {
         return table.get(index).getSecond();
         //return table1[index];
     }
-    
+    // wrong
     public char getCounterChar(char c){
         char tmp = 'a';
         for (Pair pair : table) {
