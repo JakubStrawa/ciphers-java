@@ -400,12 +400,17 @@ public class EnigmaFrame extends javax.swing.JFrame {
         Enigma enigma = new Enigma(message);
         if (jComboBox1.getSelectedIndex() != -1) {
             enigma.addRotor(jComboBox1.getSelectedIndex() + 1);
+            enigma.getRotor(jComboBox1.getSelectedIndex() + 1).setRotation(jComboBox4.getSelectedIndex() + 1);
         }
         if (jComboBox2.getSelectedIndex() != -1) {
             enigma.addRotor(jComboBox2.getSelectedIndex() + 1);
+            enigma.getRotor(jComboBox2.getSelectedIndex() + 1).setRotation(jComboBox5.getSelectedIndex() + 1);
+
         }
         if (jComboBox3.getSelectedIndex() != -1) {
             enigma.addRotor(jComboBox3.getSelectedIndex() + 1);
+            enigma.getRotor(jComboBox3.getSelectedIndex() + 1).setRotation(jComboBox6.getSelectedIndex() + 1);
+
         }
         if (jCheckBox1.isSelected()) {
             enigma.setDeflector(1);

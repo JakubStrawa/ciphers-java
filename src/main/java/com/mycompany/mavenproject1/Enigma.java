@@ -91,7 +91,14 @@ public class Enigma {
             }
             a = text.charAt(i);
             i++;
-            b = text.charAt(i);
+            
+            //exception
+            try {
+                b = text.charAt(i);
+            } catch (Exception e) {
+                b = ' ';
+            }
+            
             if (a >= 'a' && a <= 'z' && b >= 'a' && b <= 'z') {
                 addToPlugBoard(a, b);
             }
@@ -99,6 +106,9 @@ public class Enigma {
     }
     
     public void addToPlugBoard(char a, char b){
+        if (a == ' ' || b == ' ') {
+            return;
+        }
         plugBoard.removeIf(p -> (p.getFirst() == a || p.getSecond() == a));
         plugBoard.removeIf(p -> (p.getFirst() == b || p.getSecond() == b));
         plugBoard.add(new Pair(a,b));
@@ -111,6 +121,23 @@ public class Enigma {
     
     public void clearRotorList(){
         rotorList.clear();
+    }
+    
+    public Rotor getRotor(int num){
+        switch(num){
+            case 1:
+                return rotor1;
+            case 2:
+                return rotor2;
+            case 3:
+                return rotor3;
+            case 4:
+                return rotor4;
+            case 5:
+                return rotor5;
+            default:
+                return null;
+        }
     }
     // CHANGE
     public void addRotor(int num){
