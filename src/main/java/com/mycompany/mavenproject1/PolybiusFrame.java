@@ -271,7 +271,7 @@ public class PolybiusFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        JOptionPane.showMessageDialog(null, "WIP");
+        new EnigmaFrame().setVisible(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jMenuItem7ActionPerformed

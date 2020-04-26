@@ -11,7 +11,7 @@ package com.mycompany.mavenproject1;
  */
 public class Main {
     public static void main(String[] args){
-        Enigma test = new Enigma("Test message", false);
+        Enigma test = new Enigma("Test message");
         
         test.addToPlugBoard('a', 'f');
         test.addToPlugBoard('x', 'z');
@@ -27,7 +27,7 @@ public class Main {
         test.setDeflector(2);
         //test.changeMessage();
         
-        Enigma test2 = new Enigma("vcgpcrbwlji", false);
+        Enigma test2 = new Enigma("vcgpcrbwlji");
         //test2.testRot();
         
         test2.addToPlugBoard('e', 'x');
@@ -42,11 +42,17 @@ public class Main {
         
         test2.setDeflector(2);
         test2.changeMessage();
-        /*
+        
+        String text = "  ab cd ef gh ij   ";
+        text = text.trim();
+        System.out.println(text);
+        test2.addToPlugBoard(text);
+        test2.printEnigma();
+        
         System.out.println("Hello Maven!");
         Cezar kod = new Cezar(5, "abcdefgh", false);
         kod.changeMessage();
         new MainFrame().setVisible(true);
-         */
+         
     }
 }

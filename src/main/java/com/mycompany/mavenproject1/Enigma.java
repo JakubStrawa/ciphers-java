@@ -19,7 +19,6 @@ import java.util.ArrayList;
  */
 public class Enigma {
     private String message;
-    private boolean isEncrypted;
     
     private Rotor rotor1,rotor2,rotor3,rotor4,rotor5,deflector1,deflector2;
     //
@@ -58,9 +57,8 @@ public class Enigma {
     
     private int deflectorUsed;
     
-    public Enigma(String msg, boolean isEncr){
+    public Enigma(String msg){
         message = msg.trim().toLowerCase();
-        isEncrypted = isEncr;
         rotor1 = new Rotor(1);
         rotor2 = new Rotor(2);
         rotor3 = new Rotor(3);
@@ -82,6 +80,22 @@ public class Enigma {
         
         deflectorUsed = 1;
                 
+    }
+    
+    public void addToPlugBoard(String s){
+        String text = s.trim().toLowerCase();
+        char a,b;
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == ' ') {
+                i++;
+            }
+            a = text.charAt(i);
+            i++;
+            b = text.charAt(i);
+            if (a >= 'a' && a <= 'z' && b >= 'a' && b <= 'z') {
+                addToPlugBoard(a, b);
+            }
+        }
     }
     
     public void addToPlugBoard(char a, char b){
@@ -198,14 +212,14 @@ public class Enigma {
         return c;
     }
     
-    public void testRot(){
+    public void testRot(int r){
         String tmp_add = "";
         String tmp_sub = "";
         char tmp_c;
         for (int i = 0; i < message.length(); i++) {
             tmp_c = message.charAt(i);
-            tmp_add += addRotation(tmp_c, 15);
-            tmp_sub += subRotation(tmp_c, 15);
+            tmp_add += addRotation(tmp_c, r);
+            tmp_sub += subRotation(tmp_c, r);
         }
         System.out.println("Add: " + tmp_add);
         System.out.println("Sub: " + tmp_sub);
