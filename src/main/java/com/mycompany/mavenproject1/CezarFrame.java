@@ -280,7 +280,7 @@ public class CezarFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        JOptionPane.showMessageDialog(null, "WIP");
+        new EnigmaFrame().setVisible(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jMenuItem6ActionPerformed

@@ -32,13 +32,14 @@ public class Polybius {
         
         for (int i = 1; i < str.length(); i++) {
             tmp_char = str.charAt(i);
-            if (tmp_char == 'j') {   // polybius square uses 'i' as 'i' and 'j'
+            if (tmp_char >= 'a' && tmp_char <= 'z') {
+               if (tmp_char == 'j') {   // polybius square uses 'i' as 'i' and 'j'
                     tmp_char--;  
+                }
+                if (! tmp_table.contains(tmp_char)) {   
+                    tmp_table.add(tmp_char);
+                } 
             }
-            if (! tmp_table.contains(tmp_char)) {   
-                tmp_table.add(tmp_char);
-            }
-            
         }
         if (tmp_table.size() < 25) {
             for (int j = 0; j < table.length; j++) {

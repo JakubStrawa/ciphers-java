@@ -17,6 +17,8 @@ public class PolybiusFrame extends javax.swing.JFrame {
      * Creates new form PolybiusFrame
      */
     public PolybiusFrame() {
+        table = new Character[25];
+        hasTable = false;
         initComponents();
     }
 
@@ -29,10 +31,6 @@ public class PolybiusFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -51,6 +49,7 @@ public class PolybiusFrame extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -58,14 +57,6 @@ public class PolybiusFrame extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("jMenu3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Polybius square");
@@ -96,6 +87,11 @@ public class PolybiusFrame extends javax.swing.JFrame {
         jCheckBox2.setText("Custom key");
 
         jTextField1.setText("Default key");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(4);
@@ -141,6 +137,14 @@ public class PolybiusFrame extends javax.swing.JFrame {
             }
         });
         jMenu6.add(jCheckBoxMenuItem1);
+
+        jMenuItem6.setText("Show table");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem6);
 
         jMenu8.setText("Go to");
 
@@ -240,12 +244,14 @@ public class PolybiusFrame extends javax.swing.JFrame {
         boolean isEncoded = jCheckBox1.isSelected();
         String key = "";
         if (jCheckBox2.isSelected()) {
-            key = jCheckBox2.getText().trim();
+            key = jTextField1.getText().trim().toLowerCase();
         }
-        String message = jTextArea1.getText().trim();
+        String message = jTextArea1.getText().trim().toLowerCase();
         Polybius polybius = new Polybius(message, isEncoded, key);
         polybius.changeMessage();
         jTextArea2.setText(polybius.getMessage());
+        table = polybius.getTable();
+        hasTable = true;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -265,7 +271,7 @@ public class PolybiusFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        JOptionPane.showMessageDialog(null, "WIP");
+        new EnigmaFrame().setVisible(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
@@ -293,6 +299,19 @@ public class PolybiusFrame extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        if (hasTable == false) {
+            JOptionPane.showMessageDialog(null, "First run your message!");
+        } else {
+            PolybiusTableFrame polTF = new PolybiusTableFrame(table);
+            polTF.setVisible(true);
+        }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,6 +347,10 @@ public class PolybiusFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    private Character [] table;
+    private boolean hasTable;
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -336,21 +359,18 @@ public class PolybiusFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
