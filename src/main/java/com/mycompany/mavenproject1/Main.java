@@ -5,6 +5,7 @@
  */
 package com.mycompany.mavenproject1;
 
+
 /**
  *
  * @author kuba
@@ -12,6 +13,17 @@ package com.mycompany.mavenproject1;
 public class Main {
     public static void main(String[] args){        
         
+        
+        int b = 10;
+        b = b << 2;
+        
+        System.out.println(b);
+        
+        Blowfish bf = new Blowfish("Testmessage","anotherkey12345", true, 96);
+                
+        //System.out.println(tab[1].length);
+        
+        Matrice m = new Matrice("ABCDEFGHIJKLMNOP");
         /*
         System.out.println("Hello Maven!");
         new MainFrame().setVisible(true);

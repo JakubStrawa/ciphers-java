@@ -13,7 +13,9 @@ public class AES {
     private String message;
     private boolean isEncoded;
     private int keySize;
-    private char [] block, key;
+    private char [] block, key; // WHY?
+    private Matrice matrice;
+    
         
     
     public AES(String msg, String k, int size, boolean b){
@@ -24,8 +26,9 @@ public class AES {
         }
         key = new char[keySize/8];
         message = msg;
-        fillTable(block, 16, msg);
-        fillTable(key, keySize/8, k);
+        //fillTable(block, 16, msg);
+        //fillTable(key, keySize/8, k);
+        matrice = new Matrice(toHex(msg.getBytes()));
         isEncoded = b;
         //String result = toHex(message.getBytes());
         //System.out.println(result);
