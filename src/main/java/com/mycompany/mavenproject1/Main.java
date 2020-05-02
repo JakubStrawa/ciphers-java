@@ -19,7 +19,7 @@ public class Main {
         l = l >> 16;
         System.out.println(l);
                 
-        BlowfishTesting test = new BlowfishTesting("1234", "ELDO20kanawolno");
+        Blowfish test = new Blowfish("1234", "ELDO20kanawolno");
         test.getMessage();
         
         /*
