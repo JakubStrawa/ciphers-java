@@ -5,6 +5,8 @@
  */
 package com.mycompany.mavenproject1;
 
+import java.math.BigInteger;
+
 /**
  *
  * @author kuba
@@ -234,6 +236,7 @@ public class BlowfishTesting {
         Rval = 0L;
         max_int = 1;
         max_int = max_int << 32;
+        long tmp_left, tmp_right;
         
         S = new long [4][256];
         for (int i = 0; i < 4; i++) {
@@ -243,12 +246,53 @@ public class BlowfishTesting {
         }
         createKey(k);
         createMessage(msg);
+        System.out.println("L to start: " + Lval + " R to start: " + Rval);
+        tmp_left = Lval;
+        tmp_right = Rval;
         start();
+        Lval = tmp_left;
+        Rval = tmp_right;
         System.out.println("L to start: " + Lval + " R to start: " + Rval);
         encrypt(Lval, Rval);
+        System.out.println("Encrypted L: " + Lval + " encrypted R: " + Rval);
+        message = createMessage(Lval, Rval);
+        getMessage();
         decrypt(Lval, Rval);
         System.out.println("L last: " + Lval + " R last: " + Rval);
+        
+        BigInteger sum = new BigInteger(Long.toHexString(Lval), 16);
+        sum = sum.shiftLeft(32);
+        sum = sum.add(BigInteger.valueOf(Rval));
+        message = createMessage(Lval, Rval);
+        
+        System.out.println(sum);
     }
+    
+    public String getMessage(){
+        System.out.println(message);
+        return message;
+    }
+    
+    private String createMessage(long l, long r){
+        String tmp = "";
+        char c;
+        long val = 0L;
+        val = l >> 16;
+        c = (char) val;
+        tmp += c;
+        val = l - (val << 16);
+        c = (char) val;
+        tmp += c;
+        
+        val = r >> 16;
+        c = (char) val;
+        tmp += c;
+        val = r - (val << 16);
+        c = (char) val;
+        tmp += c;
+        return tmp;
+    }
+    
     private void createMessage(String m){
         String tmp = m;
         if (tmp.length() < 4) {
@@ -315,9 +359,8 @@ public class BlowfishTesting {
         R = R ^ P[17];
         Lval = R;
         Rval = L;
-        System.out.println("L: " + Lval + " R: " + Rval);
+        //System.out.println("L: " + Lval + " R: " + Rval);
     }
-
 
     public void decrypt (long L, long R) {
         for (int i=16 ; i > 0 ; i -= 2) {
@@ -330,12 +373,8 @@ public class BlowfishTesting {
         R = R ^ P[0];
         Lval = R;
         Rval = L;
-        System.out.println("L: " + Lval + " R: " + Rval);
+        //System.out.println("L: " + Lval + " R: " + Rval);
     }
-
-  // ...
-  // initializing the P-array and S-boxes with values derived from pi; omitted in the example
-  // ...
 
     public void start(){
         P = new long [18];

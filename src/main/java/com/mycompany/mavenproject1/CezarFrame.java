@@ -151,7 +151,7 @@ public class CezarFrame extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem6);
 
-        jMenuItem7.setText("AES");
+        jMenuItem7.setText("Blowfish");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -286,7 +286,7 @@ public class CezarFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        new AESFrame().setVisible(true);
+        new BlowfishFrame().setVisible(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jMenuItem7ActionPerformed

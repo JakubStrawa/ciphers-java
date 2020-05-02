@@ -71,7 +71,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("AES");
+        jButton4.setText("Blowfish");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -139,7 +139,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         System.out.println("AES button pressed");
-        new AESFrame().setVisible(true);
+        new BlowfishFrame().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

@@ -212,7 +212,7 @@ public class EnigmaFrame extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem7);
 
-        jMenuItem8.setText("AES");
+        jMenuItem8.setText("Blowfish");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
@@ -340,7 +340,7 @@ public class EnigmaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        new AESFrame().setVisible(true);
+        new BlowfishFrame().setVisible(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
