@@ -225,13 +225,13 @@ public class BlowfishTesting {
     long P[];
     long S[][];
     long key[];
-    long L, R;
+    long Lval, Rval;
     String message;
     long max_int;
     
     public BlowfishTesting(String msg, String k){
-        L = 0L;
-        R = 0L;
+        Lval = 0L;
+        Rval = 0L;
         max_int = 1;
         max_int = max_int << 32;
         
@@ -244,9 +244,10 @@ public class BlowfishTesting {
         createKey(k);
         createMessage(msg);
         start();
-        System.out.println("L: " + L + " R: " + R);
-        encrypt(L, R);
-        decrypt(L, R);
+        System.out.println("L to start: " + Lval + " R to start: " + Rval);
+        encrypt(Lval, Rval);
+        decrypt(Lval, Rval);
+        System.out.println("L last: " + Lval + " R last: " + Rval);
     }
     private void createMessage(String m){
         String tmp = m;
@@ -255,12 +256,12 @@ public class BlowfishTesting {
         }
         tmp = tmp.substring(0, 4);
         message = tmp;
-        L = tmp.charAt(0);
-        R = tmp.charAt(2);
-        L = L << 16;
-        R = R << 16;
-        L += tmp.charAt(1);
-        R += tmp.charAt(3);
+        Lval = tmp.charAt(0);
+        Rval = tmp.charAt(2);
+        Lval = Lval << 16;
+        Rval = Rval << 16;
+        Lval += tmp.charAt(1);
+        Rval += tmp.charAt(3);
     }
     
     private void createKey(String k){
@@ -312,10 +313,9 @@ public class BlowfishTesting {
         }
         L = L ^ P[16];
         R = R ^ P[17];
-        long tmp = R;
-        R = L;
-        L = tmp;
-        System.out.println("L: " + L + " R: " + R);
+        Lval = R;
+        Rval = L;
+        System.out.println("L: " + Lval + " R: " + Rval);
     }
 
 
@@ -328,10 +328,9 @@ public class BlowfishTesting {
         }
         L = L ^ P[1];
         R = R ^ P[0];
-        long tmp = R;
-        R = L;
-        L = tmp;
-        System.out.println("L: " + L + " R: " + R);
+        Lval = R;
+        Rval = L;
+        System.out.println("L: " + Lval + " R: " + Rval);
     }
 
   // ...
@@ -345,18 +344,18 @@ public class BlowfishTesting {
             tmp = Long.parseLong(Pbox[i], 16);
             P[i] = (tmp ^ key[i % key.length]);
         }
-        L = 0L; 
-        R = 0L;
+        Lval = 0L; 
+        Rval = 0L;
         for (int i=0 ; i<18 ; i+=2) {
-            encrypt (L, R);
-            P[i] = L; 
-            P[i+1] = R;
+            encrypt (Lval, Rval);
+            P[i] = Lval; 
+            P[i+1] = Rval;
         }
         for (int i=0 ; i<4 ; ++i){
             for (int j=0 ; j<256; j+=2) {
-                encrypt (L, R);
-                S[i][j] = L; 
-                S[i][j+1] = R;
+                encrypt (Lval, Rval);
+                S[i][j] = Lval; 
+                S[i][j+1] = Rval;
             }
         }
     }
