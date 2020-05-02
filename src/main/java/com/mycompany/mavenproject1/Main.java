@@ -15,10 +15,6 @@ import java.math.BigInteger;
 public class Main {
     public static void main(String[] args){     
         
-        long l = 3211314;
-        l = l >> 16;
-        System.out.println(l);
-                
         Blowfish test = new Blowfish("1234", "ELDO20kanawolno");
         test.getMessage();
         
