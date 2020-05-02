@@ -234,16 +234,31 @@ public class Main {
                    "b5470917", "9216d5d9", "8979fb1b" };
         
         BigInteger d = new BigInteger(P[0], 16);
+        long lo = Long.parseLong(P[1], 16);
+        //String str = "ff23a";
+        //lo = Long.parseLong(str, 16);
+        int i = 255;
+        int j = 255;
+        i = i << 4;
+        j = j << 4;
+        //System.out.println("i: " + i + " j: " + j);
         
-        //System.out.println(d);
+        //System.out.println(lo);
         
         //System.out.println(0xbe5466cfL);
         
-        Blowfish bf = new Blowfish("Testmessage","anotherkey12345", true, 96);
+        //Blowfish bf = new Blowfish("Testmessage","anotherkey12345", true, 96);
                 
         //System.out.println(tab[1].length);
         
         //Matrice m = new Matrice("ABCDEFGHIJKLMNOP");
+        
+        
+        
+        //char c = (char) 65535;
+        //System.out.println(c);
+        
+        BlowfishTesting test = new BlowfishTesting("ABCD", "abcdefghijkl");
         
         
         /*
