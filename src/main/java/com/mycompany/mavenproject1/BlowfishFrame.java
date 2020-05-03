@@ -87,7 +87,7 @@ public class BlowfishFrame extends javax.swing.JFrame {
             }
         });
 
-        outputTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Char", "Integer", "Raw" }));
+        outputTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Char", "Integer", "Raw", "Hex" }));
 
         jMenu1.setText("File");
 
@@ -268,8 +268,10 @@ public class BlowfishFrame extends javax.swing.JFrame {
             answerTextArea.setText(blowfish.getEncodedList());
         } else if(outputType == 1) {
             answerTextArea.setText(blowfish.getCharList());
-        } else {
+        } else if(outputType == 2) {
             answerTextArea.setText(blowfish.getBinaryList());
+        } else {
+            answerTextArea.setText(blowfish.getHexList());
         }
     }//GEN-LAST:event_runButtonActionPerformed
 

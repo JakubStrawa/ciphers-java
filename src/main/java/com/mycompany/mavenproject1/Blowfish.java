@@ -320,7 +320,21 @@ public class Blowfish {
                 l = 0;
             }
         }
-        
+        return tmp;
+    }
+    
+    public String getHexList(){
+        System.out.println("HexList:");
+        String tmp = "";
+        int i = 0;
+        for (Character c : charList) {
+            tmp += Integer.toHexString(c);
+            i++;
+            if (i == 4) {
+                i = 0;
+                tmp += ", ";
+            }
+        }
         return tmp;
     }
     
