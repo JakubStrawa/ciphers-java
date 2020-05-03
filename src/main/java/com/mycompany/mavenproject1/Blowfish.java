@@ -233,7 +233,7 @@ public class Blowfish {
     private boolean isEncrypted;
     private ArrayList<String> messageList;
     private ArrayList<String> encodedList;
-    private ArrayList<LongPair> valueList;
+    private ArrayList<Pair<Long>> valueList;
     private ArrayList<Character> charList;
     
     public Blowfish(String msg, String k, boolean f){
@@ -252,44 +252,44 @@ public class Blowfish {
         }
         messageList = new ArrayList<String>();
         encodedList = new ArrayList<String>();
-        valueList = new ArrayList<LongPair>();
+        valueList = new ArrayList<Pair<Long>>();
         charList = new ArrayList<Character>();
         createKey(k);
         divideMessage(msg);
         for (String s : messageList) {
             createMessage(s);
-            valueList.add(new LongPair(Lval, Rval));
+            valueList.add(new Pair<Long>(Lval, Rval));
         }
         setup();
     }
     
     public String getMessageList(){
-        System.out.println("MessageList:");
+        //System.out.println("MessageList:");
         String tmp = "";
         for (String s : messageList) {
-            System.out.println(s);
+            //System.out.println(s);
             tmp += s;
         }
         return tmp;
     }
     
     public String getEncodedList(){
-        System.out.println("EncodedList:");
+        //System.out.println("EncodedList:");
         String tmp = "";
         for (String s : encodedList) {
-            System.out.println(s);
+            //System.out.println(s);
             tmp += s;
         }
         return tmp;
     }
     
     public String getCharList(){
-        System.out.println("CharList:");
+        //System.out.println("CharList:");
         String tmp = "";
         int i = 0;
         for (Character c : charList) {
             i = c;
-            System.out.println(c);
+            //System.out.println(c);
             tmp += i + ", ";
         }
         tmp = tmp.substring(0, tmp.length() - 2);
@@ -297,7 +297,7 @@ public class Blowfish {
     }
     
     public String getBinaryList(){
-        System.out.println("BinaryList:");
+        //System.out.println("BinaryList:");
         String tmp = "";
         long l = 0L;
         int i = 0;
@@ -307,10 +307,8 @@ public class Blowfish {
             if (i != 4) {
                 l = l << 16;
             }
-            
             if (i == 4) {
                 i = 0;
-                //tmp += bi.toString(16);
                 String result = Long.toBinaryString(l);
                 while (result.length() % 64 != 0) {                    
                     result = "0" + result;
@@ -324,7 +322,7 @@ public class Blowfish {
     }
     
     public String getHexList(){
-        System.out.println("HexList:");
+        //System.out.println("HexList:");
         String tmp = "";
         int i = 0;
         for (Character c : charList) {
@@ -343,12 +341,12 @@ public class Blowfish {
     }
     
     public String getMessage(){
-        System.out.println(message);
+        //System.out.println(message);
         return message;
     }
     
     public String getKey(){
-        System.out.println(keyString);
+        //System.out.println(keyString);
         return keyString;
     }
     
@@ -357,7 +355,6 @@ public class Blowfish {
     }
     
     public void setMessage(String s){
-        //createMessage(s);
         messageList.clear();
         encodedList.clear();
         valueList.clear();
@@ -365,7 +362,7 @@ public class Blowfish {
         divideMessage(s);
         for (String str : messageList) {
             createMessage(str);
-            valueList.add(new LongPair(Lval, Rval));
+            valueList.add(new Pair<Long>(Lval, Rval));
         }
     }
     
@@ -469,7 +466,7 @@ public class Blowfish {
             tableKey[i] = sum;
         }
         key = tableKey;
-        System.out.println("KeyString: " + tmp);
+        //System.out.println("KeyString: " + tmp);
         keyString = tmp;
     }
 
@@ -488,7 +485,7 @@ public class Blowfish {
     public void encryptMessage(){
         if (isEncrypted == false) {
             encodedList.clear();
-            for (LongPair lp : valueList) {
+            for (Pair<Long> lp : valueList) {
                 Lval = lp.getFirst();
                 Rval = lp.getSecond();
                 encrypt(Lval, Rval);
@@ -503,7 +500,7 @@ public class Blowfish {
     public void decryptMessage(){
         if (isEncrypted == true) {
             encodedList.clear();
-            for (LongPair lp : valueList) {
+            for (Pair<Long> lp : valueList) {
                 Lval = lp.getFirst();
                 Rval = lp.getSecond();
                 decrypt(Lval, Rval);

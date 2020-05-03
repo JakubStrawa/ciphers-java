@@ -12,13 +12,13 @@ import java.util.ArrayList;
  * @author kuba
  */
 public class Rotor {
-    private ArrayList<Pair> table;
+    private ArrayList<Pair<Character>> table;
     private int rotation;
     private boolean isUsed;
     private int number;
     
     public Rotor(int num, char [] tab){
-        table = new ArrayList<Pair>();
+        table = new ArrayList<Pair<Character>>();
         rotation = 1;
         isUsed = false;
         number = num;
@@ -28,12 +28,12 @@ public class Rotor {
     private void fillTable(char [] tab){
         int temp = 97;
         for (char c : tab) {
-            table.add(new Pair((char) temp, c));
+            table.add(new Pair<Character>((char) temp, c));
             temp++;
         }
     }
     
-    public ArrayList<Pair> getTable(){
+    public ArrayList<Pair<Character>> getTable(){
         return table;
     }
     
@@ -58,7 +58,7 @@ public class Rotor {
     }
     public char getCounterChar(char c){
         char tmp = 'a';
-        for (Pair pair : table) {
+        for (Pair<Character> pair : table) {
             if (pair.getSecond() == c) {
                 tmp = pair.getFirst();
             }

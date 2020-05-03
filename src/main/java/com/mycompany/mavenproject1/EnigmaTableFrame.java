@@ -16,7 +16,7 @@ public class EnigmaTableFrame extends javax.swing.JFrame {
     /**
      * Creates new form EnigmaTableFrame
      */
-    public EnigmaTableFrame(boolean def, ArrayList<Rotor> rotors, ArrayList<Pair> plugboard) {
+    public EnigmaTableFrame(boolean def, ArrayList<Rotor> rotors, ArrayList<Pair<Character>> plugboard) {
         initComponents();
         char d = 'B';
         if (!def) {
@@ -197,7 +197,7 @@ public class EnigmaTableFrame extends javax.swing.JFrame {
             public void run() {
                 boolean b = true;
                 ArrayList<Rotor> r = null;
-                ArrayList<Pair> p = null;
+                ArrayList<Pair<Character>> p = null;
                 new EnigmaTableFrame(b,r,p).setVisible(true);
             }
         });
