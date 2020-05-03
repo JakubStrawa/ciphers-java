@@ -15,6 +15,8 @@ public class BlowfishFrame extends javax.swing.JFrame {
      * Creates new form AESFrame
      */
     public BlowfishFrame() {
+        blowfish = new Blowfish("", "", false);
+        outputType = 0;
         initComponents();
     }
 
@@ -28,6 +30,13 @@ public class BlowfishFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        messageTextField = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        answerTextArea = new javax.swing.JTextArea();
+        runButton = new javax.swing.JButton();
+        keyTextField = new javax.swing.JTextField();
+        decodeCheckBox = new javax.swing.JCheckBox();
+        outputTypeComboBox = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -36,20 +45,49 @@ public class BlowfishFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        decodeCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        runMenuItem = new javax.swing.JMenuItem();
+        runSBSMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Blowfish");
+
+        messageTextField.setText("Enter your message here");
+
+        answerTextArea.setEditable(false);
+        answerTextArea.setColumns(20);
+        answerTextArea.setLineWrap(true);
+        answerTextArea.setRows(5);
+        answerTextArea.setText("Press run to see your answer");
+        answerTextArea.setToolTipText("");
+        answerTextArea.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(answerTextArea);
+
+        runButton.setText("Run");
+        runButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                runButtonActionPerformed(evt);
+            }
+        });
+
+        keyTextField.setText("Enter your key");
+
+        decodeCheckBox.setText("Decode message");
+        decodeCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decodeCheckBoxActionPerformed(evt);
+            }
+        });
+
+        outputTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Char", "Integer", "Raw" }));
 
         jMenu1.setText("File");
 
@@ -83,8 +121,13 @@ public class BlowfishFrame extends javax.swing.JFrame {
 
         jMenu3.setText("View");
 
-        jMenuItem3.setText("Decipher message");
-        jMenu3.add(jMenuItem3);
+        decodeCheckBoxMenuItem.setText("decode message");
+        decodeCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decodeCheckBoxMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu3.add(decodeCheckBoxMenuItem);
 
         jMenu5.setText("Go to");
 
@@ -118,16 +161,21 @@ public class BlowfishFrame extends javax.swing.JFrame {
 
         jMenu4.setText("Run");
 
-        jMenuItem1.setText("Run");
-        jMenu4.add(jMenuItem1);
-
-        jMenuItem2.setText("Run step by step");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        runMenuItem.setText("Run");
+        runMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                runMenuItemActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem2);
+        jMenu4.add(runMenuItem);
+
+        runSBSMenuItem.setText("Run step by step");
+        runSBSMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                runSBSMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu4.add(runSBSMenuItem);
 
         jMenuBar1.add(jMenu4);
 
@@ -138,24 +186,47 @@ public class BlowfishFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(keyTextField)
+                            .addComponent(jScrollPane1)
+                            .addComponent(messageTextField))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(decodeCheckBox)
+                            .addComponent(runButton)
+                            .addComponent(outputTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(runButton))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(keyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(decodeCheckBox))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(outputTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void runSBSMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runSBSMenuItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_runSBSMenuItemActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         new CezarFrame().setVisible(true);
@@ -182,6 +253,45 @@ public class BlowfishFrame extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
+        blowfish.setMessage(messageTextField.getText());
+        blowfish.setKey(keyTextField.getText());
+        blowfish.setIsEncrypted(decodeCheckBox.isSelected());
+        if (!blowfish.getIsEncrypted()) {
+            blowfish.encryptMessage();
+        } else {
+            blowfish.decryptMessage();
+        }
+        outputType = outputTypeComboBox.getSelectedIndex();
+        if (outputType == 0) {
+            answerTextArea.setText(blowfish.getEncodedList());
+        } else if(outputType == 1) {
+            answerTextArea.setText(blowfish.getCharList());
+        } else {
+            answerTextArea.setText(blowfish.getBinaryList());
+        }
+    }//GEN-LAST:event_runButtonActionPerformed
+
+    private void decodeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeCheckBoxActionPerformed
+        if (decodeCheckBoxMenuItem.isSelected()) {
+            decodeCheckBoxMenuItem.setSelected(false);
+        } else {
+            decodeCheckBoxMenuItem.setSelected(true);
+        }
+    }//GEN-LAST:event_decodeCheckBoxActionPerformed
+
+    private void decodeCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeCheckBoxMenuItemActionPerformed
+        if (decodeCheckBox.isSelected()) {
+            decodeCheckBox.setSelected(false);
+        } else {
+            decodeCheckBox.setSelected(true);
+        }
+    }//GEN-LAST:event_decodeCheckBoxMenuItemActionPerformed
+
+    private void runMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMenuItemActionPerformed
+        runButtonActionPerformed(evt);
+    }//GEN-LAST:event_runMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,8 +327,13 @@ public class BlowfishFrame extends javax.swing.JFrame {
             }
         });
     }
+    private Blowfish blowfish;
+    private int outputType;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea answerTextArea;
+    private javax.swing.JCheckBox decodeCheckBox;
+    private javax.swing.JCheckBoxMenuItem decodeCheckBoxMenuItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -226,15 +341,19 @@ public class BlowfishFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField keyTextField;
+    private javax.swing.JTextField messageTextField;
+    private javax.swing.JComboBox<String> outputTypeComboBox;
+    private javax.swing.JButton runButton;
+    private javax.swing.JMenuItem runMenuItem;
+    private javax.swing.JMenuItem runSBSMenuItem;
     // End of variables declaration//GEN-END:variables
 }

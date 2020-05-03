@@ -138,7 +138,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        System.out.println("AES button pressed");
+        System.out.println("Blowfish button pressed");
         new BlowfishFrame().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
