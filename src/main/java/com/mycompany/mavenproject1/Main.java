@@ -15,12 +15,22 @@ import java.math.BigInteger;
 public class Main {
     public static void main(String[] args){     
         
-        Blowfish test = new Blowfish("1234", "ELDO20kanawolno");
-        test.getMessage();
-        
-        
+        Blowfish test = new Blowfish("#$%^1234af()jk", "@abchi", false);
+        test.getKey();
+        test.getMessageList();
+        //test.getMessage();
+        test.encryptMessage();
+        //test.getMessage();
+        //test.getMessageList();
+        test.getDecodedList();
+        test.decryptMessage();
+        //test.getMessage();
+        //test.getMessageList();
+        test.getDecodedList();
+        //test.getKey();
+        /*
         System.out.println("Hello Maven!");
         new MainFrame().setVisible(true);
-        
+        */
     }
 }
