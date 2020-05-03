@@ -301,19 +301,26 @@ public class Blowfish {
         String tmp = "";
         long l = 0L;
         int i = 0;
-        for (Character c : charList) {
-            tmp += Integer.toBinaryString(c);
+        for (Character c : charList) {            
             l += c;
-            l = l << 16;
             i++;
+            if (i != 4) {
+                l = l << 16;
+            }
+            
             if (i == 4) {
                 i = 0;
-                while (tmp.length()%64 != 0) {                    
-                    tmp = "0" + tmp;
+                //tmp += bi.toString(16);
+                String result = Long.toBinaryString(l);
+                while (result.length() % 64 != 0) {                    
+                    result = "0" + result;
                 }
+                tmp += result + ", ";
+                
+                l = 0;
             }
         }
-        System.out.println("l: " + l);
+        
         return tmp;
     }
     
