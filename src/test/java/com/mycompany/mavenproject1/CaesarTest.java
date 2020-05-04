@@ -50,7 +50,7 @@ public class CaesarTest {
      * Test of getIsEncrypted method, of class Caesar.
      */
     @Test
-    public void testGetFlag(){
+    public void testGetIsEncrypted(){
         String test2 = "abcdefghijklmnopqrstxyz";
         Caesar kod2 = new Caesar(-3, test2.trim(), true);
         kod2.setIsEncrypted(true);
@@ -60,7 +60,7 @@ public class CaesarTest {
      * Test of setIsEncrypted method, of class Caesar.
      */
     @Test
-    public void testSetFlag(){
+    public void testSetIsEncrypted(){
         String test2 = "abcdefghijklmnopqrstxyz";
         Caesar kod2 = new Caesar(-3, test2.trim(), true);
         kod2.setIsEncrypted(false);
