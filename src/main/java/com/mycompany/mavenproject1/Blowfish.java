@@ -318,6 +318,8 @@ public class Blowfish {
                 l = 0;
             }
         }
+        tmp = tmp.substring(0, tmp.length() - 2);
+        //System.out.println(tmp);
         return tmp;
     }
     
@@ -333,6 +335,8 @@ public class Blowfish {
                 tmp += ", ";
             }
         }
+        tmp = tmp.substring(0, tmp.length() - 2);
+        //System.out.println(tmp);
         return tmp;
     }
     
