@@ -17,6 +17,7 @@ public class CezarFrame extends javax.swing.JFrame {
      * Creates new form CezarFrame
      */
     public CezarFrame() {
+        cezar = new Cezar(0, "", false);
         initComponents();
     }
 
@@ -240,12 +241,11 @@ public class CezarFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String tmp = jTextField1.getText().trim();
-        int offset = (int) jSpinner1.getValue();
-        boolean decode = jCheckBox1.isSelected();
-        Cezar tmp_kod = new Cezar(offset, tmp, decode);
-        tmp_kod.changeMessage();
-        jTextArea1.setText(tmp_kod.getMessage());
+        cezar.setIsEncrypted(jCheckBox1.isSelected());
+        cezar.setKey((int) jSpinner1.getValue());
+        cezar.setMessage(jTextField1.getText().trim());
+        cezar.changeMessage();
+        jTextArea1.setText(cezar.getMessage());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -325,6 +325,7 @@ public class CezarFrame extends javax.swing.JFrame {
             }
         });
     }
+    private Cezar cezar;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

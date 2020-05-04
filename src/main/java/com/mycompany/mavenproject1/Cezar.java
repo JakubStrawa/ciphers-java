@@ -13,6 +13,7 @@ public class Cezar {
     private String msg;
     private int key;
     private Boolean isEncrypted; // Flag showing if we have encrypted or decoded message
+    
     public Cezar(int k, String m, Boolean f){
         while (k < 0){
             k = 26+k;
@@ -25,17 +26,31 @@ public class Cezar {
             isEncrypted = false;
         }
     }
+    
     public int getKey(){
         return key;
     }
+    
     public String getMessage(){
         return msg;
     }
     
-    
     public Boolean getIsEncrypted(){
         return isEncrypted;
     }
+    
+    public void setKey(int k){
+        key = k;
+    }
+    
+    public void setMessage(String s){
+        msg = s;
+    }
+    
+    public void setIsEncrypted(boolean f){
+        isEncrypted = f;
+    }
+    
     public void changeMessage(){
         String tmp_string ="";
         char tmp_char;

@@ -17,6 +17,7 @@ public class PolybiusFrame extends javax.swing.JFrame {
      * Creates new form PolybiusFrame
      */
     public PolybiusFrame() {
+        polybius = new Polybius("", false, "");
         table = new Character[25];
         hasTable = false;
         initComponents();
@@ -241,13 +242,13 @@ public class PolybiusFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        boolean isEncoded = jCheckBox1.isSelected();
-        String key = "";
+        polybius.setIsEncrypted(jCheckBox1.isSelected());
+        polybius.setMessage(jTextArea1.getText().trim().toLowerCase());
         if (jCheckBox2.isSelected()) {
-            key = jTextField1.getText().trim().toLowerCase();
+            polybius.setTable(jTextField1.getText().trim().toLowerCase());
+        } else {
+            polybius.setTable("");
         }
-        String message = jTextArea1.getText().trim().toLowerCase();
-        Polybius polybius = new Polybius(message, isEncoded, key);
         polybius.changeMessage();
         jTextArea2.setText(polybius.getMessage());
         table = polybius.getTable();
@@ -350,8 +351,7 @@ public class PolybiusFrame extends javax.swing.JFrame {
     
     private Character [] table;
     private boolean hasTable;
-
-
+    private Polybius polybius;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
