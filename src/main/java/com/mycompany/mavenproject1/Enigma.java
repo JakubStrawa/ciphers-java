@@ -13,8 +13,6 @@ import java.util.ArrayList;
  * @author kuba
  */
 public class Enigma {
-    private String message;
-    
     private Rotor rotor1,rotor2,rotor3,rotor4,rotor5,deflector1,deflector2;
     //
     //Rotor and Enigma rules:
@@ -45,11 +43,9 @@ public class Enigma {
     private char [] tab4 = {'e','s','o','v','p','z','j','a','y','q','u','i','r','h','x','l','n','f','t','g','k','d','c','m','w','b'};
     // V:  V Z B R G I T Y U P S D N H L X A W M J Q O F E C K
     private char [] tab5 = {'v','z','b','r','g','i','t','y','u','p','s','d','n','h','l','x','a','w','m','j','q','o','f','e','c','k'};
-
+    private String message;
     private ArrayList<Rotor> rotorList;
-    
     private ArrayList<Pair<Character>> plugBoard;
-    
     private int deflectorUsed;
     
     public Enigma(String msg){
@@ -65,7 +61,6 @@ public class Enigma {
         plugBoard = new ArrayList<Pair<Character>>();
         
         deflectorUsed = 1;
-                
     }
     
     public void addToPlugBoard(String s){
@@ -78,7 +73,6 @@ public class Enigma {
             a = text.charAt(i);
             i++;
             
-            //exception
             try {
                 b = text.charAt(i);
             } catch (Exception e) {
@@ -98,7 +92,6 @@ public class Enigma {
         plugBoard.removeIf(p -> (p.getFirst() == a || p.getSecond() == a));
         plugBoard.removeIf(p -> (p.getFirst() == b || p.getSecond() == b));
         plugBoard.add(new Pair(a,b));
-        
     }
     
     public void clearPlugBoard(){
@@ -111,9 +104,11 @@ public class Enigma {
         }
         rotorList.clear();
     }
+    
     public ArrayList<Rotor> getRotorList(){
         return rotorList;
     }
+    
     public ArrayList<Pair<Character>> getPlugBoard(){
         return plugBoard;
     }
@@ -191,6 +186,7 @@ public class Enigma {
         c = (char) ('a' + ((c + rot - 1) % 97) % 26);
         return c;
     }
+    
     private char subRotation(char c, int rot){
         c = addRotation(c, 26 - rot + 1);
         return c;
