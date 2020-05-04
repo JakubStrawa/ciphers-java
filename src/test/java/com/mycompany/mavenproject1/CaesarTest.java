@@ -12,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author kuba
  */
-public class CezarTest {
+public class CaesarTest {
     
-    public CezarTest() {
+    public CaesarTest() {
     }
     String test = "  abcdefghijklmnopqrstxyz";
     String test2 = "abcdefghijklmnopqrstxyz";
-    Cezar kod = new Cezar(5, test.trim(),false); // trim deletes spaces
-    Cezar kod2 = new Cezar(-3, test2.trim(), true);
+    Caesar kod = new Caesar(5, test.trim(),false); // trim deletes spaces
+    Caesar kod2 = new Caesar(-3, test2.trim(), true);
     @Test
     public void trim(){
         assertEquals(test2, test.trim());
@@ -39,13 +39,13 @@ public class CezarTest {
     @Test
     public void testCipherWork1(){
         String test3 = "efgh";
-        Cezar kod3 = new Cezar(4, test3, false);
+        Caesar kod3 = new Caesar(4, test3, false);
         kod3.changeMessage();
         assertEquals("ijkl", kod3.getMessage());
     }
     @Test
     public void testCipherWork2(){
-        Cezar kod4 = new Cezar(-2, "fgHI34 jk", false);
+        Caesar kod4 = new Caesar(-2, "fgHI34 jk", false);
         kod4.changeMessage();
         assertEquals("defg34 hi", kod4.getMessage());
     }

@@ -9,18 +9,18 @@ package com.mycompany.mavenproject1;
  *
  * @author kuba
  */
-public class Cezar {
+public class Caesar {
     private String msg;
     private int key;
     private Boolean isEncrypted; // Flag showing if we have encrypted or decoded message
     
-    public Cezar(int k, String m, Boolean f){
+    public Caesar(int k, String m, Boolean f){
         while (k < 0){
             k = 26+k;
         }
         key = k;
-        msg = m.toLowerCase();
-        if (f) { // if f is true we have message to decode
+        msg = m.trim().toLowerCase();
+        if (f) { // if f is true we have message to decrypt
             isEncrypted = true;
         } else { // if f is false we have message to encrypt
             isEncrypted = false;
@@ -52,9 +52,9 @@ public class Cezar {
     }
     
     public void changeMessage(){
-        String tmp_string ="";
+        String tmp_string = "";
         char tmp_char;
-        if (isEncrypted){ //message decoder
+        if (isEncrypted){ //message decrypter
             for(int i = 0; i < msg.length(); i++){
                 tmp_char = msg.charAt(i);
                 if (tmp_char > 96 && tmp_char < 123) {
@@ -62,7 +62,7 @@ public class Cezar {
                 }
                 tmp_string += tmp_char;
             }
-        } else { //message encrypther
+        } else { //message encrypter
             for(int i = 0; i < msg.length(); i++){
                 tmp_char = msg.charAt(i);
                 if (tmp_char > 96 && tmp_char < 123) {

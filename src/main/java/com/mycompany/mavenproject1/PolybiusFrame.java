@@ -21,6 +21,7 @@ public class PolybiusFrame extends javax.swing.JFrame {
         table = new Character[25];
         hasTable = false;
         initComponents();
+        polTF = new PolybiusTableFrame(polybius.getTable());
     }
 
     /**
@@ -32,167 +33,181 @@ public class PolybiusFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jTextField1 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        titleLabel = new javax.swing.JLabel();
+        messageScrollPane = new javax.swing.JScrollPane();
+        messageTextArea = new javax.swing.JTextArea();
+        runButton = new javax.swing.JButton();
+        decodeCheckBox = new javax.swing.JCheckBox();
+        customKeyCheckBox = new javax.swing.JCheckBox();
+        customKeyTextField = new javax.swing.JTextField();
+        answerScrollPane = new javax.swing.JScrollPane();
+        answerTextArea = new javax.swing.JTextArea();
+        polybiusMenuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        openMenuItem = new javax.swing.JMenuItem();
+        saveMenuItem = new javax.swing.JMenuItem();
+        exitMenuItem = new javax.swing.JMenuItem();
+        editMenu = new javax.swing.JMenu();
+        copyResultMenuItem = new javax.swing.JMenuItem();
+        viewMenu = new javax.swing.JMenu();
+        decodeMessageCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
+        customKeyCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
+        showTableMenuItem = new javax.swing.JMenuItem();
+        gotoMenu = new javax.swing.JMenu();
+        caesarMenuItem = new javax.swing.JMenuItem();
+        enigmaMenuItem = new javax.swing.JMenuItem();
+        blowfishMenuItem = new javax.swing.JMenuItem();
+        runMenu = new javax.swing.JMenu();
+        runMenuItem = new javax.swing.JMenuItem();
+        runSBSCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Polybius square");
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Polybius Square");
+        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Polybius Square");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(4);
-        jTextArea1.setText("Enter your message here");
-        jScrollPane1.setViewportView(jTextArea1);
+        messageTextArea.setColumns(20);
+        messageTextArea.setRows(4);
+        messageTextArea.setText("Enter your message here");
+        messageScrollPane.setViewportView(messageTextArea);
 
-        jButton1.setText("Run");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        runButton.setText("Run");
+        runButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                runButtonActionPerformed(evt);
             }
         });
 
-        jCheckBox1.setText("Decode message");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        decodeCheckBox.setText("Decode message");
+        decodeCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                decodeCheckBoxActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("Custom key");
-
-        jTextField1.setText("Default key");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        customKeyCheckBox.setText("Custom key");
+        customKeyCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                customKeyCheckBoxActionPerformed(evt);
             }
         });
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(4);
-        jTextArea2.setText("Click Run to see your answer");
-        jScrollPane2.setViewportView(jTextArea2);
-
-        jMenu4.setText("File");
-
-        jMenuItem2.setText("Open");
-        jMenu4.add(jMenuItem2);
-
-        jMenuItem3.setText("Save");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        customKeyTextField.setText("Default key");
+        customKeyTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                customKeyTextFieldActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem3);
 
-        jMenuItem4.setText("Exit");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        answerTextArea.setColumns(20);
+        answerTextArea.setRows(4);
+        answerTextArea.setText("Click Run to see your answer");
+        answerScrollPane.setViewportView(answerTextArea);
+
+        fileMenu.setText("File");
+
+        openMenuItem.setText("Open");
+        fileMenu.add(openMenuItem);
+
+        saveMenuItem.setText("Save");
+        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                saveMenuItemActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem4);
+        fileMenu.add(saveMenuItem);
 
-        jMenuBar2.add(jMenu4);
-
-        jMenu5.setText("Edit");
-
-        jMenuItem5.setText("Copy results");
-        jMenu5.add(jMenuItem5);
-
-        jMenuBar2.add(jMenu5);
-
-        jMenu6.setText("View");
-
-        jCheckBoxMenuItem1.setText("Decipher message");
-        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        exitMenuItem.setText("Exit");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem1ActionPerformed(evt);
+                exitMenuItemActionPerformed(evt);
             }
         });
-        jMenu6.add(jCheckBoxMenuItem1);
+        fileMenu.add(exitMenuItem);
 
-        jMenuItem6.setText("Show table");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        polybiusMenuBar.add(fileMenu);
+
+        editMenu.setText("Edit");
+
+        copyResultMenuItem.setText("Copy results");
+        editMenu.add(copyResultMenuItem);
+
+        polybiusMenuBar.add(editMenu);
+
+        viewMenu.setText("View");
+
+        decodeMessageCheckBoxMenuItem.setText("Decode message");
+        decodeMessageCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                decodeMessageCheckBoxMenuItemActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem6);
+        viewMenu.add(decodeMessageCheckBoxMenuItem);
 
-        jMenu8.setText("Go to");
-
-        jMenuItem9.setText("Cesar");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        customKeyCheckBoxMenuItem.setText("Custom key");
+        customKeyCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                customKeyCheckBoxMenuItemActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem9);
+        viewMenu.add(customKeyCheckBoxMenuItem);
 
-        jMenuItem7.setText("Enigma");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        showTableMenuItem.setText("Show table");
+        showTableMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                showTableMenuItemActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem7);
+        viewMenu.add(showTableMenuItem);
 
-        jMenuItem8.setText("Blowfish");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        gotoMenu.setText("Go to");
+
+        caesarMenuItem.setText("Caesar");
+        caesarMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                caesarMenuItemActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem8);
+        gotoMenu.add(caesarMenuItem);
 
-        jMenu6.add(jMenu8);
-
-        jMenuBar2.add(jMenu6);
-
-        jMenu7.setText("Run");
-
-        jMenuItem1.setText("Run");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        enigmaMenuItem.setText("Enigma");
+        enigmaMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                enigmaMenuItemActionPerformed(evt);
             }
         });
-        jMenu7.add(jMenuItem1);
+        gotoMenu.add(enigmaMenuItem);
 
-        jCheckBoxMenuItem2.setText("Run step by step");
-        jMenu7.add(jCheckBoxMenuItem2);
+        blowfishMenuItem.setText("Blowfish");
+        blowfishMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blowfishMenuItemActionPerformed(evt);
+            }
+        });
+        gotoMenu.add(blowfishMenuItem);
 
-        jMenuBar2.add(jMenu7);
+        viewMenu.add(gotoMenu);
 
-        setJMenuBar(jMenuBar2);
+        polybiusMenuBar.add(viewMenu);
+
+        runMenu.setText("Run");
+
+        runMenuItem.setText("Run");
+        runMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                runMenuItemActionPerformed(evt);
+            }
+        });
+        runMenu.add(runMenuItem);
+
+        runSBSCheckBoxMenuItem.setText("Run step by step");
+        runMenu.add(runSBSCheckBoxMenuItem);
+
+        polybiusMenuBar.add(runMenu);
+
+        setJMenuBar(polybiusMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,119 +215,136 @@ public class PolybiusFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(answerScrollPane)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-                            .addComponent(jTextField1))
+                            .addComponent(messageScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                            .addComponent(customKeyTextField))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(customKeyCheckBox)
+                            .addComponent(decodeCheckBox)
+                            .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(runButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(decodeCheckBox))
+                    .addComponent(messageScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox2))
+                    .addComponent(customKeyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customKeyCheckBox))
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(answerScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        polybius.setIsEncrypted(jCheckBox1.isSelected());
-        polybius.setMessage(jTextArea1.getText().trim().toLowerCase());
-        if (jCheckBox2.isSelected()) {
-            polybius.setTable(jTextField1.getText().trim().toLowerCase());
+    private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
+        polybius.setIsEncrypted(decodeCheckBox.isSelected());
+        polybius.setMessage(messageTextArea.getText().trim().toLowerCase());
+        if (customKeyCheckBox.isSelected()) {
+            polybius.setTable(customKeyTextField.getText().trim().toLowerCase());
         } else {
             polybius.setTable("");
         }
         polybius.changeMessage();
-        jTextArea2.setText(polybius.getMessage());
+        answerTextArea.setText(polybius.getMessage());
         table = polybius.getTable();
         hasTable = true;
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_runButtonActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        if (jCheckBoxMenuItem1.isSelected()) {
-            jCheckBoxMenuItem1.setSelected(false);
+    private void decodeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeCheckBoxActionPerformed
+        if (decodeMessageCheckBoxMenuItem.isSelected()) {
+            decodeMessageCheckBoxMenuItem.setSelected(false);
         } else {
-            jCheckBoxMenuItem1.setSelected(true);
+            decodeMessageCheckBoxMenuItem.setSelected(true);
         }
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_decodeCheckBoxActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_saveMenuItemActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void enigmaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enigmaMenuItemActionPerformed
         new EnigmaFrame().setVisible(true);
         setVisible(false);
         dispose();
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_enigmaMenuItemActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        jButton1ActionPerformed(evt);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void runMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMenuItemActionPerformed
+        runButtonActionPerformed(evt);
+    }//GEN-LAST:event_runMenuItemActionPerformed
 
-    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
-        if (jCheckBox1.isSelected()) {
-            jCheckBox1.setSelected(false);
+    private void decodeMessageCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeMessageCheckBoxMenuItemActionPerformed
+        if (decodeCheckBox.isSelected()) {
+            decodeCheckBox.setSelected(false);
         } else {
-            jCheckBox1.setSelected(true);
+            decodeCheckBox.setSelected(true);
         }
-    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+    }//GEN-LAST:event_decodeMessageCheckBoxMenuItemActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        new CezarFrame().setVisible(true);
+    private void caesarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caesarMenuItemActionPerformed
+        new CaesarFrame().setVisible(true);
         setVisible(false);
         dispose();
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_caesarMenuItemActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void blowfishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blowfishMenuItemActionPerformed
         new BlowfishFrame().setVisible(true);
         setVisible(false);
         dispose();
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_blowfishMenuItemActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void showTableMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showTableMenuItemActionPerformed
         if (hasTable == false) {
             JOptionPane.showMessageDialog(null, "First run your message!");
         } else {
-            PolybiusTableFrame polTF = new PolybiusTableFrame(table);
+            //PolybiusTableFrame polTF = new PolybiusTableFrame(table);
+            polTF.setTable(polybius.getTable());
             polTF.setVisible(true);
         }
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_showTableMenuItemActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void customKeyTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customKeyTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_customKeyTextFieldActionPerformed
+
+    private void customKeyCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customKeyCheckBoxMenuItemActionPerformed
+        if (customKeyCheckBox.isSelected()) {
+            customKeyCheckBox.setSelected(false);
+        } else {
+            customKeyCheckBox.setSelected(true);
+        }
+    }//GEN-LAST:event_customKeyCheckBoxMenuItemActionPerformed
+
+    private void customKeyCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customKeyCheckBoxActionPerformed
+        if (customKeyCheckBoxMenuItem.isSelected()) {
+            customKeyCheckBoxMenuItem.setSelected(false);
+        } else {
+            customKeyCheckBoxMenuItem.setSelected(true);
+        }
+    }//GEN-LAST:event_customKeyCheckBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,32 +384,34 @@ public class PolybiusFrame extends javax.swing.JFrame {
     private Character [] table;
     private boolean hasTable;
     private Polybius polybius;
+    private PolybiusTableFrame polTF;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane answerScrollPane;
+    private javax.swing.JTextArea answerTextArea;
+    private javax.swing.JMenuItem blowfishMenuItem;
+    private javax.swing.JMenuItem caesarMenuItem;
+    private javax.swing.JMenuItem copyResultMenuItem;
+    private javax.swing.JCheckBox customKeyCheckBox;
+    private javax.swing.JCheckBoxMenuItem customKeyCheckBoxMenuItem;
+    private javax.swing.JTextField customKeyTextField;
+    private javax.swing.JCheckBox decodeCheckBox;
+    private javax.swing.JCheckBoxMenuItem decodeMessageCheckBoxMenuItem;
+    private javax.swing.JMenu editMenu;
+    private javax.swing.JMenuItem enigmaMenuItem;
+    private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenu gotoMenu;
+    private javax.swing.JScrollPane messageScrollPane;
+    private javax.swing.JTextArea messageTextArea;
+    private javax.swing.JMenuItem openMenuItem;
+    private javax.swing.JMenuBar polybiusMenuBar;
+    private javax.swing.JButton runButton;
+    private javax.swing.JMenu runMenu;
+    private javax.swing.JMenuItem runMenuItem;
+    private javax.swing.JCheckBoxMenuItem runSBSCheckBoxMenuItem;
+    private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JMenuItem showTableMenuItem;
+    private javax.swing.JLabel titleLabel;
+    private javax.swing.JMenu viewMenu;
     // End of variables declaration//GEN-END:variables
 }

@@ -89,7 +89,7 @@ public class Polybius {
         String tmp_string ="";
         Character tmp_char1, tmp_char2;
         int tmp_int1, tmp_int2;
-        if (isEncrypted){ //message decoder
+        if (isEncrypted){ //message decrypter
             for(int i = 0; i < msg.length(); i = i+2){
                 
                 tmp_char1 = msg.charAt(i);
@@ -104,7 +104,7 @@ public class Polybius {
                     tmp_int2 = ((tmp_int1 - 1) * 5) + tmp_int2 - 1;
                     tmp_string += table[tmp_int2];
             }
-        } else { //message encrypther
+        } else { //message encrypter
             for(int i = 0; i < msg.length(); i++){
                 
                 tmp_char1 =  msg.charAt(i);

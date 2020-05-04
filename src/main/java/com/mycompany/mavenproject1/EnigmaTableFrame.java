@@ -18,8 +18,18 @@ public class EnigmaTableFrame extends javax.swing.JFrame {
      */
     public EnigmaTableFrame(boolean def, ArrayList<Rotor> rotors, ArrayList<Pair<Character>> plugboard) {
         initComponents();
+        setFlag(def);
+        setRotors(rotors);
+        setPlugboard(plugboard);
+    }
+    
+    public void setFlag(boolean f){
+        flag = f;
+    }
+    
+    public void setRotors(ArrayList<Rotor> rotors){
         char d = 'B';
-        if (!def) {
+        if (!flag) {
             d = 'C';
         }
         String text1 = "";
@@ -31,6 +41,11 @@ public class EnigmaTableFrame extends javax.swing.JFrame {
         for (Rotor r : rotors) {
             text2 = text2 + " " + r.getRotatation();
         }
+        rotorOrderOutputLabel.setText(text1);
+        rotorOffsetOutputLabel.setText(text2.trim());
+    }
+    
+    public void setPlugboard(ArrayList<Pair<Character>> plugboard){
         String text3 = "";
         int i = 0, j = 0;
         for (Pair pair : plugboard) {
@@ -44,22 +59,17 @@ public class EnigmaTableFrame extends javax.swing.JFrame {
         }
         String [] stable = {};
         stable = text3.split(":", 3);
-        
-        
-        jLabel5.setText(text1);
-        jLabel6.setText(text2.trim());
-        jLabel7.setText(stable[0].trim().toUpperCase());
+        plugboardOutput1Label.setText(stable[0].trim().toUpperCase());
         if (stable.length > 1) {
-            jLabel8.setText(stable[1].trim().toUpperCase());
+            plugboardOutput2Label.setText(stable[1].trim().toUpperCase());
         } else {
-            jLabel8.setText("");
+            plugboardOutput2Label.setText("");
         }
         if (stable.length > 2) {
-            jLabel9.setText(stable[2].trim().toUpperCase());
+            plugboardOutput3Label.setText(stable[2].trim().toUpperCase());
         } else {
-            jLabel9.setText("");
+            plugboardOutput3Label.setText("");
         }
-
     }
 
     /**
@@ -71,43 +81,43 @@ public class EnigmaTableFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
+        rotorOrderLabel = new javax.swing.JLabel();
+        rotorOffsetLabel = new javax.swing.JLabel();
+        plugboardLabel = new javax.swing.JLabel();
+        rotorOrderOutputLabel = new javax.swing.JLabel();
+        rotorOffsetOutputLabel = new javax.swing.JLabel();
+        plugboardOutput1Label = new javax.swing.JLabel();
+        plugboardOutput2Label = new javax.swing.JLabel();
+        plugboardOutput3Label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Enigma Table");
+        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Enigma Table");
 
-        jLabel2.setText("Rotor order");
+        rotorOrderLabel.setText("Rotor order");
 
-        jLabel3.setText("Rotor offset");
+        rotorOffsetLabel.setText("Rotor offset");
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Plugboard");
+        plugboardLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        plugboardLabel.setText("Plugboard");
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("C 1 4 2");
+        rotorOrderOutputLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rotorOrderOutputLabel.setText("C 1 4 2");
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("5 14 22");
+        rotorOffsetOutputLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rotorOffsetOutputLabel.setText("5 14 22");
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setText("AD VF GH JK");
+        plugboardOutput1Label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        plugboardOutput1Label.setText("AD VF GH JK");
 
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("AD VF GH JK");
+        plugboardOutput2Label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        plugboardOutput2Label.setText("AD VF GH JK");
 
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setText("AD VF GH JK");
+        plugboardOutput3Label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        plugboardOutput3Label.setText("AD VF GH JK");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,50 +125,50 @@ public class EnigmaTableFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(115, 115, 115))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rotorOrderOutputLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rotorOrderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rotorOffsetLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rotorOffsetOutputLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(plugboardOutput1Label, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                .addComponent(plugboardOutput2Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(plugboardOutput3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(plugboardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(37, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addComponent(titleLabel)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(rotorOrderLabel)
+                    .addComponent(rotorOffsetLabel)
+                    .addComponent(plugboardLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7))
+                    .addComponent(rotorOffsetOutputLabel)
+                    .addComponent(rotorOrderOutputLabel)
+                    .addComponent(plugboardOutput1Label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addComponent(plugboardOutput2Label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
+                .addComponent(plugboardOutput3Label)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -203,15 +213,16 @@ public class EnigmaTableFrame extends javax.swing.JFrame {
         });
     }
 
+    private boolean flag;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel plugboardLabel;
+    private javax.swing.JLabel plugboardOutput1Label;
+    private javax.swing.JLabel plugboardOutput2Label;
+    private javax.swing.JLabel plugboardOutput3Label;
+    private javax.swing.JLabel rotorOffsetLabel;
+    private javax.swing.JLabel rotorOffsetOutputLabel;
+    private javax.swing.JLabel rotorOrderLabel;
+    private javax.swing.JLabel rotorOrderOutputLabel;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
