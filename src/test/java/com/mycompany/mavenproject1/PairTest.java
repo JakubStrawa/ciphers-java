@@ -16,15 +16,16 @@ public class PairTest {
     
     public PairTest() {
     }
-    Pair test = new Pair('a','c');
-    Pair test2 = new Pair('b','d');
 
     /**
      * Test of getFirst method, of class Pair.
      */
     @Test
     public void testGetFirst() {
+        Pair test = new Pair('a','c');
+        Pair test2 = new Pair(1234, 5678);
         assertEquals('a', test.getFirst());
+        assertEquals(1234, test2.getFirst());
     }
 
     /**
@@ -32,7 +33,10 @@ public class PairTest {
      */
     @Test
     public void testGetSecond() {
+        Pair test = new Pair('a','c');
+        Pair test2 = new Pair(1234, 5678);
         assertEquals('c', test.getSecond());
+        assertEquals(5678, test2.getSecond());
     }
 
     /**
@@ -40,8 +44,12 @@ public class PairTest {
      */
     @Test
     public void testSetFirst() {
-        test2.setFirst('x');
-        assertEquals('x', test2.getFirst());
+        Pair test = new Pair('b','d');
+        Pair test2 = new Pair(1234, 5678);
+        test.setFirst('x');
+        test2.setFirst(345678);
+        assertEquals('x', test.getFirst());
+        assertEquals(345678, test2.getFirst());
     }
 
     /**
@@ -49,8 +57,12 @@ public class PairTest {
      */
     @Test
     public void testSetSecond() {
-        test2.setSecond('q');
-        assertEquals('q', test2.getSecond());
+        Pair test = new Pair('b','d');
+        Pair test2 = new Pair(1234, 5678);
+        test.setSecond('q');
+        test2.setSecond(987654);
+        assertEquals('q', test.getSecond());
+        assertEquals(987654, test2.getSecond());
     }
     
 }

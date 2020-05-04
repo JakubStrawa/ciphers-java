@@ -16,13 +16,13 @@ public class EnigmaTest {
     
     public EnigmaTest() {
     }
-    Enigma enigma = new Enigma("testmessage");
-    Enigma enigma2 = new Enigma("testmessage");
+    
     /**
      * Test of addToPlugBoard method, of class Enigma.
      */
     @Test
     public void testAddToPlugBoard_String() {
+        Enigma enigma = new Enigma("testmessage");
         String str = "ab cd ef l   ";
         enigma.addToPlugBoard(str);
         assertEquals(3, enigma.getPlugBoard().size());
@@ -36,6 +36,7 @@ public class EnigmaTest {
      */
     @Test
     public void testAddToPlugBoard_char_char() {
+        Enigma enigma = new Enigma("testmessage");
         
         enigma.addToPlugBoard('a', 'b');
         enigma.addToPlugBoard('e', 'q');
@@ -56,6 +57,7 @@ public class EnigmaTest {
      */
     @Test
     public void testClearPlugBoard() {
+        Enigma enigma = new Enigma("testmessage");
         String str = "ab cd ef l   ";
         enigma.addToPlugBoard(str);
         enigma.clearPlugBoard();
@@ -67,6 +69,7 @@ public class EnigmaTest {
      */
     @Test
     public void testClearRotorList() {
+        Enigma enigma = new Enigma("testmessage");
         enigma.addRotor(2);
         enigma.addRotor(1);
         enigma.addRotor(5);
@@ -79,6 +82,7 @@ public class EnigmaTest {
      */
     @Test
     public void testGetRotorList() {
+        Enigma enigma = new Enigma("testmessage");
         enigma.addRotor(2);
         enigma.addRotor(1);
         enigma.addRotor(5);
@@ -92,6 +96,7 @@ public class EnigmaTest {
      */
     @Test
     public void testGetPlugBoard() {
+        Enigma enigma = new Enigma("testmessage");
         enigma.addToPlugBoard('a', 'b');
         enigma.addToPlugBoard('e', 'q');
         enigma.addToPlugBoard('f', 'z');
@@ -106,6 +111,7 @@ public class EnigmaTest {
      */
     @Test
     public void testGetRotor() {
+        Enigma enigma = new Enigma("testmessage");
         enigma.addRotor(1);
         enigma.addRotor(2);
         enigma.addRotor(3);
@@ -121,6 +127,7 @@ public class EnigmaTest {
      */
     @Test
     public void testAddRotor() {
+        Enigma enigma = new Enigma("testmessage");
         enigma.addRotor(1);
         enigma.addRotor(2);
         enigma.addRotor(3);
@@ -133,6 +140,7 @@ public class EnigmaTest {
      */
     @Test
     public void testGetMessage() {
+        Enigma enigma = new Enigma("testmessage");
         enigma.setMessage("this is a test");
         assertEquals("this is a test", enigma.getMessage());
     }
@@ -142,6 +150,7 @@ public class EnigmaTest {
      */
     @Test
     public void testSetMessage() {
+        Enigma enigma = new Enigma("testmessage");
         enigma.setMessage("this is a second test");
         assertEquals("this is a second test", enigma.getMessage());
     }
@@ -151,6 +160,7 @@ public class EnigmaTest {
      */
     @Test
     public void testMoveRotors() {
+        Enigma enigma = new Enigma("testmessage");
         enigma.addRotor(1);
         enigma.addRotor(2);
         enigma.addRotor(3);
@@ -170,6 +180,7 @@ public class EnigmaTest {
      */
     @Test
     public void testSetDeflector() {
+        Enigma enigma = new Enigma("testmessage");
         enigma.setDeflector(1);
         assertEquals(1, enigma.getDeflector());
         enigma.setDeflector(2);
@@ -181,6 +192,7 @@ public class EnigmaTest {
      */
     @Test
     public void testGetDeflector() {
+        Enigma enigma = new Enigma("testmessage");
         enigma.setDeflector(1);
         assertEquals(1, enigma.getDeflector());
         enigma.setDeflector(2);
@@ -188,28 +200,22 @@ public class EnigmaTest {
     }
 
     /**
-     * Test of printEnigma method, of class Enigma.
-     */
-    @Test
-    public void testPrintEnigma() {
-    }
-
-    /**
      * Test of changeMessage method, of class Enigma.
      */
     @Test
     public void testChangeMessage() {
-        enigma2.addRotor(1);
-        enigma2.addRotor(2);
-        enigma2.addRotor(3);
-        enigma2.setDeflector(2);
-        enigma2.addToPlugBoard('s', 't');
-        enigma2.addToPlugBoard('m', 'a');
-        enigma2.setMessage("testmessage");
-        enigma2.changeMessage();
-        assertEquals("pulcuvbvzii", enigma2.getMessage());
-        enigma2.clearPlugBoard();
-        enigma2.clearRotorList();
+        Enigma enigma = new Enigma("testmessage");
+        enigma.addRotor(1);
+        enigma.addRotor(2);
+        enigma.addRotor(3);
+        enigma.setDeflector(2);
+        enigma.addToPlugBoard('s', 't');
+        enigma.addToPlugBoard('m', 'a');
+        enigma.setMessage("testmessage");
+        enigma.changeMessage();
+        assertEquals("pulcuvbvzii", enigma.getMessage());
+        enigma.clearPlugBoard();
+        enigma.clearRotorList();
     }
     
 }
