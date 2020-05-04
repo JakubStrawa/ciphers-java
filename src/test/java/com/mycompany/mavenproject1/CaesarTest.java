@@ -16,41 +16,70 @@ public class CaesarTest {
     
     public CaesarTest() {
     }
-    String test = "  abcdefghijklmnopqrstxyz";
-    String test2 = "abcdefghijklmnopqrstxyz";
-    Caesar kod = new Caesar(5, test.trim(),false); // trim deletes spaces
-    Caesar kod2 = new Caesar(-3, test2.trim(), true);
+    
+    
     @Test
-    public void trim(){
+    public void testTrim(){
+        String test2 = "abcdefghijklmnopqrstxyz";
+        String test = "  abcdefghijklmnopqrstxyz";
         assertEquals(test2, test.trim());
     }
     @Test
     public void testGetKey(){
+        String test = "  abcdefghijklmnopqrstxyz";
+        Caesar kod = new Caesar(5, test.trim(),false);
+        kod.setKey(5);
         assertEquals(5, kod.getKey());
     }
     @Test
+    public void testSetKey(){
+        String test = "  abcdefghijklmnopqrstxyz";
+        Caesar kod = new Caesar(5, test.trim(),false);
+        kod.setKey(15);
+        assertEquals(15, kod.getKey());
+    }
+    @Test
     public void testGetFlag(){
+        String test2 = "abcdefghijklmnopqrstxyz";
+        Caesar kod2 = new Caesar(-3, test2.trim(), true);
+        kod2.setIsEncrypted(true);
         assertEquals(true, kod2.getIsEncrypted());
     }
     @Test
+    public void testSetFlag(){
+        String test2 = "abcdefghijklmnopqrstxyz";
+        Caesar kod2 = new Caesar(-3, test2.trim(), true);
+        kod2.setIsEncrypted(false);
+        assertEquals(false, kod2.getIsEncrypted());
+    }
+    @Test
     public void testGetMessage(){
+        String test = "  abcdefghijklmnopqrstxyz";
+        String test2 = "abcdefghijklmnopqrstxyz";
+        Caesar kod2 = new Caesar(-3, test2.trim(), true);
+        kod2.setMessage(test.trim());
         assertEquals(test2, kod2.getMessage());
     }
     @Test
-    public void testCipherWork1(){
+    public void testSetMessage(){
+        String test2 = "abcdefghijklmnopqrstxyz";
+        Caesar kod2 = new Caesar(-3, test2.trim(), true);
+        kod2.setMessage(test2);
+        assertEquals(test2, kod2.getMessage());
+    }
+    @Test
+    public void testChangeMessage(){
         String test3 = "efgh";
         Caesar kod3 = new Caesar(4, test3, false);
         kod3.changeMessage();
         assertEquals("ijkl", kod3.getMessage());
-    }
-    @Test
-    public void testCipherWork2(){
+        kod3.changeMessage();
+        assertEquals("efgh", kod3.getMessage());
+        
         Caesar kod4 = new Caesar(-2, "fgHI34 jk", false);
         kod4.changeMessage();
         assertEquals("defg34 hi", kod4.getMessage());
-    }
-    /**
-     * Test of getKey method, of class Cezar.
-     */
-    
+        kod4.changeMessage();
+        assertEquals("fghi34 jk", kod4.getMessage());
+    }    
 }

@@ -16,19 +16,14 @@ public class PolybiusTest {
     
     public PolybiusTest() {
     }
-    
-    Polybius pol = new Polybius("   11 12 13 14 15 21 22 23 24", true, "kopia");
-    Polybius pol2 = new Polybius("helloworld", false, "defjam");
-    Polybius pol3 = new Polybius("test string", false, "xyz");
-    Character [] table = {'x','y','z','a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w'};
-    Polybius pol4 = new Polybius("   11 12 13 14 15 21 22 23 24", true, "kopia");
-    Polybius pol5 = new Polybius("helloworld", false, "defjam");
 
     /**
      * Test of getMessage method, of class Polybius.
      */
     @Test
     public void testGetMessage() {
+        Polybius pol = new Polybius("   11 12 13 14 15 21 22 23 24", true, "kopia");
+        Polybius pol2 = new Polybius("helloworld", false, "defjam");
         assertEquals("helloworld", pol2.getMessage());
         assertEquals("11 12 13 14 15 21 22 23 24", pol.getMessage());
     }
@@ -38,7 +33,8 @@ public class PolybiusTest {
      */
     @Test
     public void testGetIsEncrypted() {
-        
+        Polybius pol4 = new Polybius("   11 12 13 14 15 21 22 23 24", true, "kopia");
+        Polybius pol5 = new Polybius("helloworld", false, "defjam");
         assertTrue(pol4.getIsEncrypted());
         assertFalse(pol5.getIsEncrypted());
     }
@@ -48,14 +44,56 @@ public class PolybiusTest {
      */
     @Test
     public void testGetTable() {
+        Character [] table = {'x','y','z','a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w'};
+        Polybius pol3 = new Polybius("test string", false, "xyz");
         assertArrayEquals(table, pol3.getTable());
     }
 
+    /**
+     * Test of setMessage method, of class Polybius.
+     */
+    @Test
+    public void testSetMessage() {
+        Polybius pol = new Polybius("   11 12 13 14 15 21 22 23 24", true, "kopia");
+        Polybius pol2 = new Polybius("helloworld", false, "defjam");
+        pol.setMessage("teststring");
+        pol2.setMessage("abcdefg");
+        assertEquals("abcdefg", pol2.getMessage());
+        assertEquals("teststring", pol.getMessage());
+    }
+
+    /**
+     * Test of setIsEncrypted method, of class Polybius.
+     */
+    @Test
+    public void testSetIsEncrypted() {
+        Polybius pol4 = new Polybius("   11 12 13 14 15 21 22 23 24", true, "kopia");
+        Polybius pol5 = new Polybius("helloworld", false, "defjam");
+        pol4.setIsEncrypted(false);
+        pol5.setIsEncrypted(true);
+        assertTrue(pol5.getIsEncrypted());
+        assertFalse(pol4.getIsEncrypted());
+    }
+
+    /**
+     * Test of setTable method, of class Polybius.
+     */
+    @Test
+    public void testSetTable() {
+        Character [] table = {'x','y','z','a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w'};
+        Polybius pol3 = new Polybius("test string", false, "xyz");
+        pol3.setTable("xyz");
+        assertArrayEquals(table, pol3.getTable());
+    }
+    
     /**
      * Test of changeMessage method, of class Polybius.
      */
     @Test
     public void testChangeMessage() {
+        Polybius pol = new Polybius("   11 12 13 14 15 21 22 23 24", true, "kopia");
+        Polybius pol2 = new Polybius("helloworld", false, "defjam");
+        Polybius pol3 = new Polybius("test string", false, "xyz");
         pol.changeMessage();
         pol2.changeMessage();
         pol3.changeMessage();
