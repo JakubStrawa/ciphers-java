@@ -5,18 +5,19 @@
  */
 package com.mycompany.mavenproject1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kuba
  */
-public class BlowfishFrame extends javax.swing.JFrame {
+public class CaesarFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form AESFrame
+     * Creates new form CezarFrame
      */
-    public BlowfishFrame() {
-        blowfish = new Blowfish("", "", false);
-        outputType = 0;
+    public CaesarFrame() {
+        caesar = new Caesar(0, "", false);
         initComponents();
     }
 
@@ -29,15 +30,15 @@ public class BlowfishFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titleLabel = new javax.swing.JLabel();
         messageTextField = new javax.swing.JTextField();
+        titleLabel = new javax.swing.JLabel();
+        runButton = new javax.swing.JButton();
         answerScrollPane = new javax.swing.JScrollPane();
         answerTextArea = new javax.swing.JTextArea();
-        runButton = new javax.swing.JButton();
-        keyTextField = new javax.swing.JTextField();
+        offsetSpinner = new javax.swing.JSpinner();
+        chooseOffsetLabel = new javax.swing.JLabel();
         decodeCheckBox = new javax.swing.JCheckBox();
-        outputTypeComboBox = new javax.swing.JComboBox<>();
-        blowfishMenuBar = new javax.swing.JMenuBar();
+        caesarMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
@@ -47,29 +48,27 @@ public class BlowfishFrame extends javax.swing.JFrame {
         viewMenu = new javax.swing.JMenu();
         decodeCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
         gotoMenu = new javax.swing.JMenu();
-        caesarMenuItem = new javax.swing.JMenuItem();
         polybiusMenuItem = new javax.swing.JMenuItem();
         enigmaMenuItem = new javax.swing.JMenuItem();
+        blowfishMenuItem = new javax.swing.JMenuItem();
         runMenu = new javax.swing.JMenu();
         runMenuItem = new javax.swing.JMenuItem();
-        runSBSMenuItem = new javax.swing.JMenuItem();
+        runSBSCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cesar cipher");
 
-        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("Blowfish");
-
+        messageTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         messageTextField.setText("Enter your message here");
+        messageTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                messageTextFieldActionPerformed(evt);
+            }
+        });
 
-        answerTextArea.setEditable(false);
-        answerTextArea.setColumns(20);
-        answerTextArea.setLineWrap(true);
-        answerTextArea.setRows(5);
-        answerTextArea.setText("Press run to see your answer");
-        answerTextArea.setToolTipText("");
-        answerTextArea.setWrapStyleWord(true);
-        answerScrollPane.setViewportView(answerTextArea);
+        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Caesar cipher");
 
         runButton.setText("Run");
         runButton.addActionListener(new java.awt.event.ActionListener() {
@@ -78,16 +77,22 @@ public class BlowfishFrame extends javax.swing.JFrame {
             }
         });
 
-        keyTextField.setText("Enter your key");
+        answerTextArea.setEditable(false);
+        answerTextArea.setColumns(20);
+        answerTextArea.setRows(4);
+        answerTextArea.setText("Click Run to see your answer");
+        answerScrollPane.setViewportView(answerTextArea);
+
+        chooseOffsetLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        chooseOffsetLabel.setText("Choose message offset");
 
         decodeCheckBox.setText("Decode message");
+        decodeCheckBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         decodeCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 decodeCheckBoxActionPerformed(evt);
             }
         });
-
-        outputTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Char", "Integer", "Raw", "Hex" }));
 
         fileMenu.setText("File");
 
@@ -110,19 +115,18 @@ public class BlowfishFrame extends javax.swing.JFrame {
         });
         fileMenu.add(exitMenuItem);
 
-        blowfishMenuBar.add(fileMenu);
+        caesarMenuBar.add(fileMenu);
 
         editMenu.setText("Edit");
 
         copyResultMenuItem.setText("Copy result");
         editMenu.add(copyResultMenuItem);
 
-        blowfishMenuBar.add(editMenu);
+        caesarMenuBar.add(editMenu);
 
         viewMenu.setText("View");
 
         decodeCheckBoxMenuItem.setText("Decode message");
-        decodeCheckBoxMenuItem.setToolTipText("");
         decodeCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 decodeCheckBoxMenuItemActionPerformed(evt);
@@ -131,14 +135,6 @@ public class BlowfishFrame extends javax.swing.JFrame {
         viewMenu.add(decodeCheckBoxMenuItem);
 
         gotoMenu.setText("Go to");
-
-        caesarMenuItem.setText("Caesar");
-        caesarMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                caesarMenuItemActionPerformed(evt);
-            }
-        });
-        gotoMenu.add(caesarMenuItem);
 
         polybiusMenuItem.setText("Polybius");
         polybiusMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -156,9 +152,17 @@ public class BlowfishFrame extends javax.swing.JFrame {
         });
         gotoMenu.add(enigmaMenuItem);
 
+        blowfishMenuItem.setText("Blowfish");
+        blowfishMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blowfishMenuItemActionPerformed(evt);
+            }
+        });
+        gotoMenu.add(blowfishMenuItem);
+
         viewMenu.add(gotoMenu);
 
-        blowfishMenuBar.add(viewMenu);
+        caesarMenuBar.add(viewMenu);
 
         runMenu.setText("Run");
 
@@ -170,70 +174,63 @@ public class BlowfishFrame extends javax.swing.JFrame {
         });
         runMenu.add(runMenuItem);
 
-        runSBSMenuItem.setText("Run step by step");
-        runSBSMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                runSBSMenuItemActionPerformed(evt);
-            }
-        });
-        runMenu.add(runSBSMenuItem);
+        runSBSCheckBoxMenuItem.setText("Run step by step");
+        runMenu.add(runSBSCheckBoxMenuItem);
 
-        blowfishMenuBar.add(runMenu);
+        caesarMenuBar.add(runMenu);
 
-        setJMenuBar(blowfishMenuBar);
+        setJMenuBar(caesarMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(keyTextField)
-                            .addComponent(answerScrollPane)
-                            .addComponent(messageTextField))
-                        .addGap(50, 50, 50)
+                            .addComponent(messageTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(answerScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(chooseOffsetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(decodeCheckBox)
-                            .addComponent(runButton)
-                            .addComponent(outputTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(offsetSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(104, 104, 104))
+                                .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(decodeCheckBox, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(titleLabel)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(runButton))
+                .addGap(21, 21, 21)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(keyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(decodeCheckBox))
+                    .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(offsetSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chooseOffsetLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(answerScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(outputTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(answerScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(decodeCheckBox)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void runSBSMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runSBSMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_runSBSMenuItemActionPerformed
-
-    private void caesarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caesarMenuItemActionPerformed
-        new CaesarFrame().setVisible(true);
-        setVisible(false);
-        dispose();
-    }//GEN-LAST:event_caesarMenuItemActionPerformed
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
         // TODO add your handling code here:
@@ -242,6 +239,39 @@ public class BlowfishFrame extends javax.swing.JFrame {
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
+        caesar.setIsEncrypted(decodeCheckBox.isSelected());
+        caesar.setKey((int) offsetSpinner.getValue());
+        caesar.setMessage(messageTextField.getText().trim().toLowerCase());
+        caesar.changeMessage();
+        answerTextArea.setText(caesar.getMessage());
+    }//GEN-LAST:event_runButtonActionPerformed
+
+    private void messageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messageTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_messageTextFieldActionPerformed
+
+    private void decodeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeCheckBoxActionPerformed
+        if (decodeCheckBoxMenuItem.isSelected()) {
+            decodeCheckBoxMenuItem.setSelected(false);
+        } else {
+            decodeCheckBoxMenuItem.setSelected(true);
+        }
+    }//GEN-LAST:event_decodeCheckBoxActionPerformed
+
+    private void runMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMenuItemActionPerformed
+        runButtonActionPerformed(evt);
+    }//GEN-LAST:event_runMenuItemActionPerformed
+
+    private void decodeCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeCheckBoxMenuItemActionPerformed
+        if (decodeCheckBox.isSelected()) {
+            decodeCheckBox.setSelected(false);
+        } else {
+            decodeCheckBox.setSelected(true);
+    }
+        
+    }//GEN-LAST:event_decodeCheckBoxMenuItemActionPerformed
 
     private void polybiusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polybiusMenuItemActionPerformed
         new PolybiusFrame().setVisible(true);
@@ -255,46 +285,11 @@ public class BlowfishFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_enigmaMenuItemActionPerformed
 
-    private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
-        blowfish.setMessage(messageTextField.getText());
-        blowfish.setKey(keyTextField.getText());
-        blowfish.setIsEncrypted(decodeCheckBox.isSelected());
-        if (!blowfish.getIsEncrypted()) {
-            blowfish.encryptMessage();
-        } else {
-            blowfish.decryptMessage();
-        }
-        outputType = outputTypeComboBox.getSelectedIndex();
-        if (outputType == 0) {
-            answerTextArea.setText(blowfish.getEncodedList());
-        } else if(outputType == 1) {
-            answerTextArea.setText(blowfish.getCharList());
-        } else if(outputType == 2) {
-            answerTextArea.setText(blowfish.getBinaryList());
-        } else {
-            answerTextArea.setText(blowfish.getHexList());
-        }
-    }//GEN-LAST:event_runButtonActionPerformed
-
-    private void decodeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeCheckBoxActionPerformed
-        if (decodeCheckBoxMenuItem.isSelected()) {
-            decodeCheckBoxMenuItem.setSelected(false);
-        } else {
-            decodeCheckBoxMenuItem.setSelected(true);
-        }
-    }//GEN-LAST:event_decodeCheckBoxActionPerformed
-
-    private void decodeCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeCheckBoxMenuItemActionPerformed
-        if (decodeCheckBox.isSelected()) {
-            decodeCheckBox.setSelected(false);
-        } else {
-            decodeCheckBox.setSelected(true);
-        }
-    }//GEN-LAST:event_decodeCheckBoxMenuItemActionPerformed
-
-    private void runMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMenuItemActionPerformed
-        runButtonActionPerformed(evt);
-    }//GEN-LAST:event_runMenuItemActionPerformed
+    private void blowfishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blowfishMenuItemActionPerformed
+        new BlowfishFrame().setVisible(true);
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_blowfishMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,31 +308,31 @@ public class BlowfishFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BlowfishFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaesarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BlowfishFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaesarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BlowfishFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaesarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BlowfishFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaesarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BlowfishFrame().setVisible(true);
+                new CaesarFrame().setVisible(true);
             }
         });
     }
-    private Blowfish blowfish;
-    private int outputType;
+    private Caesar caesar;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane answerScrollPane;
     private javax.swing.JTextArea answerTextArea;
-    private javax.swing.JMenuBar blowfishMenuBar;
-    private javax.swing.JMenuItem caesarMenuItem;
+    private javax.swing.JMenuItem blowfishMenuItem;
+    private javax.swing.JMenuBar caesarMenuBar;
+    private javax.swing.JLabel chooseOffsetLabel;
     private javax.swing.JMenuItem copyResultMenuItem;
     private javax.swing.JCheckBox decodeCheckBox;
     private javax.swing.JCheckBoxMenuItem decodeCheckBoxMenuItem;
@@ -346,15 +341,14 @@ public class BlowfishFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu gotoMenu;
-    private javax.swing.JTextField keyTextField;
     private javax.swing.JTextField messageTextField;
+    private javax.swing.JSpinner offsetSpinner;
     private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JComboBox<String> outputTypeComboBox;
     private javax.swing.JMenuItem polybiusMenuItem;
     private javax.swing.JButton runButton;
     private javax.swing.JMenu runMenu;
     private javax.swing.JMenuItem runMenuItem;
-    private javax.swing.JMenuItem runSBSMenuItem;
+    private javax.swing.JCheckBoxMenuItem runSBSCheckBoxMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JMenu viewMenu;

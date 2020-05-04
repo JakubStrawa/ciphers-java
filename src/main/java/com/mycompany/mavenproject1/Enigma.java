@@ -48,7 +48,7 @@ public class Enigma {
 
     private ArrayList<Rotor> rotorList;
     
-    private ArrayList<Pair> plugBoard;
+    private ArrayList<Pair<Character>> plugBoard;
     
     private int deflectorUsed;
     
@@ -62,7 +62,7 @@ public class Enigma {
         deflector1 = new Rotor(101,deflect1);
         deflector2 = new Rotor(102,deflect2);
         rotorList = new ArrayList<Rotor>();
-        plugBoard = new ArrayList<Pair>();
+        plugBoard = new ArrayList<Pair<Character>>();
         
         deflectorUsed = 1;
                 
@@ -114,7 +114,7 @@ public class Enigma {
     public ArrayList<Rotor> getRotorList(){
         return rotorList;
     }
-    public ArrayList<Pair> getPlugBoard(){
+    public ArrayList<Pair<Character>> getPlugBoard(){
         return plugBoard;
     }
     
@@ -218,7 +218,7 @@ public class Enigma {
             tmp_char = message.charAt(i);
             if (tmp_char >= 'a' && tmp_char <= 'z') {
                 // Plugboard
-                for (Pair p : plugBoard) {
+                for (Pair<Character> p : plugBoard) {
                     if (p.getFirst() == tmp_char) {
                         tmp_char = p.getSecond();
                         break;
@@ -258,7 +258,7 @@ public class Enigma {
                 }
                 
                 // Plugboad
-                for (Pair p : plugBoard) {
+                for (Pair<Character> p : plugBoard) {
                     if (p.getFirst() == tmp_char) {
                         tmp_char = p.getSecond();
                         break;

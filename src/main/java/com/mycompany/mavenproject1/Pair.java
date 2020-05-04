@@ -9,24 +9,24 @@ package com.mycompany.mavenproject1;
  *
  * @author kuba
  */
-public class Pair {
-    private char first;
-    private char second;
+public class Pair<T> {
+    private T first;
+    private T second;
     
-    public Pair(char a, char b){
+    public Pair(T a, T b){
         first = a;
         second = b;
     }
-    public char getFirst(){
+    public T getFirst(){
         return first;
     }
-    public char getSecond(){
+    public T getSecond(){
         return second;
     }
-    public void setFirst(char a){
+    public void setFirst(T a){
         first = a;
     }
-    public void setSecond(char a){
+    public void setSecond(T a){
         second = a;
     }
 }

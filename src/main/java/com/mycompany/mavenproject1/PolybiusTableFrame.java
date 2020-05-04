@@ -15,35 +15,38 @@ public class PolybiusTableFrame extends javax.swing.JFrame {
      * Creates new form PolybiusTableFrame
      */
     public PolybiusTableFrame(Character [] tab) {
-        polybius_table = tab;
         initComponents();
+        setTable(tab);
+    }
+    
+    public void setTable(Character [] tab){
+        polybius_table = tab;
         if (tab.length == 25) {            
-            jLabel17.setText(tab[0].toString());
-            jLabel18.setText(tab[1].toString());
-            jLabel19.setText(tab[2].toString());
-            jLabel20.setText(tab[3].toString());
-            jLabel21.setText(tab[4].toString());
-            jLabel22.setText(tab[5].toString());
-            jLabel23.setText(tab[6].toString());
-            jLabel24.setText(tab[7].toString());
-            jLabel25.setText(tab[8].toString());
-            jLabel26.setText(tab[9].toString());
-            jLabel27.setText(tab[10].toString());
-            jLabel28.setText(tab[11].toString());
-            jLabel29.setText(tab[12].toString());
-            jLabel30.setText(tab[13].toString());
-            jLabel31.setText(tab[14].toString());
-            jLabel32.setText(tab[15].toString());
-            jLabel33.setText(tab[16].toString());
-            jLabel34.setText(tab[17].toString());
-            jLabel35.setText(tab[18].toString());
-            jLabel36.setText(tab[19].toString());
-            jLabel37.setText(tab[20].toString());
-            jLabel38.setText(tab[21].toString());
-            jLabel39.setText(tab[22].toString());
-            jLabel40.setText(tab[23].toString());
-            jLabel41.setText(tab[24].toString());
-            
+            tabElement0Label.setText(tab[0].toString());
+            tabElement1Label.setText(tab[1].toString());
+            tabElement2Label.setText(tab[2].toString());
+            tabElement3Label.setText(tab[3].toString());
+            tabElement4Label.setText(tab[4].toString());
+            tabElement5Label.setText(tab[5].toString());
+            tabElement6Label.setText(tab[6].toString());
+            tabElement7Label.setText(tab[7].toString());
+            tabElement8Label.setText(tab[8].toString());
+            tabElement9Label.setText(tab[9].toString());
+            tabElement10Label.setText(tab[10].toString());
+            tabElement11Label.setText(tab[11].toString());
+            tabElement12Label.setText(tab[12].toString());
+            tabElement13Label.setText(tab[13].toString());
+            tabElement14Label.setText(tab[14].toString());
+            tabElement15Label.setText(tab[15].toString());
+            tabElement16Label.setText(tab[16].toString());
+            tabElement17Label.setText(tab[17].toString());
+            tabElement18Label.setText(tab[18].toString());
+            tabElement19Label.setText(tab[19].toString());
+            tabElement20Label.setText(tab[20].toString());
+            tabElement21Label.setText(tab[21].toString());
+            tabElement22Label.setText(tab[22].toString());
+            tabElement23Label.setText(tab[23].toString());
+            tabElement24Label.setText(tab[24].toString());
         }
     }
 
@@ -56,118 +59,118 @@ public class PolybiusTableFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
+        row1Label = new javax.swing.JLabel();
+        row2Label = new javax.swing.JLabel();
+        row3Label = new javax.swing.JLabel();
+        row4Label = new javax.swing.JLabel();
+        row5Label = new javax.swing.JLabel();
+        column1Label = new javax.swing.JLabel();
+        column2Label = new javax.swing.JLabel();
+        column3Label = new javax.swing.JLabel();
+        column4Label = new javax.swing.JLabel();
+        column5Label = new javax.swing.JLabel();
+        tabElement0Label = new javax.swing.JLabel();
+        tabElement1Label = new javax.swing.JLabel();
+        tabElement2Label = new javax.swing.JLabel();
+        tabElement3Label = new javax.swing.JLabel();
+        tabElement4Label = new javax.swing.JLabel();
+        tabElement5Label = new javax.swing.JLabel();
+        tabElement6Label = new javax.swing.JLabel();
+        tabElement7Label = new javax.swing.JLabel();
+        tabElement8Label = new javax.swing.JLabel();
+        tabElement9Label = new javax.swing.JLabel();
+        tabElement10Label = new javax.swing.JLabel();
+        tabElement11Label = new javax.swing.JLabel();
+        tabElement12Label = new javax.swing.JLabel();
+        tabElement13Label = new javax.swing.JLabel();
+        tabElement14Label = new javax.swing.JLabel();
+        tabElement15Label = new javax.swing.JLabel();
+        tabElement16Label = new javax.swing.JLabel();
+        tabElement17Label = new javax.swing.JLabel();
+        tabElement18Label = new javax.swing.JLabel();
+        tabElement19Label = new javax.swing.JLabel();
+        tabElement20Label = new javax.swing.JLabel();
+        tabElement21Label = new javax.swing.JLabel();
+        tabElement22Label = new javax.swing.JLabel();
+        tabElement23Label = new javax.swing.JLabel();
+        tabElement24Label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Polybius Table");
+        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Polybius Table");
 
-        jLabel2.setText("1");
+        row1Label.setText("1");
 
-        jLabel3.setText("2");
+        row2Label.setText("2");
 
-        jLabel4.setText("3");
+        row3Label.setText("3");
 
-        jLabel5.setText("4");
+        row4Label.setText("4");
 
-        jLabel6.setText("5");
+        row5Label.setText("5");
 
-        jLabel7.setText("1");
+        column1Label.setText("1");
 
-        jLabel8.setText("2");
+        column2Label.setText("2");
 
-        jLabel9.setText("3");
+        column3Label.setText("3");
 
-        jLabel10.setText("4");
+        column4Label.setText("4");
 
-        jLabel11.setText("5");
+        column5Label.setText("5");
 
-        jLabel17.setText("a");
+        tabElement0Label.setText("a");
 
-        jLabel18.setText("a");
+        tabElement1Label.setText("a");
 
-        jLabel19.setText("a");
+        tabElement2Label.setText("a");
 
-        jLabel20.setText("a");
+        tabElement3Label.setText("a");
 
-        jLabel21.setText("a");
+        tabElement4Label.setText("a");
 
-        jLabel22.setText("a");
+        tabElement5Label.setText("a");
 
-        jLabel23.setText("a");
+        tabElement6Label.setText("a");
 
-        jLabel24.setText("a");
+        tabElement7Label.setText("a");
 
-        jLabel25.setText("a");
+        tabElement8Label.setText("a");
 
-        jLabel26.setText("a");
+        tabElement9Label.setText("a");
 
-        jLabel27.setText("a");
+        tabElement10Label.setText("a");
 
-        jLabel28.setText("a");
+        tabElement11Label.setText("a");
 
-        jLabel29.setText("a");
+        tabElement12Label.setText("a");
 
-        jLabel30.setText("a");
+        tabElement13Label.setText("a");
 
-        jLabel31.setText("a");
+        tabElement14Label.setText("a");
 
-        jLabel32.setText("a");
+        tabElement15Label.setText("a");
 
-        jLabel33.setText("a");
+        tabElement16Label.setText("a");
 
-        jLabel34.setText("a");
+        tabElement17Label.setText("a");
 
-        jLabel35.setText("a");
+        tabElement18Label.setText("a");
 
-        jLabel36.setText("a");
+        tabElement19Label.setText("a");
 
-        jLabel37.setText("a");
+        tabElement20Label.setText("a");
 
-        jLabel38.setText("a");
+        tabElement21Label.setText("a");
 
-        jLabel39.setText("a");
+        tabElement22Label.setText("a");
 
-        jLabel40.setText("a");
+        tabElement23Label.setText("a");
 
-        jLabel41.setText("a");
+        tabElement24Label.setText("a");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,137 +180,134 @@ public class PolybiusTableFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
+                                    .addComponent(row1Label)
+                                    .addComponent(row4Label)
+                                    .addComponent(row5Label)
+                                    .addComponent(row2Label)
+                                    .addComponent(row3Label))
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel37)
-                                    .addComponent(jLabel32)
-                                    .addComponent(jLabel27)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jLabel17)))
-                            .addComponent(jLabel7))
+                                    .addComponent(tabElement20Label)
+                                    .addComponent(tabElement15Label)
+                                    .addComponent(tabElement10Label)
+                                    .addComponent(tabElement5Label)
+                                    .addComponent(tabElement0Label)))
+                            .addComponent(column1Label))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel38)
-                            .addComponent(jLabel33)
-                            .addComponent(jLabel28)
-                            .addComponent(jLabel23)
-                            .addComponent(jLabel18))
+                            .addComponent(column2Label)
+                            .addComponent(tabElement21Label)
+                            .addComponent(tabElement16Label)
+                            .addComponent(tabElement11Label)
+                            .addComponent(tabElement6Label)
+                            .addComponent(tabElement1Label))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel39)
-                            .addComponent(jLabel34)
-                            .addComponent(jLabel29)
-                            .addComponent(jLabel24)
-                            .addComponent(jLabel19))
+                            .addComponent(column3Label)
+                            .addComponent(tabElement22Label)
+                            .addComponent(tabElement17Label)
+                            .addComponent(tabElement12Label)
+                            .addComponent(tabElement7Label)
+                            .addComponent(tabElement2Label))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel40)
-                            .addComponent(jLabel35)
-                            .addComponent(jLabel30)
-                            .addComponent(jLabel25)
-                            .addComponent(jLabel20))
+                            .addComponent(column4Label)
+                            .addComponent(tabElement23Label)
+                            .addComponent(tabElement18Label)
+                            .addComponent(tabElement13Label)
+                            .addComponent(tabElement8Label)
+                            .addComponent(tabElement3Label))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel41)
-                                    .addComponent(jLabel36)
-                                    .addComponent(jLabel31)
-                                    .addComponent(jLabel26)
-                                    .addComponent(jLabel21)))
-                            .addComponent(jLabel11))))
+                            .addComponent(tabElement24Label)
+                            .addComponent(tabElement19Label)
+                            .addComponent(tabElement14Label)
+                            .addComponent(tabElement9Label)
+                            .addComponent(tabElement4Label)
+                            .addComponent(column5Label))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1)
+                .addComponent(titleLabel)
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
+                    .addComponent(column1Label)
+                    .addComponent(column2Label)
+                    .addComponent(column3Label)
+                    .addComponent(column4Label)
+                    .addComponent(column5Label))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(row1Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
+                        .addComponent(row2Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
+                        .addComponent(row3Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
+                        .addComponent(row4Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6))
+                        .addComponent(row5Label))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel17)
+                        .addComponent(tabElement0Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel22)
+                        .addComponent(tabElement5Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel27)
+                        .addComponent(tabElement10Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel32)
+                        .addComponent(tabElement15Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel37))
+                        .addComponent(tabElement20Label))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel19)
+                            .addComponent(tabElement2Label)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel24)
+                            .addComponent(tabElement7Label)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel29)
+                            .addComponent(tabElement12Label)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel34)
+                            .addComponent(tabElement17Label)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel39))
+                            .addComponent(tabElement22Label))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel18)
+                            .addComponent(tabElement1Label)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel23)
+                            .addComponent(tabElement6Label)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel28)
+                            .addComponent(tabElement11Label)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel33)
+                            .addComponent(tabElement16Label)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel38)))
+                            .addComponent(tabElement21Label)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel20)
+                        .addComponent(tabElement3Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel25)
+                        .addComponent(tabElement8Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel30)
+                        .addComponent(tabElement13Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel35)
+                        .addComponent(tabElement18Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel40))
+                        .addComponent(tabElement23Label))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel21)
+                        .addComponent(tabElement4Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel26)
+                        .addComponent(tabElement9Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel31)
+                        .addComponent(tabElement14Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel36)
+                        .addComponent(tabElement19Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel41)))
+                        .addComponent(tabElement24Label)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
@@ -352,41 +352,41 @@ public class PolybiusTableFrame extends javax.swing.JFrame {
     private Character [] polybius_table = {'a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel column1Label;
+    private javax.swing.JLabel column2Label;
+    private javax.swing.JLabel column3Label;
+    private javax.swing.JLabel column4Label;
+    private javax.swing.JLabel column5Label;
+    private javax.swing.JLabel row1Label;
+    private javax.swing.JLabel row2Label;
+    private javax.swing.JLabel row3Label;
+    private javax.swing.JLabel row4Label;
+    private javax.swing.JLabel row5Label;
+    private javax.swing.JLabel tabElement0Label;
+    private javax.swing.JLabel tabElement10Label;
+    private javax.swing.JLabel tabElement11Label;
+    private javax.swing.JLabel tabElement12Label;
+    private javax.swing.JLabel tabElement13Label;
+    private javax.swing.JLabel tabElement14Label;
+    private javax.swing.JLabel tabElement15Label;
+    private javax.swing.JLabel tabElement16Label;
+    private javax.swing.JLabel tabElement17Label;
+    private javax.swing.JLabel tabElement18Label;
+    private javax.swing.JLabel tabElement19Label;
+    private javax.swing.JLabel tabElement1Label;
+    private javax.swing.JLabel tabElement20Label;
+    private javax.swing.JLabel tabElement21Label;
+    private javax.swing.JLabel tabElement22Label;
+    private javax.swing.JLabel tabElement23Label;
+    private javax.swing.JLabel tabElement24Label;
+    private javax.swing.JLabel tabElement2Label;
+    private javax.swing.JLabel tabElement3Label;
+    private javax.swing.JLabel tabElement4Label;
+    private javax.swing.JLabel tabElement5Label;
+    private javax.swing.JLabel tabElement6Label;
+    private javax.swing.JLabel tabElement7Label;
+    private javax.swing.JLabel tabElement8Label;
+    private javax.swing.JLabel tabElement9Label;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

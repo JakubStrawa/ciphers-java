@@ -17,18 +17,24 @@ public class Polybius {
     private Character [] table = {'a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     private Boolean isEncrypted; // Flag showing if we have encrypted or decoded message
     
-    public Polybius(String m, Boolean f, String s){
+    public Polybius(String m, Boolean f, String k){
         msg = m.trim().toLowerCase();
         isEncrypted = f;   
-        if (s != "") {
-            setTable(s.trim().toLowerCase());
+        if (k != "") {
+            setTable(k.trim().toLowerCase());
         }
     }
     
-    private void setTable(String str){  //uzyc array list
+    public void setTable(String str){  //uzyc array list
         char tmp_char;
         ArrayList<Character> tmp_table = new ArrayList<Character>();
-        tmp_table.add(str.charAt(0));
+        try {
+            tmp_table.add(str.charAt(0));
+        } catch (Exception e) {
+            Character [] tab = {'a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+            table = tab;
+            return;
+        }
         
         for (int i = 1; i < str.length(); i++) {
             tmp_char = str.charAt(i);
@@ -50,7 +56,14 @@ public class Polybius {
         }
         Character[] tab = tmp_table.toArray(new Character[tmp_table.size()]);
         table = tab;
-        
+    }
+    
+    public void setMessage(String s){
+        msg = s;
+    }
+    
+    public void setIsEncrypted(boolean f){
+        isEncrypted = f;
     }
     
     public String getMessage(){
@@ -76,7 +89,7 @@ public class Polybius {
         String tmp_string ="";
         Character tmp_char1, tmp_char2;
         int tmp_int1, tmp_int2;
-        if (isEncrypted){ //message decoder
+        if (isEncrypted){ //message decrypter
             for(int i = 0; i < msg.length(); i = i+2){
                 
                 tmp_char1 = msg.charAt(i);
@@ -91,7 +104,7 @@ public class Polybius {
                     tmp_int2 = ((tmp_int1 - 1) * 5) + tmp_int2 - 1;
                     tmp_string += table[tmp_int2];
             }
-        } else { //message encrypther
+        } else { //message encrypter
             for(int i = 0; i < msg.length(); i++){
                 
                 tmp_char1 =  msg.charAt(i);

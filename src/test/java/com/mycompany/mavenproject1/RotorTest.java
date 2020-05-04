@@ -20,14 +20,14 @@ public class RotorTest {
     char [] tab = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     Rotor test = new Rotor(1,tab);
     Rotor test2 = new Rotor(2,tab);
-    ArrayList<Pair> testlist = new ArrayList<Pair>();
+    ArrayList<Pair<Character>> testlist = new ArrayList<Pair<Character>>();
     Rotor test3 = new Rotor(3, tab);
     
     char [] rot_tab = {'e','k','m','f','l','g','d','q','v','z','n','t','o','w','y','h','x','u','s','p','a','i','b','r','c','j'};
     Rotor rot = new Rotor(1,tab);
  
     
-    private boolean assertArrayList(ArrayList<Pair> l1, ArrayList<Pair> l2){
+    private boolean assertArrayList(ArrayList<Pair<Character>> l1, ArrayList<Pair<Character>> l2){
         if (l1.size() != l2.size()) {
             return false;
         }
@@ -49,7 +49,7 @@ public class RotorTest {
     public void testGetTable() {
         char tmp = 'a';
         for (int i = 0; i < 26; i++) {
-            testlist.add(new Pair(tmp, tmp));
+            testlist.add(new Pair<Character>(tmp, tmp));
             tmp++;
         }
         assertTrue(assertArrayList(testlist, test3.getTable()));

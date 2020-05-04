@@ -5,8 +5,6 @@
  */
 package com.mycompany.mavenproject1;
 
-import java.math.BigInteger;
-
 
 /**
  *
@@ -14,11 +12,7 @@ import java.math.BigInteger;
  */
 public class Main {
     public static void main(String[] args){     
-        
-        Blowfish test = new Blowfish("1234", "ELDO20kanawolno");
-        test.getMessage();
-        
-        
+
         System.out.println("Hello Maven!");
         new MainFrame().setVisible(true);
         

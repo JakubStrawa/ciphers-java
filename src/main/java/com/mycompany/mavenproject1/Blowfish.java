@@ -5,18 +5,18 @@
  */
 package com.mycompany.mavenproject1;
 
-import java.math.BigInteger;
+import java.util.ArrayList;
 
 /**
  *
  * @author kuba
  */
 public class Blowfish {
-    String Pbox[] = { "243f6a88", "85a308d3", "13198a2e", "03707344", "a4093822", 
+    private String Pbox[] = { "243f6a88", "85a308d3", "13198a2e", "03707344", "a4093822", 
                    "299f31d0", "082efa98", "ec4e6c89", "452821e6", "38d01377", 
                    "be5466cf", "34e90c6c", "c0ac29b7", "c97c50dd", "3f84d5b5", 
                    "b5470917", "9216d5d9", "8979fb1b" };
-    String [][] Sbox = { { "d1310ba6", "98dfb5ac", "2ffd72db", "d01adfb7", "b8e1afed", 
+    private String [][] Sbox = { { "d1310ba6", "98dfb5ac", "2ffd72db", "d01adfb7", "b8e1afed", 
               "6a267e96", "ba7c9045", "f12c7f99", "24a19947", "b3916cf7", 
               "0801f2e2", "858efc16", "636920d8", "71574e69", "a458fea3", 
               "f4933d7e", "0d95748f", "728eb658", "718bcd58", "82154aee", 
@@ -224,19 +224,25 @@ public class Blowfish {
               "02fb8a8c", "01c36ae4", "d6ebe1f9", "90d4f869", "a65cdea0", 
               "3f09252d", "c208e69f", "b74e6132", "ce77e25b", "578fdfe3", 
               "3ac372e6" } };
-    long P[];
-    long S[][];
-    long key[];
-    long Lval, Rval;
-    String message;
-    long max_int;
+    private long P[];
+    private long S[][];
+    private long key[];
+    private long Lval, Rval;
+    private String message, keyString;
+    private long max_int;
+    private boolean isEncrypted;
+    private ArrayList<String> messageList;
+    private ArrayList<String> encodedList;
+    private ArrayList<Pair<Long>> valueList;
+    private ArrayList<Character> charList;
     
-    public Blowfish(String msg, String k){
+    public Blowfish(String msg, String k, boolean f){
+        isEncrypted = f;
         Lval = 0L;
         Rval = 0L;
         max_int = 1;
         max_int = max_int << 32;
-        long tmp_left, tmp_right;
+        P = new long [18];
         
         S = new long [4][256];
         for (int i = 0; i < 4; i++) {
@@ -244,33 +250,133 @@ public class Blowfish {
                 S[i][j] = Long.parseLong(Sbox[i][j], 16);
             }
         }
+        messageList = new ArrayList<String>();
+        encodedList = new ArrayList<String>();
+        valueList = new ArrayList<Pair<Long>>();
+        charList = new ArrayList<Character>();
         createKey(k);
-        createMessage(msg);
-        System.out.println("L to start: " + Lval + " R to start: " + Rval);
-        tmp_left = Lval;
-        tmp_right = Rval;
-        start();
-        Lval = tmp_left;
-        Rval = tmp_right;
-        System.out.println("L to start: " + Lval + " R to start: " + Rval);
-        encrypt(Lval, Rval);
-        System.out.println("Encrypted L: " + Lval + " encrypted R: " + Rval);
-        message = createMessage(Lval, Rval);
-        getMessage();
-        decrypt(Lval, Rval);
-        System.out.println("L last: " + Lval + " R last: " + Rval);
-        
-        BigInteger sum = new BigInteger(Long.toHexString(Lval), 16);
-        sum = sum.shiftLeft(32);
-        sum = sum.add(BigInteger.valueOf(Rval));
-        message = createMessage(Lval, Rval);
-        
-        System.out.println(sum);
+        divideMessage(msg);
+        for (String s : messageList) {
+            createMessage(s);
+            valueList.add(new Pair<Long>(Lval, Rval));
+        }
+        setup();
+    }
+    
+    public String getMessageList(){
+        //System.out.println("MessageList:");
+        String tmp = "";
+        for (String s : messageList) {
+            //System.out.println(s);
+            tmp += s;
+        }
+        return tmp;
+    }
+    
+    public String getEncodedList(){
+        //System.out.println("EncodedList:");
+        String tmp = "";
+        for (String s : encodedList) {
+            //System.out.println(s);
+            tmp += s;
+        }
+        return tmp;
+    }
+    
+    public String getCharList(){
+        //System.out.println("CharList:");
+        String tmp = "";
+        int i = 0;
+        for (Character c : charList) {
+            i = c;
+            //System.out.println(c);
+            tmp += i + ", ";
+        }
+        tmp = tmp.substring(0, tmp.length() - 2);
+        return  tmp;
+    }
+    
+    public String getBinaryList(){
+        //System.out.println("BinaryList:");
+        String tmp = "";
+        long l = 0L;
+        int i = 0;
+        for (Character c : charList) {            
+            l += c;
+            i++;
+            if (i != 4) {
+                l = l << 16;
+            }
+            if (i == 4) {
+                i = 0;
+                String result = Long.toBinaryString(l);
+                while (result.length() % 64 != 0) {                    
+                    result = "0" + result;
+                }
+                tmp += result + ", ";
+                
+                l = 0;
+            }
+        }
+        return tmp;
+    }
+    
+    public String getHexList(){
+        //System.out.println("HexList:");
+        String tmp = "";
+        int i = 0;
+        for (Character c : charList) {
+            tmp += Integer.toHexString(c);
+            i++;
+            if (i == 4) {
+                i = 0;
+                tmp += ", ";
+            }
+        }
+        return tmp;
+    }
+    
+    public boolean getIsEncrypted(){
+        return isEncrypted;
     }
     
     public String getMessage(){
-        System.out.println(message);
+        //System.out.println(message);
         return message;
+    }
+    
+    public String getKey(){
+        //System.out.println(keyString);
+        return keyString;
+    }
+    
+    public void setIsEncrypted(boolean f){
+        isEncrypted = f;
+    }
+    
+    public void setMessage(String s){
+        messageList.clear();
+        encodedList.clear();
+        valueList.clear();
+        charList.clear();
+        divideMessage(s);
+        for (String str : messageList) {
+            createMessage(str);
+            valueList.add(new Pair<Long>(Lval, Rval));
+        }
+    }
+    
+    public void setKey(String k){
+        for (int i = 0; i < P.length; i++) {
+            P[i] = 0;
+        }
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 256; j++) {
+                S[i][j] = Long.parseLong(Sbox[i][j], 16);
+            }
+        }
+        createKey(k);
+        setup();
     }
     
     private String createMessage(long l, long r){
@@ -279,18 +385,43 @@ public class Blowfish {
         long val = 0L;
         val = l >> 16;
         c = (char) val;
+        charList.add(c);
+        //System.out.println((int) c);
         tmp += c;
         val = l - (val << 16);
         c = (char) val;
+        charList.add(c);
+        //System.out.println((int) c);
         tmp += c;
         
         val = r >> 16;
         c = (char) val;
+        charList.add(c);
+        //System.out.println((int) c);
         tmp += c;
         val = r - (val << 16);
         c = (char) val;
+        charList.add(c);
+        //System.out.println((int) c);
         tmp += c;
+        //decodedList.add(tmp);
         return tmp;
+    }
+    
+    private void divideMessage(String m){
+        int size = m.length()/4;
+        if (m.length() % 4 != 0) {
+            size++;
+        }
+        for (int i = 0; i < size; i++) {
+            try {
+                messageList.add(m.substring(4*i, 4*i + 4));
+            } catch (Exception e) {
+                String tmp = m.substring(4*i, m.length()) + "####";
+                tmp = tmp.substring(0, 4);
+                messageList.add(tmp);
+            }
+        }
     }
     
     private void createMessage(String m){
@@ -313,7 +444,8 @@ public class Blowfish {
         int size = tmp.length();
         if (size < 2) {
             System.out.println("Key too short!");
-            tmp = "##";
+            tmp = k + "##";
+            tmp = tmp.substring(0, 2);
             size = 2;
         }
         if (size > 28) {
@@ -325,18 +457,20 @@ public class Blowfish {
             tmp = tmp.substring(0, size - 1);
             size--;
         }
-        size = size/2;
-        key = new long [size];
+        long [] tableKey = new long [size/2];
         long sum = 0L;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size/2; i++) {
             sum = (long) tmp.charAt(2 * i);
             sum = sum << 16;
             sum += (long) tmp.charAt((2 * i) + 1);
-            key[i] = sum;
+            tableKey[i] = sum;
         }
+        key = tableKey;
+        //System.out.println("KeyString: " + tmp);
+        keyString = tmp;
     }
 
-    public long f (long x) {
+    private long f (long x) {
         int tmp = 0xFF;
         int t1,t2,t3;
         t2 = (int) (x >> 16);
@@ -347,8 +481,38 @@ public class Blowfish {
         h = (long) ( h ^ S[2][t1 & tmp] ) + S[3][(int)x & tmp];
         return h % max_int;
     }
+    
+    public void encryptMessage(){
+        if (isEncrypted == false) {
+            encodedList.clear();
+            for (Pair<Long> lp : valueList) {
+                Lval = lp.getFirst();
+                Rval = lp.getSecond();
+                encrypt(Lval, Rval);
+                encodedList.add(createMessage(Lval, Rval));
+                lp.setFirst(Lval);
+                lp.setSecond(Rval);
+            }
+            isEncrypted = true;
+        }
+    }
+    
+    public void decryptMessage(){
+        if (isEncrypted == true) {
+            encodedList.clear();
+            for (Pair<Long> lp : valueList) {
+                Lval = lp.getFirst();
+                Rval = lp.getSecond();
+                decrypt(Lval, Rval);
+                encodedList.add(createMessage(Lval, Rval));
+                lp.setFirst(Lval);
+                lp.setSecond(Rval);
+            }
+            isEncrypted = false;
+        }
+    }
 
-    public void encrypt (long L, long R) {
+    private void encrypt (long L, long R) {
         for (int i=0 ; i<16 ; i += 2) {
             L = L ^ P[i];
             R = R ^ f(L);
@@ -362,7 +526,7 @@ public class Blowfish {
         //System.out.println("L: " + Lval + " R: " + Rval);
     }
 
-    public void decrypt (long L, long R) {
+    private void decrypt (long L, long R) {
         for (int i=16 ; i > 0 ; i -= 2) {
             L = L ^ P[i+1];
             R = R ^ f(L);
@@ -376,19 +540,20 @@ public class Blowfish {
         //System.out.println("L: " + Lval + " R: " + Rval);
     }
 
-    public void start(){
-        P = new long [18];
+    private void setup(){
+        long [] ptmp = new long [18];
         long tmp = 0L;
         for (int i=0 ; i<18 ; ++i){
             tmp = Long.parseLong(Pbox[i], 16);
-            P[i] = (tmp ^ key[i % key.length]);
+            ptmp[i] = (tmp ^ key[i % key.length]);
         }
+        P = ptmp;
         Lval = 0L; 
         Rval = 0L;
         for (int i=0 ; i<18 ; i+=2) {
             encrypt (Lval, Rval);
-            P[i] = Lval; 
-            P[i+1] = Rval;
+            ptmp[i] = Lval; 
+            ptmp[i+1] = Rval;
         }
         for (int i=0 ; i<4 ; ++i){
             for (int j=0 ; j<256; j+=2) {
@@ -397,6 +562,7 @@ public class Blowfish {
                 S[i][j+1] = Rval;
             }
         }
+        Lval = 0;
+        Rval = 0;
     }
-
 }

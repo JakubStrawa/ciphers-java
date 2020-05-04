@@ -17,6 +17,7 @@ public class EnigmaFrame extends javax.swing.JFrame {
     public EnigmaFrame() {
         initComponents();
         enigma = new Enigma("");
+        etabframe = new EnigmaTableFrame(reflectorBCheckBox.isSelected(), enigma.getRotorList(), enigma.getPlugBoard());
     }
 
     /**
@@ -28,223 +29,205 @@ public class EnigmaFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuBar3 = new javax.swing.JMenuBar();
-        jMenu8 = new javax.swing.JMenu();
-        jMenu9 = new javax.swing.JMenu();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
-
-        jMenu5.setText("File");
-        jMenuBar2.add(jMenu5);
-
-        jMenu6.setText("Edit");
-        jMenuBar2.add(jMenu6);
-
-        jMenu8.setText("File");
-        jMenuBar3.add(jMenu8);
-
-        jMenu9.setText("Edit");
-        jMenuBar3.add(jMenu9);
+        titleLabel = new javax.swing.JLabel();
+        messageTextField = new javax.swing.JTextField();
+        runButton = new javax.swing.JButton();
+        rotorOrderLabel = new javax.swing.JLabel();
+        rotor1ComboBox = new javax.swing.JComboBox<>();
+        rotor2ComboBox = new javax.swing.JComboBox<>();
+        rotor3ComboBox = new javax.swing.JComboBox<>();
+        rotorOffsetLabel = new javax.swing.JLabel();
+        offset1ComboBox = new javax.swing.JComboBox<>();
+        offset2ComboBox = new javax.swing.JComboBox<>();
+        offset3ComboBox = new javax.swing.JComboBox<>();
+        reflectorBCheckBox = new javax.swing.JCheckBox();
+        reflectorCCheckBox = new javax.swing.JCheckBox();
+        plugboardScrollPane = new javax.swing.JScrollPane();
+        plugboardTextArea = new javax.swing.JTextArea();
+        plugboardLabel = new javax.swing.JLabel();
+        answerTextField = new javax.swing.JTextField();
+        enigmaMenuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        openMenuItem = new javax.swing.JMenuItem();
+        saveMenuItem = new javax.swing.JMenuItem();
+        exitMenuItem = new javax.swing.JMenuItem();
+        editMenu = new javax.swing.JMenu();
+        copyResultMenuItem = new javax.swing.JMenuItem();
+        viewMenu = new javax.swing.JMenu();
+        showTableMenuItem = new javax.swing.JMenuItem();
+        gotoMenu = new javax.swing.JMenu();
+        caesarMenuItem = new javax.swing.JMenuItem();
+        polybiusMenuItem = new javax.swing.JMenuItem();
+        blowfishMenuItem = new javax.swing.JMenuItem();
+        runMenu = new javax.swing.JMenu();
+        runMenuItem = new javax.swing.JMenuItem();
+        runSBSCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Enigma");
+        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Enigma");
 
-        jTextField1.setText("Enter your message here");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        messageTextField.setText("Enter your message here");
+        messageTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                messageTextFieldActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Run");
-        jButton1.setToolTipText("");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        runButton.setText("Run");
+        runButton.setToolTipText("");
+        runButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                runButtonActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Rotor order:");
+        rotorOrderLabel.setText("Rotor order:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "I", "II", "III", "IV", "V" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        rotor1ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "I", "II", "III", "IV", "V" }));
+        rotor1ComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                rotor1ComboBoxActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "I", "II", "III", "IV", "V" }));
-        jComboBox2.setSelectedIndex(-1);
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        rotor2ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "I", "II", "III", "IV", "V" }));
+        rotor2ComboBox.setSelectedIndex(-1);
+        rotor2ComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                rotor2ComboBoxActionPerformed(evt);
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "I", "II", "III", "IV", "V" }));
-        jComboBox3.setSelectedIndex(-1);
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        rotor3ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "I", "II", "III", "IV", "V" }));
+        rotor3ComboBox.setSelectedIndex(-1);
+        rotor3ComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                rotor3ComboBoxActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Rotor offset:");
+        rotorOffsetLabel.setText("Rotor offset:");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26" }));
+        offset1ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26" }));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26" }));
+        offset2ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26" }));
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26" }));
+        offset3ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26" }));
 
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Reflector UKW B");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        reflectorBCheckBox.setSelected(true);
+        reflectorBCheckBox.setText("Reflector UKW B");
+        reflectorBCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                reflectorBCheckBoxActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("Reflector UKW C");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        reflectorCCheckBox.setText("Reflector UKW C");
+        reflectorCCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                reflectorCCheckBoxActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(3);
-        jTextArea1.setText("Enter your plugboard connections, each letter can only be used in one connection");
-        jScrollPane1.setViewportView(jTextArea1);
+        plugboardTextArea.setColumns(20);
+        plugboardTextArea.setLineWrap(true);
+        plugboardTextArea.setRows(3);
+        plugboardTextArea.setText("Enter your plugboard connections, each letter can only be used in one connection");
+        plugboardScrollPane.setViewportView(plugboardTextArea);
 
-        jLabel4.setText("Plugboard:");
+        plugboardLabel.setText("Plugboard:");
 
-        jTextField2.setText("Press Run to see you answer");
+        answerTextField.setText("Press Run to see you answer");
 
-        jMenu1.setText("File");
+        fileMenu.setText("File");
 
-        jMenuItem1.setText("Open");
-        jMenu1.add(jMenuItem1);
+        openMenuItem.setText("Open");
+        fileMenu.add(openMenuItem);
 
-        jMenuItem2.setText("Save");
-        jMenu1.add(jMenuItem2);
+        saveMenuItem.setText("Save");
+        fileMenu.add(saveMenuItem);
 
-        jMenuItem3.setText("Exit");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        exitMenuItem.setText("Exit");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                exitMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        fileMenu.add(exitMenuItem);
 
-        jMenuBar1.add(jMenu1);
+        enigmaMenuBar.add(fileMenu);
 
-        jMenu2.setText("Edit");
+        editMenu.setText("Edit");
 
-        jMenuItem4.setText("Copy result");
-        jMenu2.add(jMenuItem4);
+        copyResultMenuItem.setText("Copy result");
+        editMenu.add(copyResultMenuItem);
 
-        jMenuBar1.add(jMenu2);
+        enigmaMenuBar.add(editMenu);
 
-        jMenu3.setText("View");
+        viewMenu.setText("View");
 
-        jMenuItem9.setText("Show Enigma table");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        showTableMenuItem.setText("Show Enigma table");
+        showTableMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                showTableMenuItemActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem9);
+        viewMenu.add(showTableMenuItem);
 
-        jMenu7.setText("Go to");
+        gotoMenu.setText("Go to");
 
-        jMenuItem6.setText("Cesar");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        caesarMenuItem.setText("Caesar");
+        caesarMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                caesarMenuItemActionPerformed(evt);
             }
         });
-        jMenu7.add(jMenuItem6);
+        gotoMenu.add(caesarMenuItem);
 
-        jMenuItem7.setText("Polybius");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        polybiusMenuItem.setText("Polybius");
+        polybiusMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                polybiusMenuItemActionPerformed(evt);
             }
         });
-        jMenu7.add(jMenuItem7);
+        gotoMenu.add(polybiusMenuItem);
 
-        jMenuItem8.setText("Blowfish");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        blowfishMenuItem.setText("Blowfish");
+        blowfishMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                blowfishMenuItemActionPerformed(evt);
             }
         });
-        jMenu7.add(jMenuItem8);
+        gotoMenu.add(blowfishMenuItem);
 
-        jMenu3.add(jMenu7);
+        viewMenu.add(gotoMenu);
 
-        jMenuBar1.add(jMenu3);
+        enigmaMenuBar.add(viewMenu);
 
-        jMenu4.setText("Run");
+        runMenu.setText("Run");
 
-        jMenuItem5.setText("Run");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        runMenuItem.setText("Run");
+        runMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                runMenuItemActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem5);
+        runMenu.add(runMenuItem);
 
-        jCheckBoxMenuItem2.setText("Run step by step");
-        jCheckBoxMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        runSBSCheckBoxMenuItem.setText("Run step by step");
+        runSBSCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem2ActionPerformed(evt);
+                runSBSCheckBoxMenuItemActionPerformed(evt);
             }
         });
-        jMenu4.add(jCheckBoxMenuItem2);
+        runMenu.add(runSBSCheckBoxMenuItem);
 
-        jMenuBar1.add(jMenu4);
+        enigmaMenuBar.add(runMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(enigmaMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,40 +237,40 @@ public class EnigmaFrame extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(plugboardScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(answerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(plugboardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(rotor3ComboBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(rotor2ComboBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(rotor1ComboBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(89, 89, 89)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(offset2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(offset3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(offset1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jCheckBox2)
+                                                .addComponent(reflectorCCheckBox)
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jButton1)
-                                                        .addComponent(jCheckBox1))
+                                                        .addComponent(runButton)
+                                                        .addComponent(reflectorBCheckBox))
                                                     .addGap(2, 2, 2)))
                                             .addGap(38, 38, 38)))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rotorOrderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(61, 61, 61)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(rotorOffsetLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 39, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -295,141 +278,143 @@ public class EnigmaFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(rotorOrderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rotorOffsetLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(rotor1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(offset1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addComponent(jButton1)
+                        .addComponent(runButton)
                         .addGap(18, 18, 18)
-                        .addComponent(jCheckBox1)
+                        .addComponent(reflectorBCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox2)))
+                        .addComponent(reflectorCCheckBox)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rotor2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(offset2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rotor3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(offset3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(plugboardLabel)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(plugboardScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(answerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBoxMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem2ActionPerformed
+    private void runSBSCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runSBSCheckBoxMenuItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
+    }//GEN-LAST:event_runSBSCheckBoxMenuItemActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void blowfishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blowfishMenuItemActionPerformed
         new BlowfishFrame().setVisible(true);
         setVisible(false);
         dispose();
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_blowfishMenuItemActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        new CezarFrame().setVisible(true);
+    private void caesarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caesarMenuItemActionPerformed
+        new CaesarFrame().setVisible(true);
         setVisible(false);
         dispose();
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_caesarMenuItemActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void polybiusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polybiusMenuItemActionPerformed
         new PolybiusFrame().setVisible(true);
         setVisible(false);
         dispose();
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_polybiusMenuItemActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void messageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messageTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_messageTextFieldActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        EnigmaTableFrame etabframe = new EnigmaTableFrame(jCheckBox1.isSelected(), enigma.getRotorList(), enigma.getPlugBoard());
+    private void showTableMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showTableMenuItemActionPerformed
         etabframe.setVisible(true);
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_showTableMenuItemActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        if (jCheckBox2.isSelected()) {
-            jCheckBox2.setSelected(false);   
+    private void reflectorBCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reflectorBCheckBoxActionPerformed
+        if (reflectorCCheckBox.isSelected()) {
+            reflectorCCheckBox.setSelected(false);   
         }
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_reflectorBCheckBoxActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        if (jCheckBox1.isSelected()) {
-            jCheckBox1.setSelected(false);   
+    private void reflectorCCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reflectorCCheckBoxActionPerformed
+        if (reflectorBCheckBox.isSelected()) {
+            reflectorBCheckBox.setSelected(false);   
         }
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_reflectorCCheckBoxActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        if (jComboBox1.getSelectedIndex() == jComboBox2.getSelectedIndex() || jComboBox1.getSelectedIndex() == jComboBox3.getSelectedIndex()) {
-            jComboBox1.setSelectedIndex(-1);
+    private void rotor1ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotor1ComboBoxActionPerformed
+        if (rotor1ComboBox.getSelectedIndex() == rotor2ComboBox.getSelectedIndex() || rotor1ComboBox.getSelectedIndex() == rotor3ComboBox.getSelectedIndex()) {
+            rotor1ComboBox.setSelectedIndex(-1);
         }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_rotor1ComboBoxActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        if (jComboBox1.getSelectedIndex() == jComboBox2.getSelectedIndex() || jComboBox2.getSelectedIndex() == jComboBox3.getSelectedIndex()) {
-            jComboBox2.setSelectedIndex(-1);
+    private void rotor2ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotor2ComboBoxActionPerformed
+        if (rotor1ComboBox.getSelectedIndex() == rotor2ComboBox.getSelectedIndex() || rotor2ComboBox.getSelectedIndex() == rotor3ComboBox.getSelectedIndex()) {
+            rotor2ComboBox.setSelectedIndex(-1);
         }
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_rotor2ComboBoxActionPerformed
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        if (jComboBox1.getSelectedIndex() == jComboBox3.getSelectedIndex() || jComboBox2.getSelectedIndex() == jComboBox3.getSelectedIndex()) {
-            jComboBox3.setSelectedIndex(-1);
+    private void rotor3ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotor3ComboBoxActionPerformed
+        if (rotor1ComboBox.getSelectedIndex() == rotor3ComboBox.getSelectedIndex() || rotor2ComboBox.getSelectedIndex() == rotor3ComboBox.getSelectedIndex()) {
+            rotor3ComboBox.setSelectedIndex(-1);
         }
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_rotor3ComboBoxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
         enigma.clearPlugBoard();
         enigma.clearRotorList();
-        String message = jTextField1.getText().trim().toLowerCase();
+        String message = messageTextField.getText().trim().toLowerCase();
         enigma.setMessage(message);
-        if (jComboBox1.getSelectedIndex() != -1) {
-            enigma.addRotor(jComboBox1.getSelectedIndex() + 1);
-            enigma.getRotor(jComboBox1.getSelectedIndex() + 1).setRotation(jComboBox4.getSelectedIndex() + 1);
+        if (rotor1ComboBox.getSelectedIndex() != -1) {
+            enigma.addRotor(rotor1ComboBox.getSelectedIndex() + 1);
+            enigma.getRotor(rotor1ComboBox.getSelectedIndex() + 1).setRotation(offset1ComboBox.getSelectedIndex() + 1);
         }
-        if (jComboBox2.getSelectedIndex() != -1) {
-            enigma.addRotor(jComboBox2.getSelectedIndex() + 1);
-            enigma.getRotor(jComboBox2.getSelectedIndex() + 1).setRotation(jComboBox5.getSelectedIndex() + 1);
+        if (rotor2ComboBox.getSelectedIndex() != -1) {
+            enigma.addRotor(rotor2ComboBox.getSelectedIndex() + 1);
+            enigma.getRotor(rotor2ComboBox.getSelectedIndex() + 1).setRotation(offset2ComboBox.getSelectedIndex() + 1);
         }
-        if (jComboBox3.getSelectedIndex() != -1) {
-            enigma.addRotor(jComboBox3.getSelectedIndex() + 1);
-            enigma.getRotor(jComboBox3.getSelectedIndex() + 1).setRotation(jComboBox6.getSelectedIndex() + 1);
+        if (rotor3ComboBox.getSelectedIndex() != -1) {
+            enigma.addRotor(rotor3ComboBox.getSelectedIndex() + 1);
+            enigma.getRotor(rotor3ComboBox.getSelectedIndex() + 1).setRotation(offset3ComboBox.getSelectedIndex() + 1);
         }
-        if (jCheckBox1.isSelected()) {
+        if (reflectorBCheckBox.isSelected()) {
             enigma.setDeflector(1);
         } else {
             enigma.setDeflector(2);
         }
-        enigma.addToPlugBoard(jTextArea1.getText());
+        enigma.addToPlugBoard(plugboardTextArea.getText());
+        etabframe.setFlag(reflectorBCheckBox.isSelected());
+        etabframe.setRotors(enigma.getRotorList());
+        etabframe.setPlugboard(enigma.getPlugBoard());
         enigma.changeMessage();
-        jTextField2.setText(enigma.getMessage());
-    }//GEN-LAST:event_jButton1ActionPerformed
+        answerTextField.setText(enigma.getMessage());
+    }//GEN-LAST:event_runButtonActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        jButton1ActionPerformed(evt);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    private void runMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMenuItemActionPerformed
+        runButtonActionPerformed(evt);
+    }//GEN-LAST:event_runMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -465,47 +450,41 @@ public class EnigmaFrame extends javax.swing.JFrame {
             }
         });
     }
-    public Enigma enigma;
-
+    private Enigma enigma;
+    private EnigmaTableFrame etabframe;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuBar jMenuBar3;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField answerTextField;
+    private javax.swing.JMenuItem blowfishMenuItem;
+    private javax.swing.JMenuItem caesarMenuItem;
+    private javax.swing.JMenuItem copyResultMenuItem;
+    private javax.swing.JMenu editMenu;
+    private javax.swing.JMenuBar enigmaMenuBar;
+    private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenu gotoMenu;
+    private javax.swing.JTextField messageTextField;
+    private javax.swing.JComboBox<String> offset1ComboBox;
+    private javax.swing.JComboBox<String> offset2ComboBox;
+    private javax.swing.JComboBox<String> offset3ComboBox;
+    private javax.swing.JMenuItem openMenuItem;
+    private javax.swing.JLabel plugboardLabel;
+    private javax.swing.JScrollPane plugboardScrollPane;
+    private javax.swing.JTextArea plugboardTextArea;
+    private javax.swing.JMenuItem polybiusMenuItem;
+    private javax.swing.JCheckBox reflectorBCheckBox;
+    private javax.swing.JCheckBox reflectorCCheckBox;
+    private javax.swing.JComboBox<String> rotor1ComboBox;
+    private javax.swing.JComboBox<String> rotor2ComboBox;
+    private javax.swing.JComboBox<String> rotor3ComboBox;
+    private javax.swing.JLabel rotorOffsetLabel;
+    private javax.swing.JLabel rotorOrderLabel;
+    private javax.swing.JButton runButton;
+    private javax.swing.JMenu runMenu;
+    private javax.swing.JMenuItem runMenuItem;
+    private javax.swing.JCheckBoxMenuItem runSBSCheckBoxMenuItem;
+    private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JMenuItem showTableMenuItem;
+    private javax.swing.JLabel titleLabel;
+    private javax.swing.JMenu viewMenu;
     // End of variables declaration//GEN-END:variables
 }
