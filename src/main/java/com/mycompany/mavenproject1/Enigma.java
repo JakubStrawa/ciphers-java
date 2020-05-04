@@ -187,21 +187,6 @@ public class Enigma {
         return deflectorUsed;
     }
     
-    public void printEnigma(){
-        System.out.println("Enigma state:");
-        System.out.println("Rotors order:");
-        for (Rotor rot : rotorList) {
-            System.out.println("Rotor: " + rot.getNumber() + " rotation: " + rot.getRotatation());
-        }
-        System.out.println("Plugboard:");
-        for (Pair p : plugBoard) {
-            String temp = "";
-            temp += p.getFirst();
-            temp += p.getSecond();
-            System.out.println(temp.toUpperCase());
-        }
-    }
-    
     private char addRotation(char c, int rot){
         c = (char) ('a' + ((c + rot - 1) % 97) % 26);
         return c;
