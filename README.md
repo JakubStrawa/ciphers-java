@@ -20,6 +20,6 @@ Project wrritten in Java with Swing library.
 
 Instalation process (Maven necessary):
 1. Clone current master branch.
-2. Use: "mvn install" command.
+2. Use: "mvn clean install" command.
 3. Use: "java -jar target/cipher-ver.jar" command where ver is current build version.
 4. Enjoy.
