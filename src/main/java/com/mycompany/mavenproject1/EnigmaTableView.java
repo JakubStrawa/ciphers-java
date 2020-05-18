@@ -5,71 +5,17 @@
  */
 package com.mycompany.mavenproject1;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author kuba
  */
-public class EnigmaTableFrame extends javax.swing.JFrame {
+public class EnigmaTableView extends javax.swing.JFrame {
 
     /**
      * Creates new form EnigmaTableFrame
      */
-    public EnigmaTableFrame(boolean def, ArrayList<Rotor> rotors, ArrayList<Pair<Character>> plugboard) {
+    public EnigmaTableView() {
         initComponents();
-        setFlag(def);
-        setRotors(rotors);
-        setPlugboard(plugboard);
-    }
-    
-    public void setFlag(boolean f){
-        flag = f;
-    }
-    
-    public void setRotors(ArrayList<Rotor> rotors){
-        char d = 'B';
-        if (!flag) {
-            d = 'C';
-        }
-        String text1 = "";
-        text1 += d;
-        for (Rotor r : rotors) {
-            text1 = text1 + " " + r.getNumber();
-        }
-        String text2 = "";
-        for (Rotor r : rotors) {
-            text2 = text2 + " " + r.getRotatation();
-        }
-        rotorOrderOutputLabel.setText(text1);
-        rotorOffsetOutputLabel.setText(text2.trim());
-    }
-    
-    public void setPlugboard(ArrayList<Pair<Character>> plugboard){
-        String text3 = "";
-        int i = 0, j = 0;
-        for (Pair pair : plugboard) {
-            text3 = text3 + pair.getFirst() + pair.getSecond() + " ";
-            i++;
-            if (i == 4 && j != 2) {
-                j++;
-                i = 0;
-                text3 += ":";
-            }
-        }
-        String [] stable = {};
-        stable = text3.split(":", 3);
-        plugboardOutput1Label.setText(stable[0].trim().toUpperCase());
-        if (stable.length > 1) {
-            plugboardOutput2Label.setText(stable[1].trim().toUpperCase());
-        } else {
-            plugboardOutput2Label.setText("");
-        }
-        if (stable.length > 2) {
-            plugboardOutput3Label.setText(stable[2].trim().toUpperCase());
-        } else {
-            plugboardOutput3Label.setText("");
-        }
     }
 
     /**
@@ -192,28 +138,44 @@ public class EnigmaTableFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EnigmaTableFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EnigmaTableView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EnigmaTableFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EnigmaTableView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EnigmaTableFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EnigmaTableView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EnigmaTableFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EnigmaTableView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                boolean b = true;
-                ArrayList<Rotor> r = null;
-                ArrayList<Pair<Character>> p = null;
-                new EnigmaTableFrame(b,r,p).setVisible(true);
+                new EnigmaTableView().setVisible(true);
             }
         });
     }
+    
+    public void setRotorOrderLabel(String s){
+        rotorOrderOutputLabel.setText(s);
+    }
+    public void setRotorOffsetLabel(String s){
+        rotorOffsetOutputLabel.setText(s);
+    }
+    public void setPlugboard1Label(String s){
+        plugboardOutput1Label.setText(s);
+    }
+    public void setPlugboard2Label(String s){
+        plugboardOutput2Label.setText(s);
+    }
+    public void setPlugboard3Label(String s){
+        plugboardOutput3Label.setText(s);
+    }
+    
+    
+    
 
-    private boolean flag;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel plugboardLabel;
     private javax.swing.JLabel plugboardOutput1Label;

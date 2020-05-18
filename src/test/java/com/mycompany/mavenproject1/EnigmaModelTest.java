@@ -12,17 +12,18 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author kuba
  */
-public class EnigmaTest {
+public class EnigmaModelTest {
     
-    public EnigmaTest() {
+    public EnigmaModelTest() {
     }
     
     /**
-     * Test of addToPlugBoard method, of class Enigma.
+     * Test of addToPlugBoard method, of class EnigmaModel.
      */
     @Test
     public void testAddToPlugBoard_String() {
-        Enigma enigma = new Enigma("testmessage");
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         String str = "ab cd ef l   ";
         enigma.addToPlugBoard(str);
         assertEquals(3, enigma.getPlugBoard().size());
@@ -32,12 +33,12 @@ public class EnigmaTest {
     }
 
     /**
-     * Test of addToPlugBoard method, of class Enigma.
+     * Test of addToPlugBoard method, of class EnigmaModel.
      */
     @Test
     public void testAddToPlugBoard_char_char() {
-        Enigma enigma = new Enigma("testmessage");
-        
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         enigma.addToPlugBoard('a', 'b');
         enigma.addToPlugBoard('e', 'q');
         enigma.addToPlugBoard('a', 'z');
@@ -53,11 +54,12 @@ public class EnigmaTest {
     }
 
     /**
-     * Test of clearPlugBoard method, of class Enigma.
+     * Test of clearPlugBoard method, of class EnigmaModel.
      */
     @Test
     public void testClearPlugBoard() {
-        Enigma enigma = new Enigma("testmessage");
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         String str = "ab cd ef l   ";
         enigma.addToPlugBoard(str);
         enigma.clearPlugBoard();
@@ -65,11 +67,12 @@ public class EnigmaTest {
     }
 
     /**
-     * Test of clearRotorList method, of class Enigma.
+     * Test of clearRotorList method, of class EnigmaModel.
      */
     @Test
     public void testClearRotorList() {
-        Enigma enigma = new Enigma("testmessage");
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         enigma.addRotor(2);
         enigma.addRotor(1);
         enigma.addRotor(5);
@@ -78,11 +81,12 @@ public class EnigmaTest {
     }
 
     /**
-     * Test of getRotorList method, of class Enigma.
+     * Test of getRotorList method, of class EnigmaModel.
      */
     @Test
     public void testGetRotorList() {
-        Enigma enigma = new Enigma("testmessage");
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         enigma.addRotor(2);
         enigma.addRotor(1);
         enigma.addRotor(5);
@@ -92,11 +96,12 @@ public class EnigmaTest {
     }
 
     /**
-     * Test of getPlugBoard method, of class Enigma.
+     * Test of getPlugBoard method, of class EnigmaModel.
      */
     @Test
     public void testGetPlugBoard() {
-        Enigma enigma = new Enigma("testmessage");
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         enigma.addToPlugBoard('a', 'b');
         enigma.addToPlugBoard('e', 'q');
         enigma.addToPlugBoard('f', 'z');
@@ -107,11 +112,12 @@ public class EnigmaTest {
     }
 
     /**
-     * Test of getRotor method, of class Enigma.
+     * Test of getRotor method, of class EnigmaModel.
      */
     @Test
     public void testGetRotor() {
-        Enigma enigma = new Enigma("testmessage");
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         enigma.addRotor(1);
         enigma.addRotor(2);
         enigma.addRotor(3);
@@ -123,12 +129,12 @@ public class EnigmaTest {
     }
 
     /**
-     * Test of addRotor method, of class Enigma.
+     * Test of addRotor method, of class EnigmaModel.
      */
     @Test
     public void testAddRotor() {
-        Enigma enigma = new Enigma("testmessage");
-        enigma.addRotor(1);
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");        enigma.addRotor(1);
         enigma.addRotor(2);
         enigma.addRotor(3);
         assertEquals(3, enigma.getRotorList().size());
@@ -136,31 +142,34 @@ public class EnigmaTest {
     }
 
     /**
-     * Test of getMessage method, of class Enigma.
+     * Test of getMessage method, of class EnigmaModel.
      */
     @Test
     public void testGetMessage() {
-        Enigma enigma = new Enigma("testmessage");
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         enigma.setMessage("this is a test");
         assertEquals("this is a test", enigma.getMessage());
     }
 
     /**
-     * Test of setMessage method, of class Enigma.
+     * Test of setMessage method, of class EnigmaModel.
      */
     @Test
     public void testSetMessage() {
-        Enigma enigma = new Enigma("testmessage");
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         enigma.setMessage("this is a second test");
         assertEquals("this is a second test", enigma.getMessage());
     }
 
     /**
-     * Test of moveRotors method, of class Enigma.
+     * Test of moveRotors method, of class EnigmaModel.
      */
     @Test
     public void testMoveRotors() {
-        Enigma enigma = new Enigma("testmessage");
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         enigma.addRotor(1);
         enigma.addRotor(2);
         enigma.addRotor(3);
@@ -176,11 +185,12 @@ public class EnigmaTest {
     }
 
     /**
-     * Test of setDeflector method, of class Enigma.
+     * Test of setDeflector method, of class EnigmaModel.
      */
     @Test
     public void testSetDeflector() {
-        Enigma enigma = new Enigma("testmessage");
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         enigma.setDeflector(1);
         assertEquals(1, enigma.getDeflector());
         enigma.setDeflector(2);
@@ -188,11 +198,12 @@ public class EnigmaTest {
     }
     
     /**
-     * Test of getDeflector method, of class Enigma.
+     * Test of getDeflector method, of class EnigmaModel.
      */
     @Test
     public void testGetDeflector() {
-        Enigma enigma = new Enigma("testmessage");
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         enigma.setDeflector(1);
         assertEquals(1, enigma.getDeflector());
         enigma.setDeflector(2);
@@ -200,11 +211,12 @@ public class EnigmaTest {
     }
 
     /**
-     * Test of changeMessage method, of class Enigma.
+     * Test of changeMessage method, of class EnigmaModel.
      */
     @Test
     public void testChangeMessage() {
-        Enigma enigma = new Enigma("testmessage");
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setMessage("testmessage");
         enigma.addRotor(1);
         enigma.addRotor(2);
         enigma.addRotor(3);

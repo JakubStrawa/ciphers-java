@@ -12,10 +12,10 @@ import java.util.ArrayList;
  *
  * @author kuba
  */
-public class Enigma {
+public class EnigmaModel {
     private Rotor rotor1,rotor2,rotor3,rotor4,rotor5,deflector1,deflector2;
     //
-    //Rotor and Enigma rules:
+    //Rotor and EnigmaModel rules:
     // each letter has its counterletter
     // eg. for tab1: A->E, B->K, C->M, D->F etc.
     // but neither relation is transitive, meaning that E->L, F->G, G->D, not E-/>A or F-/>D
@@ -24,15 +24,15 @@ public class Enigma {
     // electric current flows through all rotors, reflector, all rotors again and through plugboard to bubble(showing encoded letter)
     // each letter increases leftmost rotor rotation by 1
     // one full rotor rotation rotates left rotor by 1
-    // to decode message Enigma needs to be pluged the same way with the same rotor order and rotations
+    // to decode message EnigmaModel needs to be pluged the same way with the same rotor order and rotations
     // then user just needs to type encoded message to receive decoded one
     //
-    // Enigma deflector types:
+    // EnigmaModel deflector types:
     // UKW B ->  AY  BR  CU  DH  EQ  FS  GL  IP  JX  KN  MO  TZ  VW
     private char [] deflect1 = {'y','r','u','h','q','s','l','d','p','x','n','g','o','k','m','i','e','b','f','z','c','w','v','j','a','t'};
     // UKW C ->  AF  BV  CP  DJ  EI  GO  HY  KR  LZ  MX  NW  QT  SU
     private char [] deflect2 = {'f','v','p','j','i','a','o','y','e','d','r','z','x','w','g','c','t','k','u','q','s','b','n','m','h','l'};
-    // Enigma rotor types:
+    // EnigmaModel rotor types:
     // I:  E K M F L G D Q V Z N T O W Y H X U S P A I B R C J
     private char [] tab1 = {'e','k','m','f','l','g','d','q','v','z','n','t','o','w','y','h','x','u','s','p','a','i','b','r','c','j'};
     // II:  A J D K S I R U X B L H W T M C Q G Z N P Y F V O E
@@ -48,8 +48,8 @@ public class Enigma {
     private ArrayList<Pair<Character>> plugBoard;
     private int deflectorUsed;
     
-    public Enigma(String msg){
-        message = msg.trim().toLowerCase();
+    public EnigmaModel(){
+        message = "";
         rotor1 = new Rotor(1,tab1);
         rotor2 = new Rotor(2,tab2);
         rotor3 = new Rotor(3,tab3);

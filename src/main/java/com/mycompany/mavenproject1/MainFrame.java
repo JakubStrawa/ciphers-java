@@ -140,7 +140,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void enigmaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enigmaButtonActionPerformed
         System.out.println("Enigma button pressed");
-        new EnigmaFrame().setVisible(true);
+        EnigmaModel model = new EnigmaModel();
+        EnigmaView view = new EnigmaView();
+        EnigmaController controller = new EnigmaController(model, view);
+        view.setVisible(true);
     }//GEN-LAST:event_enigmaButtonActionPerformed
 
     private void blowfishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blowfishButtonActionPerformed

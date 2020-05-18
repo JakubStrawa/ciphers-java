@@ -275,8 +275,10 @@ public class CaesarView extends javax.swing.JFrame {
     }//GEN-LAST:event_polybiusMenuItemActionPerformed
 
     private void enigmaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enigmaMenuItemActionPerformed
-        new EnigmaFrame().setVisible(true);
-        setVisible(false);
+        EnigmaModel model = new EnigmaModel();
+        EnigmaView view = new EnigmaView();
+        EnigmaController controller = new EnigmaController(model, view);
+        view.setVisible(true);
         dispose();
     }//GEN-LAST:event_enigmaMenuItemActionPerformed
 

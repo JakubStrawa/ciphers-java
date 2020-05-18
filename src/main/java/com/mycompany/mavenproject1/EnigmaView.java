@@ -5,19 +5,20 @@
  */
 package com.mycompany.mavenproject1;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author kuba
  */
-public class EnigmaFrame extends javax.swing.JFrame {
+public class EnigmaView extends javax.swing.JFrame {
 
     /**
      * Creates new form EnigmaFrame
      */
-    public EnigmaFrame() {
+    public EnigmaView() {
         initComponents();
-        enigma = new Enigma("");
-        etabframe = new EnigmaTableFrame(reflectorBCheckBox.isSelected(), enigma.getRotorList(), enigma.getPlugBoard());
+//        etabframe = new EnigmaTableView(reflectorBCheckBox.isSelected(), enigma.getRotorList(), enigma.getPlugBoard());
     }
 
     /**
@@ -353,7 +354,7 @@ public class EnigmaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_messageTextFieldActionPerformed
 
     private void showTableMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showTableMenuItemActionPerformed
-        etabframe.setVisible(true);
+//        etabframe.setVisible(true);
     }//GEN-LAST:event_showTableMenuItemActionPerformed
 
     private void reflectorBCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reflectorBCheckBoxActionPerformed
@@ -387,33 +388,10 @@ public class EnigmaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_rotor3ComboBoxActionPerformed
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
-        enigma.clearPlugBoard();
-        enigma.clearRotorList();
-        String message = messageTextField.getText().trim().toLowerCase();
-        enigma.setMessage(message);
-        if (rotor1ComboBox.getSelectedIndex() != -1) {
-            enigma.addRotor(rotor1ComboBox.getSelectedIndex() + 1);
-            enigma.getRotor(rotor1ComboBox.getSelectedIndex() + 1).setRotation(offset1ComboBox.getSelectedIndex() + 1);
-        }
-        if (rotor2ComboBox.getSelectedIndex() != -1) {
-            enigma.addRotor(rotor2ComboBox.getSelectedIndex() + 1);
-            enigma.getRotor(rotor2ComboBox.getSelectedIndex() + 1).setRotation(offset2ComboBox.getSelectedIndex() + 1);
-        }
-        if (rotor3ComboBox.getSelectedIndex() != -1) {
-            enigma.addRotor(rotor3ComboBox.getSelectedIndex() + 1);
-            enigma.getRotor(rotor3ComboBox.getSelectedIndex() + 1).setRotation(offset3ComboBox.getSelectedIndex() + 1);
-        }
-        if (reflectorBCheckBox.isSelected()) {
-            enigma.setDeflector(1);
-        } else {
-            enigma.setDeflector(2);
-        }
-        enigma.addToPlugBoard(plugboardTextArea.getText());
-        etabframe.setFlag(reflectorBCheckBox.isSelected());
-        etabframe.setRotors(enigma.getRotorList());
-        etabframe.setPlugboard(enigma.getPlugBoard());
-        enigma.changeMessage();
-        answerTextField.setText(enigma.getMessage());
+        
+//        etabframe.setFlag(reflectorBCheckBox.isSelected());
+//        etabframe.setRotors(enigma.getRotorList());
+//        etabframe.setPlugboard(enigma.getPlugBoard());
     }//GEN-LAST:event_runButtonActionPerformed
 
     private void runMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMenuItemActionPerformed
@@ -437,25 +415,66 @@ public class EnigmaFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EnigmaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EnigmaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EnigmaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EnigmaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EnigmaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EnigmaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EnigmaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EnigmaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EnigmaFrame().setVisible(true);
+                new EnigmaView().setVisible(true);
             }
         });
     }
-    private Enigma enigma;
-    private EnigmaTableFrame etabframe;
+    
+    public void addRunActionListener(ActionListener a){
+        runButton.addActionListener(a);
+    }
+    public void addRunMenuItemActionListener(ActionListener a){
+        runMenuItem.addActionListener(a);
+    }
+    public void addShowTableActionlistener(ActionListener a){
+        showTableMenuItem.addActionListener(a);
+    }
+    public String getMessage(){
+        return messageTextField.getText().trim().toLowerCase();
+    }
+    public boolean getIfreflectorBUsed(){
+        return reflectorBCheckBox.isSelected();
+    }
+    public int getRotor1Index(){
+        return rotor1ComboBox.getSelectedIndex();
+    }
+    public int getRotor2Index(){
+        return rotor2ComboBox.getSelectedIndex();
+    }
+    public int getRotor3Index(){
+        return rotor3ComboBox.getSelectedIndex();
+    }
+    public int getRotor1Offset(){
+        return offset1ComboBox.getSelectedIndex();
+    }
+    public int getRotor2Offset(){
+        return offset2ComboBox.getSelectedIndex();
+    }
+    public int getRotor3Offset(){
+        return offset3ComboBox.getSelectedIndex();
+    }
+    public String getPlugboard(){
+        return plugboardTextArea.getText();
+    }
+    public void setMessage(String mes){
+        answerTextField.setText(mes);
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField answerTextField;
     private javax.swing.JMenuItem blowfishMenuItem;
