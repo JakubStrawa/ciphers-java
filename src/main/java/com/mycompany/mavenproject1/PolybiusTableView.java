@@ -9,18 +9,16 @@ package com.mycompany.mavenproject1;
  *
  * @author kuba
  */
-public class PolybiusTableFrame extends javax.swing.JFrame {
+public class PolybiusTableView extends javax.swing.JFrame {
 
     /**
      * Creates new form PolybiusTableFrame
      */
-    public PolybiusTableFrame(Character [] tab) {
+    public PolybiusTableView() {
         initComponents();
-        setTable(tab);
     }
     
     public void setTable(Character [] tab){
-        polybius_table = tab;
         if (tab.length == 25) {            
             tabElement0Label.setText(tab[0].toString());
             tabElement1Label.setText(tab[1].toString());
@@ -331,25 +329,24 @@ public class PolybiusTableFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PolybiusTableFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PolybiusTableView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PolybiusTableFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PolybiusTableView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PolybiusTableFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PolybiusTableView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PolybiusTableFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PolybiusTableView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Character [] temp_tab = null;
-                new PolybiusTableFrame(temp_tab).setVisible(true);
+                new PolybiusTableView().setVisible(true);
             }
         });
     }
-    private Character [] polybius_table = {'a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel column1Label;

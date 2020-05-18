@@ -123,7 +123,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void polybiusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polybiusButtonActionPerformed
         System.out.println("Polibius button pressed");
-        new PolybiusFrame().setVisible(true);
+        PolybiusModel model = new PolybiusModel();
+        PolybiusView view = new PolybiusView();
+        PolybiusController controller = new PolybiusController(model, view);
+        view.setVisible(true);
     }//GEN-LAST:event_polybiusButtonActionPerformed
 
     private void caesarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caesarButtonActionPerformed

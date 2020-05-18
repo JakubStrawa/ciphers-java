@@ -5,23 +5,19 @@
  */
 package com.mycompany.mavenproject1;
 
-import javax.swing.JOptionPane;
+import java.awt.event.*;
 
 /**
  *
  * @author kuba
  */
-public class PolybiusFrame extends javax.swing.JFrame {
+public class PolybiusView extends javax.swing.JFrame {
 
     /**
      * Creates new form PolybiusFrame
      */
-    public PolybiusFrame() {
-        polybius = new Polybius("", false, "");
-        table = new Character[25];
-        hasTable = false;
+    public PolybiusView() {
         initComponents();
-        polTF = new PolybiusTableFrame(polybius.getTable());
     }
 
     /**
@@ -257,17 +253,6 @@ public class PolybiusFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
-        polybius.setIsEncrypted(decodeCheckBox.isSelected());
-        polybius.setMessage(messageTextArea.getText().trim().toLowerCase());
-        if (customKeyCheckBox.isSelected()) {
-            polybius.setTable(customKeyTextField.getText().trim().toLowerCase());
-        } else {
-            polybius.setTable("");
-        }
-        polybius.changeMessage();
-        answerTextArea.setText(polybius.getMessage());
-        table = polybius.getTable();
-        hasTable = true;
     }//GEN-LAST:event_runButtonActionPerformed
 
     private void decodeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeCheckBoxActionPerformed
@@ -293,7 +278,6 @@ public class PolybiusFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_enigmaMenuItemActionPerformed
 
     private void runMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMenuItemActionPerformed
-        runButtonActionPerformed(evt);
     }//GEN-LAST:event_runMenuItemActionPerformed
 
     private void decodeMessageCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeMessageCheckBoxMenuItemActionPerformed
@@ -319,13 +303,6 @@ public class PolybiusFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_blowfishMenuItemActionPerformed
 
     private void showTableMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showTableMenuItemActionPerformed
-        if (hasTable == false) {
-            JOptionPane.showMessageDialog(null, "First run your message!");
-        } else {
-            //PolybiusTableFrame polTF = new PolybiusTableFrame(table);
-            polTF.setTable(polybius.getTable());
-            polTF.setVisible(true);
-        }
     }//GEN-LAST:event_showTableMenuItemActionPerformed
 
     private void customKeyTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customKeyTextFieldActionPerformed
@@ -365,28 +342,50 @@ public class PolybiusFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PolybiusFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PolybiusView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PolybiusFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PolybiusView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PolybiusFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PolybiusView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PolybiusFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PolybiusView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PolybiusFrame().setVisible(true);
+                new PolybiusView().setVisible(true);
             }
         });
     }
     
-    private Character [] table;
-    private boolean hasTable;
-    private Polybius polybius;
-    private PolybiusTableFrame polTF;
+    public void addRunActionListener(ActionListener a){
+        runButton.addActionListener(a);
+    }
+    public void addRunMenuActionListener(ActionListener a){
+        runMenuItem.addActionListener(a);
+    }
+    public void addShowTableActionListener(ActionListener a){
+        showTableMenuItem.addActionListener(a);
+    }
+    public boolean getIsEncrypted(){
+        return decodeCheckBox.isSelected();
+    }
+    public boolean getIfCustomKeyUsed(){
+        return customKeyCheckBox.isSelected();
+    }
+    public String getCustomKey(){
+        return customKeyTextField.getText().trim().toLowerCase();
+    }
+    public String getMessage(){
+        return messageTextArea.getText().trim().toLowerCase();
+    }
+    public void setMessage(String mes){
+        answerTextArea.setText(mes);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane answerScrollPane;
     private javax.swing.JTextArea answerTextArea;

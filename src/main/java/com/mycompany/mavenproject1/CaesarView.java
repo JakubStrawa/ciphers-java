@@ -267,8 +267,10 @@ public class CaesarView extends javax.swing.JFrame {
     }//GEN-LAST:event_decodeCheckBoxMenuItemActionPerformed
 
     private void polybiusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polybiusMenuItemActionPerformed
-        new PolybiusFrame().setVisible(true);
-        setVisible(false);
+        PolybiusModel model = new PolybiusModel();
+        PolybiusView view = new PolybiusView();
+        PolybiusController controller = new PolybiusController(model, view);
+        view.setVisible(true);
         dispose();
     }//GEN-LAST:event_polybiusMenuItemActionPerformed
 

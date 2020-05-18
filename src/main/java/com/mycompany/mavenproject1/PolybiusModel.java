@@ -12,17 +12,14 @@ import java.util.Arrays;
  *
  * @author kuba
  */
-public class Polybius {
+public class PolybiusModel {
     private String msg;
     private Character [] table = {'a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     private Boolean isEncrypted; // Flag showing if we have encrypted or decoded message
     
-    public Polybius(String m, Boolean f, String k){
-        msg = m.trim().toLowerCase();
-        isEncrypted = f;   
-        if (k != "") {
-            setTable(k.trim().toLowerCase());
-        }
+    public PolybiusModel(){
+        msg = "";
+        isEncrypted = false;
     }
     
     public void setTable(String str){  //uzyc array list
@@ -59,7 +56,7 @@ public class Polybius {
     }
     
     public void setMessage(String s){
-        msg = s;
+        msg = s.trim().toLowerCase();
     }
     
     public void setIsEncrypted(boolean f){
@@ -69,9 +66,11 @@ public class Polybius {
     public String getMessage(){
         return msg;
     }
+    
     public Boolean getIsEncrypted(){
         return isEncrypted;
     }
+    
     public Character[] getTable(){
         return table;
     }
@@ -123,7 +122,7 @@ public class Polybius {
             }
         }
         msg = tmp_string.trim();
-        isEncrypted = !isEncrypted;
+        //isEncrypted = !isEncrypted;
         System.out.println("New message is : " + msg);
     }
 }
