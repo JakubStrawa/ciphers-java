@@ -128,7 +128,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void caesarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caesarButtonActionPerformed
         System.out.println("Cesar button pressed");
-        new CaesarFrame().setVisible(true);
+        new CaesarView().setVisible(true);
         
     }//GEN-LAST:event_caesarButtonActionPerformed
 

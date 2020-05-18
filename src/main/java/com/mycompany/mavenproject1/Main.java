@@ -11,10 +11,14 @@ package com.mycompany.mavenproject1;
  * @author kuba
  */
 public class Main {
-    public static void main(String[] args){     
+    public static void main(String[] args){   
+        CaesarModel model = new CaesarModel(0, "", false);
+        CaesarView view = new CaesarView();
+        CaesarController controller = new CaesarController(model, view);
+        view.setVisible(true);
 
-        System.out.println("Hello Maven!");
-        new MainFrame().setVisible(true);
+//        System.out.println("Hello Maven!");
+//        new MainFrame().setVisible(true);
         
     }
 }

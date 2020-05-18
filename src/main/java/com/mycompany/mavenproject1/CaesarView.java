@@ -6,18 +6,22 @@
 package com.mycompany.mavenproject1;
 
 import javax.swing.JOptionPane;
+import java.awt.event.*;
 
 /**
  *
  * @author kuba
  */
-public class CaesarFrame extends javax.swing.JFrame {
+public class CaesarView extends javax.swing.JFrame {
 
     /**
      * Creates new form CezarFrame
      */
-    public CaesarFrame() {
-        caesar = new Caesar(0, "", false);
+    public CaesarView() {
+        key = 0;
+        message = "";
+        isEncrypted = false;
+        caesar = new CaesarModel(key, message, isEncrypted);
         initComponents();
     }
 
@@ -308,24 +312,46 @@ public class CaesarFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CaesarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaesarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CaesarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaesarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CaesarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaesarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CaesarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaesarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CaesarFrame().setVisible(true);
+                new CaesarView().setVisible(true);
             }
         });
     }
-    private Caesar caesar;
+    
+    public void addRunActionListener(ActionListener a){
+        runButton.addActionListener(a);
+    }
+    public int getKey(){
+        return (int) offsetSpinner.getValue();
+    }
+    public boolean getIsEncrypted(){
+        return decodeCheckBox.isSelected();
+    }
+    public String getMessage(){
+        return messageTextField.getText().trim().toLowerCase();
+    }
+    public void setMessage(String mes){
+        answerTextArea.setText(mes);
+    }
+    
+    
+    private CaesarModel caesar;
+    private int key;
+    private String message;
+    private boolean isEncrypted;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane answerScrollPane;

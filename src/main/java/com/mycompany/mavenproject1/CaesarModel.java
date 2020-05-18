@@ -9,12 +9,12 @@ package com.mycompany.mavenproject1;
  *
  * @author kuba
  */
-public class Caesar {
+public class CaesarModel {
     private String msg;
     private int key;
     private Boolean isEncrypted; // Flag showing if we have encrypted or decoded message
     
-    public Caesar(int k, String m, Boolean f){
+    public CaesarModel(int k, String m, Boolean f){
         while (k < 0){
             k = 26+k;
         }
