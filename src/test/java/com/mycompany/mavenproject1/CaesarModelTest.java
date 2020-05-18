@@ -31,8 +31,8 @@ public class CaesarModelTest {
      */
     @Test
     public void testGetKey(){
-        String test = "  abcdefghijklmnopqrstxyz";
-        CaesarModel kod = new CaesarModel(5, test.trim(),false);
+        CaesarModel kod = new CaesarModel();
+        assertEquals(0, kod.getKey());
         kod.setKey(5);
         assertEquals(5, kod.getKey());
     }
@@ -41,8 +41,7 @@ public class CaesarModelTest {
      */
     @Test
     public void testSetKey(){
-        String test = "  abcdefghijklmnopqrstxyz";
-        CaesarModel kod = new CaesarModel(5, test.trim(),false);
+        CaesarModel kod = new CaesarModel();
         kod.setKey(15);
         assertEquals(15, kod.getKey());
     }
@@ -51,8 +50,7 @@ public class CaesarModelTest {
      */
     @Test
     public void testGetIsEncrypted(){
-        String test2 = "abcdefghijklmnopqrstxyz";
-        CaesarModel kod2 = new CaesarModel(-3, test2.trim(), true);
+        CaesarModel kod2 = new CaesarModel();
         kod2.setIsEncrypted(true);
         assertEquals(true, kod2.getIsEncrypted());
     }
@@ -61,8 +59,7 @@ public class CaesarModelTest {
      */
     @Test
     public void testSetIsEncrypted(){
-        String test2 = "abcdefghijklmnopqrstxyz";
-        CaesarModel kod2 = new CaesarModel(-3, test2.trim(), true);
+        CaesarModel kod2 = new CaesarModel();
         kod2.setIsEncrypted(false);
         assertEquals(false, kod2.getIsEncrypted());
     }
@@ -73,7 +70,7 @@ public class CaesarModelTest {
     public void testGetMessage(){
         String test = "  abcdefghijklmnopqrstxyz";
         String test2 = "abcdefghijklmnopqrstxyz";
-        CaesarModel kod2 = new CaesarModel(-3, test2.trim(), true);
+        CaesarModel kod2 = new CaesarModel();
         kod2.setMessage(test.trim());
         assertEquals(test2, kod2.getMessage());
     }
@@ -83,7 +80,8 @@ public class CaesarModelTest {
     @Test
     public void testSetMessage(){
         String test2 = "abcdefghijklmnopqrstxyz";
-        CaesarModel kod2 = new CaesarModel(-3, test2.trim(), true);
+        CaesarModel kod2 = new CaesarModel();
+        assertEquals("", kod2.getMessage());
         kod2.setMessage(test2);
         assertEquals(test2, kod2.getMessage());
     }
@@ -93,13 +91,17 @@ public class CaesarModelTest {
     @Test
     public void testChangeMessage(){
         String test3 = "efgh";
-        CaesarModel kod3 = new CaesarModel(4, test3, false);
+        CaesarModel kod3 = new CaesarModel();
+        kod3.setKey(4);
+        kod3.setMessage(test3);
         kod3.changeMessage();
         assertEquals("ijkl", kod3.getMessage());
         kod3.changeMessage();
         assertEquals("efgh", kod3.getMessage());
         
-        CaesarModel kod4 = new CaesarModel(-2, "fgHI34 jk", false);
+        CaesarModel kod4 = new CaesarModel();
+        kod4.setKey(-2);
+        kod4.setMessage("fgHI34 jk");
         kod4.changeMessage();
         assertEquals("defg34 hi", kod4.getMessage());
         kod4.changeMessage();

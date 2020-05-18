@@ -5,7 +5,6 @@
  */
 package com.mycompany.mavenproject1;
 
-import javax.swing.JOptionPane;
 import java.awt.event.*;
 
 /**
@@ -18,10 +17,6 @@ public class CaesarView extends javax.swing.JFrame {
      * Creates new form CezarFrame
      */
     public CaesarView() {
-        key = 0;
-        message = "";
-        isEncrypted = false;
-        caesar = new CaesarModel(key, message, isEncrypted);
         initComponents();
     }
 
@@ -245,11 +240,7 @@ public class CaesarView extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
-        caesar.setIsEncrypted(decodeCheckBox.isSelected());
-        caesar.setKey((int) offsetSpinner.getValue());
-        caesar.setMessage(messageTextField.getText().trim().toLowerCase());
-        caesar.changeMessage();
-        answerTextArea.setText(caesar.getMessage());
+        System.out.println("To jest zły action listener! :(");
     }//GEN-LAST:event_runButtonActionPerformed
 
     private void messageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messageTextFieldActionPerformed
@@ -265,7 +256,7 @@ public class CaesarView extends javax.swing.JFrame {
     }//GEN-LAST:event_decodeCheckBoxActionPerformed
 
     private void runMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMenuItemActionPerformed
-        runButtonActionPerformed(evt);
+        //runButtonActionPerformed(evt);
     }//GEN-LAST:event_runMenuItemActionPerformed
 
     private void decodeCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeCheckBoxMenuItemActionPerformed
@@ -347,11 +338,6 @@ public class CaesarView extends javax.swing.JFrame {
         answerTextArea.setText(mes);
     }
     
-    
-    private CaesarModel caesar;
-    private int key;
-    private String message;
-    private boolean isEncrypted;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane answerScrollPane;

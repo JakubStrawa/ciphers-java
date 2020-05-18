@@ -305,8 +305,10 @@ public class PolybiusFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_decodeMessageCheckBoxMenuItemActionPerformed
 
     private void caesarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caesarMenuItemActionPerformed
-        new CaesarView().setVisible(true);
-        setVisible(false);
+        CaesarModel model = new CaesarModel();
+        CaesarView view = new CaesarView();
+        CaesarController controller = new CaesarController(model, view);
+        view.setVisible(true);
         dispose();
     }//GEN-LAST:event_caesarMenuItemActionPerformed
 

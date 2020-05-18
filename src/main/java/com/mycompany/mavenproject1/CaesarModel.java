@@ -14,17 +14,10 @@ public class CaesarModel {
     private int key;
     private Boolean isEncrypted; // Flag showing if we have encrypted or decoded message
     
-    public CaesarModel(int k, String m, Boolean f){
-        while (k < 0){
-            k = 26+k;
-        }
-        key = k;
-        msg = m.trim().toLowerCase();
-        if (f) { // if f is true we have message to decrypt
-            isEncrypted = true;
-        } else { // if f is false we have message to encrypt
-            isEncrypted = false;
-        }
+    public CaesarModel(){
+        key = 0;
+        msg = "";
+        isEncrypted = false; //default value is message to encode
     }
     
     public int getKey(){
@@ -40,11 +33,14 @@ public class CaesarModel {
     }
     
     public void setKey(int k){
+        while (k < 0){
+            k = 26+k;
+        }
         key = k;
     }
     
     public void setMessage(String s){
-        msg = s;
+        msg = s.trim().toLowerCase();
     }
     
     public void setIsEncrypted(boolean f){
