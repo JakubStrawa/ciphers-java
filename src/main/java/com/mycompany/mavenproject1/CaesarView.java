@@ -240,7 +240,6 @@ public class CaesarView extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
-        System.out.println("To jest zły action listener! :(");
     }//GEN-LAST:event_runButtonActionPerformed
 
     private void messageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messageTextFieldActionPerformed
@@ -256,7 +255,6 @@ public class CaesarView extends javax.swing.JFrame {
     }//GEN-LAST:event_decodeCheckBoxActionPerformed
 
     private void runMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMenuItemActionPerformed
-        //runButtonActionPerformed(evt);
     }//GEN-LAST:event_runMenuItemActionPerformed
 
     private void decodeCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeCheckBoxMenuItemActionPerformed
@@ -324,6 +322,9 @@ public class CaesarView extends javax.swing.JFrame {
     
     public void addRunActionListener(ActionListener a){
         runButton.addActionListener(a);
+    }
+    public void addRunMenuActionListener(ActionListener a){
+        runMenuItem.addActionListener(a);
     }
     public int getKey(){
         return (int) offsetSpinner.getValue();

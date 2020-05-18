@@ -21,13 +21,13 @@ public class CaesarController {
         model = mod;
         view = v;
         view.addRunActionListener(new RunButtonListener());
-        
+        view.addRunMenuActionListener(new RunButtonListener());
     }
+    
     class RunButtonListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("To jest test mojego action listenera dla klasy CaesarView!");
             
             model.setKey(view.getKey());
             model.setIsEncrypted(view.getIsEncrypted());
