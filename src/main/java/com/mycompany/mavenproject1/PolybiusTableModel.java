@@ -20,6 +20,8 @@ public class PolybiusTableModel {
     }
     
     public void setTable(Character [] tab){
-        table = tab;
+        if (tab.length == 25) {
+            table = tab;
+        }
     }
 }

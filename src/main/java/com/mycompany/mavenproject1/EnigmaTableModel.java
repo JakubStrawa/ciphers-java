@@ -40,7 +40,7 @@ public class EnigmaTableModel {
         return rotors;
     }
     
-    public ArrayList<Pair<Character>> getPlugboard(){
+    public ArrayList<Pair<Character>> getPlugBoard(){
         return plugboard;
     }
     

@@ -19,7 +19,7 @@ public class EnigmaTableController {
         model = mod;
         view = v;
         setRotors(model.getRotors());
-        setPlugboard(model.getPlugboard());
+        setPlugboard(model.getPlugBoard());
     }
     
     private void setRotors(ArrayList<Rotor> rotors){
