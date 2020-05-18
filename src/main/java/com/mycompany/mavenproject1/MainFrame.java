@@ -148,7 +148,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void blowfishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blowfishButtonActionPerformed
         System.out.println("Blowfish button pressed");
-        new BlowfishFrame().setVisible(true);
+        BlowfishModel model = new BlowfishModel();
+        BlowfishView view = new BlowfishView();
+        BlowfishController controller = new BlowfishController(model, view);
+        view.setVisible(true);
     }//GEN-LAST:event_blowfishButtonActionPerformed
 
     /**

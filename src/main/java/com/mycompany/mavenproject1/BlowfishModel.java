@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author kuba
  */
-public class Blowfish {
+public class BlowfishModel {
     private String Pbox[] = { "243f6a88", "85a308d3", "13198a2e", "03707344", "a4093822", 
                    "299f31d0", "082efa98", "ec4e6c89", "452821e6", "38d01377", 
                    "be5466cf", "34e90c6c", "c0ac29b7", "c97c50dd", "3f84d5b5", 
@@ -236,8 +236,8 @@ public class Blowfish {
     private ArrayList<Pair<Long>> valueList;
     private ArrayList<Character> charList;
     
-    public Blowfish(String msg, String k, boolean f){
-        isEncrypted = f;
+    public BlowfishModel(){
+        isEncrypted = false;
         Lval = 0L;
         Rval = 0L;
         max_int = 1;
@@ -254,8 +254,8 @@ public class Blowfish {
         encodedList = new ArrayList<String>();
         valueList = new ArrayList<Pair<Long>>();
         charList = new ArrayList<Character>();
-        createKey(k);
-        divideMessage(msg);
+        createKey("");
+        divideMessage("");
         for (String s : messageList) {
             createMessage(s);
             valueList.add(new Pair<Long>(Lval, Rval));

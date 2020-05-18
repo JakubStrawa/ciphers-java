@@ -5,18 +5,18 @@
  */
 package com.mycompany.mavenproject1;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author kuba
  */
-public class BlowfishFrame extends javax.swing.JFrame {
+public class BlowfishView extends javax.swing.JFrame {
 
     /**
      * Creates new form AESFrame
      */
-    public BlowfishFrame() {
-        blowfish = new Blowfish("", "", false);
-        outputType = 0;
+    public BlowfishView() {
         initComponents();
     }
 
@@ -262,24 +262,6 @@ public class BlowfishFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_enigmaMenuItemActionPerformed
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
-        blowfish.setMessage(messageTextField.getText());
-        blowfish.setKey(keyTextField.getText());
-        blowfish.setIsEncrypted(decodeCheckBox.isSelected());
-        if (!blowfish.getIsEncrypted()) {
-            blowfish.encryptMessage();
-        } else {
-            blowfish.decryptMessage();
-        }
-        outputType = outputTypeComboBox.getSelectedIndex();
-        if (outputType == 0) {
-            answerTextArea.setText(blowfish.getEncodedList());
-        } else if(outputType == 1) {
-            answerTextArea.setText(blowfish.getCharList());
-        } else if(outputType == 2) {
-            answerTextArea.setText(blowfish.getBinaryList());
-        } else {
-            answerTextArea.setText(blowfish.getHexList());
-        }
     }//GEN-LAST:event_runButtonActionPerformed
 
     private void decodeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodeCheckBoxActionPerformed
@@ -299,7 +281,7 @@ public class BlowfishFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_decodeCheckBoxMenuItemActionPerformed
 
     private void runMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMenuItemActionPerformed
-        runButtonActionPerformed(evt);
+        //runButtonActionPerformed(evt);
     }//GEN-LAST:event_runMenuItemActionPerformed
 
     /**
@@ -319,25 +301,49 @@ public class BlowfishFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BlowfishFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BlowfishView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BlowfishFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BlowfishView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BlowfishFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BlowfishView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BlowfishFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BlowfishView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BlowfishFrame().setVisible(true);
+                new BlowfishView().setVisible(true);
             }
         });
     }
-    private Blowfish blowfish;
-    private int outputType;
+    
+    public void addRunActionListener(ActionListener a){
+        runButton.addActionListener(a);
+    }
+    public void addRunMenuItemActionListener(ActionListener a){
+        runMenuItem.addActionListener(a);
+    }
+    public String getMessage(){
+        return messageTextField.getText();
+    }
+    public String getKey(){
+        return keyTextField.getText();
+    }
+    public boolean getIsEncrypted(){
+        return decodeCheckBox.isSelected();
+    }
+    public int getOutputType(){
+        return outputTypeComboBox.getSelectedIndex();
+    }
+    public void setMessage(String s){
+        answerTextArea.setText(s);
+    }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane answerScrollPane;

@@ -283,8 +283,10 @@ public class CaesarView extends javax.swing.JFrame {
     }//GEN-LAST:event_enigmaMenuItemActionPerformed
 
     private void blowfishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blowfishMenuItemActionPerformed
-        new BlowfishFrame().setVisible(true);
-        setVisible(false);
+        BlowfishModel model = new BlowfishModel();
+        BlowfishView view = new BlowfishView();
+        BlowfishController controller = new BlowfishController(model, view);
+        view.setVisible(true);
         dispose();
     }//GEN-LAST:event_blowfishMenuItemActionPerformed
 
