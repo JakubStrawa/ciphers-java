@@ -5,13 +5,13 @@ Done:
 - GUI
 - EnigmaTable and PolybiusTable
 - MVC
+- "about cipher" section
 
 To Do:
 - Step by step mode
 - comments fixes and documentation
 - further GUI development
 - features under File and Edit submenus
-- "about cipher" section
 
 About project:
 Ciphers is a simple testing environment for 4 encyption algorithms:
