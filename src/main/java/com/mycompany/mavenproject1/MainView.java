@@ -8,15 +8,13 @@ package com.mycompany.mavenproject1;
 import java.awt.CardLayout;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -606,7 +604,11 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_runButtonActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
-        // TODO add your handling code here:
+        try {
+            writeIntoFile();
+        } catch (IOException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
     private void caesarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caesarMenuItemActionPerformed
@@ -781,6 +783,35 @@ public class MainView extends javax.swing.JFrame {
                 new MainView().setVisible(true);
             }
         });
+    }
+    
+    
+    
+    public void writeIntoFile() throws IOException{
+        FileWriter out = null;
+        try {
+            out = new FileWriter("output.txt");
+            out.write("Message: " + messageTextArea.getText());
+            out.write("\nAnswer: " + answerTextArea.getText());
+            String alg = "";
+            switch(cipherComboBox.getSelectedIndex()){
+                case 0:
+                    alg = "Caesar";
+                    break;
+                case 1:
+                    alg = "Polybius";
+                    break;
+                case 2:
+                    alg = "Enigma";
+                    break;
+                case 3:
+                    alg = "Blowfish";
+                    break;
+            }
+            out.write("\nAlgorithm used: " + alg);
+        } catch (Exception e) {
+        }
+        out.close();
     }
     
     
