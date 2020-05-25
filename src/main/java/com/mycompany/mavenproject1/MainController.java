@@ -226,16 +226,28 @@ public class MainController {
             String alg = "";
             switch(view.getCipherType()){
                 case 0:
-                    alg = "Caesar";
+                    alg = "Caesar, offset: ";
+                    alg += view.getCaesarKey();
                     break;
                 case 1:
                     alg = "Polybius";
+                    if (view.getIfCustomKeyUsedPolybius()) {
+                        alg += ", custom key: " + view.getCustomKeyPolybius();
+                    }
                     break;
                 case 2:
-                    alg = "Enigma";
+                    alg = "Enigma, deflector: ";
+                    if (view.getIfreflectorBUsed()) {
+                        alg += "B, Rotor order: ";
+                    } else {
+                        alg += "C, Rotor order: ";
+                    }
+                    alg += (view.getRotor1Index()+1) + ", " + (view.getRotor2Index()+1) + ", " + (view.getRotor3Index()+1);
+                    alg += ", Rotor offset: " + (view.getRotor1Offset()+1) + ", " + (view.getRotor2Offset()+1) + ", " + (view.getRotor3Offset()+1);
+                    alg += "\nPlugboard: " + view.getPlugboard();
                     break;
                 case 3:
-                    alg = "Blowfish";
+                    alg = "Blowfish, key: " + view.getKeyBlowfish();
                     break;
             }
             out.write("\nAlgorithm used: " + alg);
