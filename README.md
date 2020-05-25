@@ -6,6 +6,7 @@ Done:
 - EnigmaTable and PolybiusTable
 - MVC
 - "about cipher" section
+- algorithms diplay in one window
 
 To Do:
 - Step by step mode
