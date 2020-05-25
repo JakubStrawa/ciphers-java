@@ -29,13 +29,14 @@ public class BlowfishView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titleLabel = new javax.swing.JLabel();
+        blowfishPanel = new javax.swing.JPanel();
         messageTextField = new javax.swing.JTextField();
-        answerScrollPane = new javax.swing.JScrollPane();
-        answerTextArea = new javax.swing.JTextArea();
-        runButton = new javax.swing.JButton();
         keyTextField = new javax.swing.JTextField();
         decodeCheckBox = new javax.swing.JCheckBox();
+        runButton = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
+        answerScrollPane = new javax.swing.JScrollPane();
+        answerTextArea = new javax.swing.JTextArea();
         outputTypeComboBox = new javax.swing.JComboBox<>();
         blowfishMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -58,27 +59,7 @@ public class BlowfishView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("Blowfish");
-
         messageTextField.setText("Enter your message here");
-
-        answerTextArea.setEditable(false);
-        answerTextArea.setColumns(20);
-        answerTextArea.setLineWrap(true);
-        answerTextArea.setRows(5);
-        answerTextArea.setText("Press run to see your answer");
-        answerTextArea.setToolTipText("");
-        answerTextArea.setWrapStyleWord(true);
-        answerScrollPane.setViewportView(answerTextArea);
-
-        runButton.setText("Run");
-        runButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                runButtonActionPerformed(evt);
-            }
-        });
 
         keyTextField.setText("Enter your key");
 
@@ -89,7 +70,67 @@ public class BlowfishView extends javax.swing.JFrame {
             }
         });
 
+        runButton.setText("Run");
+        runButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                runButtonActionPerformed(evt);
+            }
+        });
+
+        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Blowfish");
+
+        answerTextArea.setEditable(false);
+        answerTextArea.setColumns(20);
+        answerTextArea.setLineWrap(true);
+        answerTextArea.setRows(5);
+        answerTextArea.setText("Press run to see your answer");
+        answerTextArea.setToolTipText("");
+        answerTextArea.setWrapStyleWord(true);
+        answerScrollPane.setViewportView(answerTextArea);
+
         outputTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Char", "Integer", "Raw", "Hex" }));
+
+        javax.swing.GroupLayout blowfishPanelLayout = new javax.swing.GroupLayout(blowfishPanel);
+        blowfishPanel.setLayout(blowfishPanelLayout);
+        blowfishPanelLayout.setHorizontalGroup(
+            blowfishPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(blowfishPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(blowfishPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(blowfishPanelLayout.createSequentialGroup()
+                        .addGroup(blowfishPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(keyTextField)
+                            .addComponent(answerScrollPane)
+                            .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(blowfishPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(decodeCheckBox)
+                            .addComponent(runButton)
+                            .addComponent(outputTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+        blowfishPanelLayout.setVerticalGroup(
+            blowfishPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(blowfishPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleLabel)
+                .addGap(32, 32, 32)
+                .addGroup(blowfishPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(runButton))
+                .addGap(18, 18, 18)
+                .addGroup(blowfishPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(keyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(decodeCheckBox))
+                .addGap(18, 18, 18)
+                .addGroup(blowfishPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(answerScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(outputTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         fileMenu.setText("File");
 
@@ -202,38 +243,15 @@ public class BlowfishView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(keyTextField)
-                            .addComponent(answerScrollPane)
-                            .addComponent(messageTextField))
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(decodeCheckBox)
-                            .addComponent(runButton)
-                            .addComponent(outputTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addComponent(blowfishPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(titleLabel)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(runButton))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(keyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(decodeCheckBox))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(answerScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(outputTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(blowfishPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -370,6 +388,7 @@ public class BlowfishView extends javax.swing.JFrame {
     private javax.swing.JScrollPane answerScrollPane;
     private javax.swing.JTextArea answerTextArea;
     private javax.swing.JMenuBar blowfishMenuBar;
+    private javax.swing.JPanel blowfishPanel;
     private javax.swing.JMenuItem caesarMenuItem;
     private javax.swing.JMenuItem copyResultMenuItem;
     private javax.swing.JCheckBox decodeCheckBox;

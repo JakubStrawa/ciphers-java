@@ -29,15 +29,16 @@ public class PolybiusView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titleLabel = new javax.swing.JLabel();
-        messageScrollPane = new javax.swing.JScrollPane();
-        messageTextArea = new javax.swing.JTextArea();
-        runButton = new javax.swing.JButton();
+        polybiusPanel = new javax.swing.JPanel();
         decodeCheckBox = new javax.swing.JCheckBox();
-        customKeyCheckBox = new javax.swing.JCheckBox();
-        customKeyTextField = new javax.swing.JTextField();
         answerScrollPane = new javax.swing.JScrollPane();
         answerTextArea = new javax.swing.JTextArea();
+        customKeyTextField = new javax.swing.JTextField();
+        customKeyCheckBox = new javax.swing.JCheckBox();
+        runButton = new javax.swing.JButton();
+        messageScrollPane = new javax.swing.JScrollPane();
+        messageTextArea = new javax.swing.JTextArea();
+        titleLabel = new javax.swing.JLabel();
         polybiusMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -62,26 +63,22 @@ public class PolybiusView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Polybius square");
 
-        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("Polybius Square");
-
-        messageTextArea.setColumns(20);
-        messageTextArea.setRows(4);
-        messageTextArea.setText("Enter your message here");
-        messageScrollPane.setViewportView(messageTextArea);
-
-        runButton.setText("Run");
-        runButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                runButtonActionPerformed(evt);
-            }
-        });
-
         decodeCheckBox.setText("Decode message");
         decodeCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 decodeCheckBoxActionPerformed(evt);
+            }
+        });
+
+        answerTextArea.setColumns(20);
+        answerTextArea.setRows(4);
+        answerTextArea.setText("Click Run to see your answer");
+        answerScrollPane.setViewportView(answerTextArea);
+
+        customKeyTextField.setText("Default key");
+        customKeyTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customKeyTextFieldActionPerformed(evt);
             }
         });
 
@@ -92,17 +89,65 @@ public class PolybiusView extends javax.swing.JFrame {
             }
         });
 
-        customKeyTextField.setText("Default key");
-        customKeyTextField.addActionListener(new java.awt.event.ActionListener() {
+        runButton.setText("Run");
+        runButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customKeyTextFieldActionPerformed(evt);
+                runButtonActionPerformed(evt);
             }
         });
 
-        answerTextArea.setColumns(20);
-        answerTextArea.setRows(4);
-        answerTextArea.setText("Click Run to see your answer");
-        answerScrollPane.setViewportView(answerTextArea);
+        messageTextArea.setColumns(20);
+        messageTextArea.setRows(4);
+        messageTextArea.setText("Enter your message here");
+        messageScrollPane.setViewportView(messageTextArea);
+
+        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Polybius Square");
+
+        javax.swing.GroupLayout polybiusPanelLayout = new javax.swing.GroupLayout(polybiusPanel);
+        polybiusPanel.setLayout(polybiusPanelLayout);
+        polybiusPanelLayout.setHorizontalGroup(
+            polybiusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(polybiusPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(polybiusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(polybiusPanelLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(answerScrollPane, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, polybiusPanelLayout.createSequentialGroup()
+                        .addGroup(polybiusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(messageScrollPane)
+                            .addComponent(customKeyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(polybiusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(customKeyCheckBox)
+                            .addComponent(decodeCheckBox)
+                            .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+        polybiusPanelLayout.setVerticalGroup(
+            polybiusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(polybiusPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(polybiusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(polybiusPanelLayout.createSequentialGroup()
+                        .addComponent(runButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(decodeCheckBox))
+                    .addComponent(messageScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(polybiusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customKeyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customKeyCheckBox))
+                .addGap(12, 12, 12)
+                .addComponent(answerScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         fileMenu.setText("File");
 
@@ -224,42 +269,15 @@ public class PolybiusView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(answerScrollPane)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(messageScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-                            .addComponent(customKeyTextField))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(customKeyCheckBox)
-                            .addComponent(decodeCheckBox)
-                            .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(polybiusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(runButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(decodeCheckBox))
-                    .addComponent(messageScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(customKeyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customKeyCheckBox))
-                .addGap(12, 12, 12)
-                .addComponent(answerScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(polybiusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(46, 46, 46))
         );
 
@@ -431,6 +449,7 @@ public class PolybiusView extends javax.swing.JFrame {
     private javax.swing.JTextArea messageTextArea;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuBar polybiusMenuBar;
+    private javax.swing.JPanel polybiusPanel;
     private javax.swing.JButton runButton;
     private javax.swing.JMenu runMenu;
     private javax.swing.JMenuItem runMenuItem;
