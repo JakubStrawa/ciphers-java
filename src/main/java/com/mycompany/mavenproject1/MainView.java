@@ -11,6 +11,7 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionListener;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -636,7 +637,11 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_blowfishMenuItemActionPerformed
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
-        // TODO add your handling code here:
+        try {
+            readFromFile();
+        } catch (IOException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
@@ -785,6 +790,22 @@ public class MainView extends javax.swing.JFrame {
         });
     }
     
+    public void readFromFile() throws IOException{
+        FileReader in = null;
+        String path = "input.txt";
+        String result = "";
+        try {
+            in = new FileReader(path);
+            int c;
+            while ((c = in.read()) != -1) {
+                result += (char) c;
+         }
+        } catch (Exception e) {
+        }
+        in.close();
+        System.out.println(result);
+        messageTextArea.setText(result);
+    }
     
     
     public void writeIntoFile() throws IOException{

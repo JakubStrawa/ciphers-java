@@ -1,3 +1,3 @@
-Message: Enter your message here
-Answer: irxiv csyv qiwweki livi
+Message: To jest testowa wiadomosc z pliku tekstowego test String
+Answer: wr mhvw whvwrzd zldgrprvf c solnx whnvwrzhjr whvw vwulqj
 Algorithm used: Caesar

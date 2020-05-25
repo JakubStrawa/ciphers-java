@@ -1,0 +1,1 @@
+To jest testowa wiadomosc z pliku tekstowego test String
