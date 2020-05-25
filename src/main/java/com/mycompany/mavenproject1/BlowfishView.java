@@ -53,6 +53,8 @@ public class BlowfishView extends javax.swing.JFrame {
         runMenu = new javax.swing.JMenu();
         runMenuItem = new javax.swing.JMenuItem();
         runSBSMenuItem = new javax.swing.JMenuItem();
+        aboutMenu = new javax.swing.JMenu();
+        aboutCipherMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -180,6 +182,18 @@ public class BlowfishView extends javax.swing.JFrame {
 
         blowfishMenuBar.add(runMenu);
 
+        aboutMenu.setText("About");
+
+        aboutCipherMenuItem.setText("About cipher");
+        aboutCipherMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutCipherMenuItemActionPerformed(evt);
+            }
+        });
+        aboutMenu.add(aboutCipherMenuItem);
+
+        blowfishMenuBar.add(aboutMenu);
+
         setJMenuBar(blowfishMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -284,6 +298,11 @@ public class BlowfishView extends javax.swing.JFrame {
         //runButtonActionPerformed(evt);
     }//GEN-LAST:event_runMenuItemActionPerformed
 
+    private void aboutCipherMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutCipherMenuItemActionPerformed
+        AboutBlowfishView aboutBlowfish = new AboutBlowfishView();
+        aboutBlowfish.setVisible(true);
+    }//GEN-LAST:event_aboutCipherMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -346,6 +365,8 @@ public class BlowfishView extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem aboutCipherMenuItem;
+    private javax.swing.JMenu aboutMenu;
     private javax.swing.JScrollPane answerScrollPane;
     private javax.swing.JTextArea answerTextArea;
     private javax.swing.JMenuBar blowfishMenuBar;

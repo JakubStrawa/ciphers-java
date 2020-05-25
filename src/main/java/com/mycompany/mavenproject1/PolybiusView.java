@@ -56,6 +56,8 @@ public class PolybiusView extends javax.swing.JFrame {
         runMenu = new javax.swing.JMenu();
         runMenuItem = new javax.swing.JMenuItem();
         runSBSCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
+        aboutMenu = new javax.swing.JMenu();
+        aboutCipherMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Polybius square");
@@ -203,6 +205,18 @@ public class PolybiusView extends javax.swing.JFrame {
 
         polybiusMenuBar.add(runMenu);
 
+        aboutMenu.setText("About");
+
+        aboutCipherMenuItem.setText("About cipher");
+        aboutCipherMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutCipherMenuItemActionPerformed(evt);
+            }
+        });
+        aboutMenu.add(aboutCipherMenuItem);
+
+        polybiusMenuBar.add(aboutMenu);
+
         setJMenuBar(polybiusMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -329,6 +343,11 @@ public class PolybiusView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_customKeyCheckBoxActionPerformed
 
+    private void aboutCipherMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutCipherMenuItemActionPerformed
+        AboutPolybiusView aboutPol = new AboutPolybiusView();
+        aboutPol.setVisible(true);
+    }//GEN-LAST:event_aboutCipherMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -391,6 +410,8 @@ public class PolybiusView extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem aboutCipherMenuItem;
+    private javax.swing.JMenu aboutMenu;
     private javax.swing.JScrollPane answerScrollPane;
     private javax.swing.JTextArea answerTextArea;
     private javax.swing.JMenuItem blowfishMenuItem;

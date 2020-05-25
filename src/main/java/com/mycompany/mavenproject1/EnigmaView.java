@@ -63,6 +63,8 @@ public class EnigmaView extends javax.swing.JFrame {
         runMenu = new javax.swing.JMenu();
         runMenuItem = new javax.swing.JMenuItem();
         runSBSCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
+        aboutMenu = new javax.swing.JMenu();
+        aboutCipherMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -227,6 +229,18 @@ public class EnigmaView extends javax.swing.JFrame {
         runMenu.add(runSBSCheckBoxMenuItem);
 
         enigmaMenuBar.add(runMenu);
+
+        aboutMenu.setText("About");
+
+        aboutCipherMenuItem.setText("About cipher");
+        aboutCipherMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutCipherMenuItemActionPerformed(evt);
+            }
+        });
+        aboutMenu.add(aboutCipherMenuItem);
+
+        enigmaMenuBar.add(aboutMenu);
 
         setJMenuBar(enigmaMenuBar);
 
@@ -400,6 +414,11 @@ public class EnigmaView extends javax.swing.JFrame {
         runButtonActionPerformed(evt);
     }//GEN-LAST:event_runMenuItemActionPerformed
 
+    private void aboutCipherMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutCipherMenuItemActionPerformed
+        AboutEnigmaView aboutEnigma = new AboutEnigmaView();
+        aboutEnigma.setVisible(true);
+    }//GEN-LAST:event_aboutCipherMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -478,6 +497,8 @@ public class EnigmaView extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem aboutCipherMenuItem;
+    private javax.swing.JMenu aboutMenu;
     private javax.swing.JTextField answerTextField;
     private javax.swing.JMenuItem blowfishMenuItem;
     private javax.swing.JMenuItem caesarMenuItem;

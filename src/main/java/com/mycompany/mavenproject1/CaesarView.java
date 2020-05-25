@@ -53,6 +53,8 @@ public class CaesarView extends javax.swing.JFrame {
         runMenu = new javax.swing.JMenu();
         runMenuItem = new javax.swing.JMenuItem();
         runSBSCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
+        aboutMenu = new javax.swing.JMenu();
+        aboutCipherMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cesar cipher");
@@ -178,6 +180,18 @@ public class CaesarView extends javax.swing.JFrame {
 
         caesarMenuBar.add(runMenu);
 
+        aboutMenu.setText("About");
+
+        aboutCipherMenuItem.setText("About cipher");
+        aboutCipherMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutCipherMenuItemActionPerformed(evt);
+            }
+        });
+        aboutMenu.add(aboutCipherMenuItem);
+
+        caesarMenuBar.add(aboutMenu);
+
         setJMenuBar(caesarMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,7 +209,7 @@ public class CaesarView extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(chooseOffsetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(8, 8, 8)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -290,6 +304,11 @@ public class CaesarView extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_blowfishMenuItemActionPerformed
 
+    private void aboutCipherMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutCipherMenuItemActionPerformed
+        AboutCaesarView caesarAbout = new AboutCaesarView();
+        caesarAbout.setVisible(true);
+    }//GEN-LAST:event_aboutCipherMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -347,6 +366,8 @@ public class CaesarView extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem aboutCipherMenuItem;
+    private javax.swing.JMenu aboutMenu;
     private javax.swing.JScrollPane answerScrollPane;
     private javax.swing.JTextArea answerTextArea;
     private javax.swing.JMenuItem blowfishMenuItem;
