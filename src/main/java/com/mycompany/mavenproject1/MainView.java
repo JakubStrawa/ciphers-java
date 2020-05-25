@@ -6,7 +6,16 @@
 package com.mycompany.mavenproject1;
 
 import java.awt.CardLayout;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -633,7 +642,10 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void copyResultMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyResultMenuItemActionPerformed
-        // TODO add your handling code here:
+        Clipboard c = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection testdata = new StringSelection(answerTextArea.getText());
+        c.setContents(testdata, testdata);
+        Transferable t = c.getContents( null );
     }//GEN-LAST:event_copyResultMenuItemActionPerformed
 
     private void runMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMenuItemActionPerformed
