@@ -5,8 +5,17 @@
  */
 package com.mycompany.mavenproject1;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,6 +39,9 @@ public class MainController {
         v.addShowTablePolybiusActionListener(new ShowTableListener());
         v.addShowTableEnigmaActionlistener(new ShowTableListener());
         v.addAboutCipherActionListener(new AboutCipherListener());
+        v.addCopyActionListener(new CopyResultListener());
+        v.addSaveActionListener(new SaveResultListener());
+        v.addOpenActionListener(new OpenFileListener());
     }
     
     
@@ -43,7 +55,7 @@ public class MainController {
                     caesarModel.setIsEncrypted(view.getIsEncrypted());
                     caesarModel.setMessage(view.getMessage());
                     caesarModel.changeMessage();
-                    view.setMessage(caesarModel.getMessage());
+                    view.setAnswer(caesarModel.getMessage());
                     break;
                 case 1:
                     polybiusModel.setMessage(view.getMessage());
@@ -54,7 +66,7 @@ public class MainController {
                         polybiusModel.setTable("");
                     }
                     polybiusModel.changeMessage();
-                    view.setMessage(polybiusModel.getMessage());
+                    view.setAnswer(polybiusModel.getMessage());
                     break;
                 case 2:
                     enigmaModel.clearPlugBoard();
@@ -79,7 +91,7 @@ public class MainController {
                     }
                     enigmaModel.addToPlugBoard(view.getPlugboard());
                     enigmaModel.changeMessage();
-                    view.setMessage(enigmaModel.getMessage());
+                    view.setAnswer(enigmaModel.getMessage());
                     break;
                 case 3:
                     blowfishModel.setMessage(view.getMessage());
@@ -92,13 +104,13 @@ public class MainController {
                     }
 
                     if (view.getOutputTypeBlowfish()== 0) {
-                        view.setMessage(blowfishModel.getEncodedList());
+                        view.setAnswer(blowfishModel.getEncodedList());
                     } else if(view.getOutputTypeBlowfish()== 1) {
-                        view.setMessage(blowfishModel.getCharList());
+                        view.setAnswer(blowfishModel.getCharList());
                     } else if(view.getOutputTypeBlowfish()== 2) {
-                        view.setMessage(blowfishModel.getBinaryList());
+                        view.setAnswer(blowfishModel.getBinaryList());
                     } else {
-                        view.setMessage(blowfishModel.getHexList());
+                        view.setAnswer(blowfishModel.getHexList());
                     }
                     break;
             }
@@ -152,4 +164,83 @@ public class MainController {
         }
     }
     
+    class CopyResultListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Clipboard c = Toolkit.getDefaultToolkit().getSystemClipboard();
+            StringSelection testdata = new StringSelection(view.getAnswer());
+            c.setContents(testdata, testdata);
+            Transferable t = c.getContents( null );
+        }
+    }
+    
+    class SaveResultListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                writeIntoFile();
+            } catch (IOException ex) {
+                Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    class OpenFileListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                readFromFile();
+            } catch (IOException ex) {
+                Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+        public void readFromFile() throws IOException{
+        FileReader in = null;
+        String path = "input.txt";
+        String result = "";
+        try {
+            in = new FileReader(path);
+            int c;
+            while ((c = in.read()) != -1) {
+                result += (char) c;
+         }
+        } catch (Exception e) {
+        }
+        in.close();
+        System.out.println(result);
+        view.setMessage(result);
+    }
+    
+    
+    public void writeIntoFile() throws IOException{
+        FileWriter out = null;
+        try {
+            out = new FileWriter("output.txt");
+            out.write("Message: " + view.getMessage());
+            out.write("\nAnswer: " + view.getAnswer());
+            String alg = "";
+            switch(view.getCipherType()){
+                case 0:
+                    alg = "Caesar";
+                    break;
+                case 1:
+                    alg = "Polybius";
+                    break;
+                case 2:
+                    alg = "Enigma";
+                    break;
+                case 3:
+                    alg = "Blowfish";
+                    break;
+            }
+            out.write("\nAlgorithm used: " + alg);
+        } catch (Exception e) {
+        }
+        out.close();
+    }
 }

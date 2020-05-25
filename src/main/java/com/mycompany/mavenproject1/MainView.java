@@ -6,16 +6,7 @@
 package com.mycompany.mavenproject1;
 
 import java.awt.CardLayout;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionListener;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -601,15 +592,9 @@ public class MainView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
-
     }//GEN-LAST:event_runButtonActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
-        try {
-            writeIntoFile();
-        } catch (IOException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
     private void caesarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caesarMenuItemActionPerformed
@@ -637,11 +622,6 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_blowfishMenuItemActionPerformed
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
-        try {
-            readFromFile();
-        } catch (IOException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
@@ -649,10 +629,6 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void copyResultMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyResultMenuItemActionPerformed
-        Clipboard c = Toolkit.getDefaultToolkit().getSystemClipboard();
-        StringSelection testdata = new StringSelection(answerTextArea.getText());
-        c.setContents(testdata, testdata);
-        Transferable t = c.getContents( null );
     }//GEN-LAST:event_copyResultMenuItemActionPerformed
 
     private void runMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMenuItemActionPerformed
@@ -684,11 +660,6 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_customKeyPolybiusTextFieldActionPerformed
 
     private void customKeyPolybiusCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customKeyPolybiusCheckBoxActionPerformed
-//        if (customKeyCheckBoxMenuItem.isSelected()) {
-//            customKeyCheckBoxMenuItem.setSelected(false);
-//        } else {
-//            customKeyCheckBoxMenuItem.setSelected(true);
-//        }
     }//GEN-LAST:event_customKeyPolybiusCheckBoxActionPerformed
 
     private void reflectorCCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reflectorCCheckBoxActionPerformed
@@ -789,53 +760,7 @@ public class MainView extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void readFromFile() throws IOException{
-        FileReader in = null;
-        String path = "input.txt";
-        String result = "";
-        try {
-            in = new FileReader(path);
-            int c;
-            while ((c = in.read()) != -1) {
-                result += (char) c;
-         }
-        } catch (Exception e) {
-        }
-        in.close();
-        System.out.println(result);
-        messageTextArea.setText(result);
-    }
-    
-    
-    public void writeIntoFile() throws IOException{
-        FileWriter out = null;
-        try {
-            out = new FileWriter("output.txt");
-            out.write("Message: " + messageTextArea.getText());
-            out.write("\nAnswer: " + answerTextArea.getText());
-            String alg = "";
-            switch(cipherComboBox.getSelectedIndex()){
-                case 0:
-                    alg = "Caesar";
-                    break;
-                case 1:
-                    alg = "Polybius";
-                    break;
-                case 2:
-                    alg = "Enigma";
-                    break;
-                case 3:
-                    alg = "Blowfish";
-                    break;
-            }
-            out.write("\nAlgorithm used: " + alg);
-        } catch (Exception e) {
-        }
-        out.close();
-    }
-    
-    
+        
     public void addRunActionListener(ActionListener a){
         runButton.addActionListener(a);
     }
@@ -852,6 +777,12 @@ public class MainView extends javax.swing.JFrame {
         return messageTextArea.getText().trim().toLowerCase();
     }
     public void setMessage(String mes){
+        messageTextArea.setText(mes);
+    }
+    public String getAnswer(){
+        return answerTextArea.getText().trim().toLowerCase();
+    }
+    public void setAnswer(String mes){
         answerTextArea.setText(mes);
     }
     public int getOutputTypeBlowfish(){
@@ -901,6 +832,15 @@ public class MainView extends javax.swing.JFrame {
     }
     public void addAboutCipherActionListener(ActionListener a){
         aboutCipherMenuItem.addActionListener(a);
+    }
+    public void addSaveActionListener(ActionListener a){
+        saveMenuItem.addActionListener(a);
+    }
+    public void addCopyActionListener(ActionListener a){
+        copyResultMenuItem.addActionListener(a);
+    }
+    public void addOpenActionListener(ActionListener a){
+        openMenuItem.addActionListener(a);
     }
     
     
