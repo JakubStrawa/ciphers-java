@@ -321,12 +321,6 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="rotorOffsetLabel" min="-2" pref="95" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="plugboardLabel" min="-2" pref="96" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="offset2ComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="offset3ComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -334,11 +328,25 @@
                               </Group>
                               <EmptySpace pref="33" max="32767" attributes="0"/>
                               <Component id="plugboardScrollPane" min="-2" pref="228" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="rotorOffsetLabel" min="-2" pref="95" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="plugboardLabel" min="-2" pref="96" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="reflectorCCheckBox" min="-2" max="-2" attributes="0"/>
                                   <Component id="reflectorBCheckBox" min="-2" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="showEnigmaTableButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -356,6 +364,7 @@
                           <Component id="rotorOrderLabel" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="rotorOffsetLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="plugboardLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="reflectorBCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -377,11 +386,11 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="reflectorBCheckBox" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="reflectorCCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="showEnigmaTableButton" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="plugboardScrollPane" min="-2" pref="91" max="-2" attributes="0"/>
                               </Group>
@@ -621,6 +630,11 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
+            <Component class="javax.swing.JButton" name="showEnigmaTableButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Show Table"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="blowfishPanel">
@@ -728,11 +742,14 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="polybiusLabel" alignment="1" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="84" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="76" max="32767" attributes="0"/>
                       <Component id="customKeyPolybiusTextField" min="-2" pref="308" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="customKeyPolybiusCheckBox" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="showPolybiusTableButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="customKeyPolybiusCheckBox" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -747,7 +764,9 @@
                           <Component id="customKeyPolybiusTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="customKeyPolybiusCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="89" max="32767" attributes="0"/>
+                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                      <Component id="showPolybiusTableButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -778,6 +797,14 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Polybius Square"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="showPolybiusTableButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Show Table"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showPolybiusTableButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -855,8 +882,10 @@
         <Component class="javax.swing.JTextArea" name="messageTextArea">
           <Properties>
             <Property name="columns" type="int" value="20"/>
+            <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Enter your message here"/>
+            <Property name="wrapStyleWord" type="boolean" value="true"/>
           </Properties>
         </Component>
       </SubComponents>

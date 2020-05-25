@@ -6,6 +6,7 @@
 package com.mycompany.mavenproject1;
 
 import java.awt.CardLayout;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,6 +52,7 @@ public class MainView extends javax.swing.JFrame {
         plugboardTextArea = new javax.swing.JTextArea();
         reflectorBCheckBox = new javax.swing.JCheckBox();
         rotor3ComboBox = new javax.swing.JComboBox<>();
+        showEnigmaTableButton = new javax.swing.JButton();
         blowfishPanel = new javax.swing.JPanel();
         keyBlowfishTextField = new javax.swing.JTextField();
         blowfishLabel = new javax.swing.JLabel();
@@ -60,6 +62,7 @@ public class MainView extends javax.swing.JFrame {
         customKeyPolybiusTextField = new javax.swing.JTextField();
         customKeyPolybiusCheckBox = new javax.swing.JCheckBox();
         polybiusLabel = new javax.swing.JLabel();
+        showPolybiusTableButton = new javax.swing.JButton();
         runButton = new javax.swing.JButton();
         decodeCheckBox = new javax.swing.JCheckBox();
         cipherComboBox = new javax.swing.JComboBox<>();
@@ -192,6 +195,8 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
+        showEnigmaTableButton.setText("Show Table");
+
         javax.swing.GroupLayout enigmaPanelLayout = new javax.swing.GroupLayout(enigmaPanel);
         enigmaPanel.setLayout(enigmaPanelLayout);
         enigmaPanelLayout.setHorizontalGroup(
@@ -206,21 +211,26 @@ public class MainView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(enigmaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(enigmaPanelLayout.createSequentialGroup()
-                        .addComponent(rotorOffsetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(plugboardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(enigmaPanelLayout.createSequentialGroup()
                         .addGroup(enigmaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(offset2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(offset3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(offset1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(plugboardScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(plugboardScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(enigmaPanelLayout.createSequentialGroup()
+                        .addComponent(rotorOffsetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(plugboardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(enigmaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(enigmaPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(enigmaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(reflectorCCheckBox)
-                            .addComponent(reflectorBCheckBox))))
+                            .addComponent(reflectorBCheckBox)))
+                    .addGroup(enigmaPanelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(showEnigmaTableButton)))
                 .addContainerGap())
             .addComponent(enigmaLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -233,7 +243,8 @@ public class MainView extends javax.swing.JFrame {
                 .addGroup(enigmaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rotorOrderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rotorOffsetLabel)
-                    .addComponent(plugboardLabel))
+                    .addComponent(plugboardLabel)
+                    .addComponent(reflectorBCheckBox))
                 .addGroup(enigmaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(enigmaPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -250,11 +261,11 @@ public class MainView extends javax.swing.JFrame {
                             .addComponent(offset3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enigmaPanelLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addGroup(enigmaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(enigmaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(enigmaPanelLayout.createSequentialGroup()
-                                .addComponent(reflectorBCheckBox)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(reflectorCCheckBox))
+                                .addComponent(reflectorCCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(showEnigmaTableButton))
                             .addComponent(plugboardScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(37, 37, 37))
         );
@@ -329,16 +340,25 @@ public class MainView extends javax.swing.JFrame {
         polybiusLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         polybiusLabel.setText("Polybius Square");
 
+        showPolybiusTableButton.setText("Show Table");
+        showPolybiusTableButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showPolybiusTableButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout polybiusPanelLayout = new javax.swing.GroupLayout(polybiusPanel);
         polybiusPanel.setLayout(polybiusPanelLayout);
         polybiusPanelLayout.setHorizontalGroup(
             polybiusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(polybiusLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(polybiusPanelLayout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, polybiusPanelLayout.createSequentialGroup()
+                .addContainerGap(76, Short.MAX_VALUE)
                 .addComponent(customKeyPolybiusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(customKeyPolybiusCheckBox)
+                .addGroup(polybiusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(showPolybiusTableButton)
+                    .addComponent(customKeyPolybiusCheckBox))
                 .addGap(52, 52, 52))
         );
         polybiusPanelLayout.setVerticalGroup(
@@ -350,7 +370,9 @@ public class MainView extends javax.swing.JFrame {
                 .addGroup(polybiusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(customKeyPolybiusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(customKeyPolybiusCheckBox))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(showPolybiusTableButton)
+                .addGap(27, 27, 27))
         );
 
         mainPanel.add(polybiusPanel, "polybius");
@@ -393,8 +415,10 @@ public class MainView extends javax.swing.JFrame {
         answerScrollPane2.setViewportView(answerTextArea);
 
         messageTextArea.setColumns(20);
+        messageTextArea.setLineWrap(true);
         messageTextArea.setRows(4);
         messageTextArea.setText("Enter your message here");
+        messageTextArea.setWrapStyleWord(true);
         messageScrollPane.setViewportView(messageTextArea);
 
         fileMenu.setText("File");
@@ -707,6 +731,10 @@ public class MainView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_runSBSCheckBoxActionPerformed
 
+    private void showPolybiusTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPolybiusTableButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showPolybiusTableButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -742,6 +770,77 @@ public class MainView extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    public void addRunActionListener(ActionListener a){
+        runButton.addActionListener(a);
+    }
+    public void addRunMenuActionListener(ActionListener a){
+        runMenuItem.addActionListener(a);
+    }
+    public int getCaesarKey(){
+        return (int) offsetCaesarSpinner.getValue();
+    }
+    public boolean getIsEncrypted(){
+        return decodeCheckBox.isSelected();
+    }
+    public String getMessage(){
+        return messageTextArea.getText().trim().toLowerCase();
+    }
+    public void setMessage(String mes){
+        answerTextArea.setText(mes);
+    }
+    public int getOutputTypeBlowfish(){
+        return outputTypeBlowfishComboBox.getSelectedIndex();
+    }
+    public String getKeyBlowfish(){
+        return keyBlowfishTextField.getText();
+    }
+    public void addShowTablePolybiusActionListener(ActionListener a){
+        showPolybiusTableButton.addActionListener(a);
+    }
+    public boolean getIfCustomKeyUsedPolybius(){
+        return customKeyPolybiusCheckBox.isSelected();
+    }
+    public String getCustomKeyPolybius(){
+        return customKeyPolybiusTextField.getText().trim().toLowerCase();
+    }
+    public void addShowTableEnigmaActionlistener(ActionListener a){
+        showEnigmaTableButton.addActionListener(a);
+    }
+    public boolean getIfreflectorBUsed(){
+        return reflectorBCheckBox.isSelected();
+    }
+    public int getRotor1Index(){
+        return rotor1ComboBox.getSelectedIndex();
+    }
+    public int getRotor2Index(){
+        return rotor2ComboBox.getSelectedIndex();
+    }
+    public int getRotor3Index(){
+        return rotor3ComboBox.getSelectedIndex();
+    }
+    public int getRotor1Offset(){
+        return offset1ComboBox.getSelectedIndex();
+    }
+    public int getRotor2Offset(){
+        return offset2ComboBox.getSelectedIndex();
+    }
+    public int getRotor3Offset(){
+        return offset3ComboBox.getSelectedIndex();
+    }
+    public String getPlugboard(){
+        return plugboardTextArea.getText();
+    }
+    public int getCipherType(){
+        return cipherComboBox.getSelectedIndex();
+    }
+    public void addAboutCipherActionListener(ActionListener a){
+        aboutCipherMenuItem.addActionListener(a);
+    }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutCipherMenuItem;
@@ -799,6 +898,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JCheckBox runSBSCheckBox;
     private javax.swing.JCheckBoxMenuItem runSBSCheckBoxMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JButton showEnigmaTableButton;
+    private javax.swing.JButton showPolybiusTableButton;
     private javax.swing.JMenu viewMenu;
     // End of variables declaration//GEN-END:variables
 }

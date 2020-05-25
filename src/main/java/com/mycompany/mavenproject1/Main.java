@@ -14,7 +14,14 @@ public class Main {
     public static void main(String[] args){   
         
         System.out.println("Hello Maven!");
-        new MainView().setVisible(true);
+        
+        CaesarModel caesarModel = new CaesarModel();
+        PolybiusModel polybiusModel = new PolybiusModel();
+        EnigmaModel enigmaModel = new EnigmaModel();
+        BlowfishModel blowfishModel = new BlowfishModel();
+        MainView view = new MainView();
+        MainController controller = new MainController(caesarModel, polybiusModel, enigmaModel, blowfishModel, view);
+        view.setVisible(true);
         
     }
 }
