@@ -24,8 +24,8 @@ public class EnigmaModel {
     // electric current flows through all rotors, reflector, all rotors again and through plugboard to bubble(showing encoded letter)
     // each letter increases leftmost rotor rotation by 1
     // one full rotor rotation rotates left rotor by 1
-    // to decode message EnigmaModel needs to be pluged the same way with the same rotor order and rotations
-    // then user just needs to type encoded message to receive decoded one
+    // to decode msg EnigmaModel needs to be pluged the same way with the same rotor order and rotations
+    // then user just needs to type encoded msg to receive decoded one
     //
     // EnigmaModel deflector types:
     // UKW B ->  AY  BR  CU  DH  EQ  FS  GL  IP  JX  KN  MO  TZ  VW
@@ -43,7 +43,7 @@ public class EnigmaModel {
     private char [] tab4 = {'e','s','o','v','p','z','j','a','y','q','u','i','r','h','x','l','n','f','t','g','k','d','c','m','w','b'};
     // V:  V Z B R G I T Y U P S D N H L X A W M J Q O F E C K
     private char [] tab5 = {'v','z','b','r','g','i','t','y','u','p','s','d','n','h','l','x','a','w','m','j','q','o','f','e','c','k'};
-    private String message;
+    private String msg;
     private ArrayList<Rotor> rotorList;
     private ArrayList<Pair<Character>> plugBoard;
     private int deflectorUsed;
@@ -52,7 +52,7 @@ public class EnigmaModel {
     private int currentChar;
     
     public EnigmaModel(){
-        message = "";
+        msg = "";
         rotor1 = new Rotor(1,tab1);
         rotor2 = new Rotor(2,tab2);
         rotor3 = new Rotor(3,tab3);
@@ -164,12 +164,12 @@ public class EnigmaModel {
     }
     
     public String getMessage(){
-        System.out.println(message);
-        return message;
+        System.out.println(msg);
+        return msg;
     }
     
     public void setMessage(String msg){
-        message = msg;
+        this.msg = msg;
     }
     
     public void moveRotors(){
@@ -214,11 +214,8 @@ public class EnigmaModel {
         return c;
     }
     
-    public void changeMessage(){
-        String tmp_string = "";
-        char tmp_char;
-        for (int i = 0; i < message.length(); i++) {
-            tmp_char = message.charAt(i);
+    public char changeChar(char c){
+        char tmp_char = c;
             if (tmp_char >= 'a' && tmp_char <= 'z') {
                 // Plugboard
                 for (Pair<Character> p : plugBoard) {
@@ -238,7 +235,7 @@ public class EnigmaModel {
                     // finding char on the other side of rotor
                     tmp_char = rotorList.get(j).getChar(tmp_char - 97);
                     // rotation substraction
-                    tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation()-1);                    
+                    tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation()-1);
                 }
                 // Going through deflector
                 if (deflectorUsed == 1) {
@@ -259,7 +256,7 @@ public class EnigmaModel {
                     // rotation substraction
                     tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation()-1);
                 }
-                
+
                 // Plugboad
                 for (Pair<Character> p : plugBoard) {
                     if (p.getFirst() == tmp_char) {
@@ -271,12 +268,38 @@ public class EnigmaModel {
                         break;
                     }
                 }
-                tmp_string += tmp_char;
+                //tmp_string += tmp_char;
                 moveRotors();
+            
+        }
+        return tmp_char;
+    }
+    
+    public void changeMessage(){
+        char tmp_char;
+        if (!flagSBS) {
+            currentChar = 0;
+            for (currentChar = 0; currentChar < msg.length(); currentChar++) {
+                tmp_char = msg.charAt(currentChar);
+                tmp_char = changeChar(tmp_char);
+                char[] msgChars = msg.toCharArray();
+                msgChars[currentChar] = tmp_char;
+                msg = String.valueOf(msgChars);
+            }
+            currentChar = 0;
+        } else {
+            tmp_char = msg.charAt(currentChar);
+            tmp_char = changeChar(tmp_char);
+            char[] msgChars = msg.toCharArray();
+            msgChars[currentChar] = tmp_char;
+            msg = String.valueOf(msgChars);
+            currentChar++;
+            if (currentChar == msg.length()) {
+                currentChar = 0;
+                flagNextStep = false;
             }
         }
-        message = tmp_string;
-        System.out.println("New message is: " + tmp_string);
+        System.out.println("New message is: " + msg);
     }
     
 }
