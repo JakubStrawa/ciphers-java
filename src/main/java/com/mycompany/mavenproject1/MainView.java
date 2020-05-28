@@ -790,6 +790,17 @@ public class MainView extends javax.swing.JFrame {
         customKeyPolybiusCheckBox.setEnabled(f);
         customKeyPolybiusTextField.setEditable(f);
     }
+    public void setIfVisibleSBSEnigma(boolean f){
+        rotor1ComboBox.setEnabled(f);
+        rotor2ComboBox.setEnabled(f);
+        rotor3ComboBox.setEnabled(f);
+        offset1ComboBox.setEnabled(f);
+        offset2ComboBox.setEnabled(f);
+        offset3ComboBox.setEnabled(f);
+        plugboardTextArea.setEditable(f);
+        reflectorBCheckBox.setEnabled(f);
+        reflectorCCheckBox.setEnabled(f);
+    }
     public void setIfVisibleSBSButtons(boolean f){
         nextStepMenuItem.setEnabled(f);
         nextStepButton.setEnabled(f);

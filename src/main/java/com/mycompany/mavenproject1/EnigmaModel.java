@@ -47,6 +47,9 @@ public class EnigmaModel {
     private ArrayList<Rotor> rotorList;
     private ArrayList<Pair<Character>> plugBoard;
     private int deflectorUsed;
+    private Boolean flagSBS;
+    private Boolean flagNextStep;
+    private int currentChar;
     
     public EnigmaModel(){
         message = "";
@@ -61,6 +64,25 @@ public class EnigmaModel {
         plugBoard = new ArrayList<Pair<Character>>();
         
         deflectorUsed = 1;
+        flagSBS = false;
+        flagNextStep = false;
+        currentChar = 0;
+    }
+
+    public void setFlagSBS(Boolean flagSBS) {
+        this.flagSBS = flagSBS;
+    }
+
+    public void setFlagNextStep(Boolean flagNextStep) {
+        this.flagNextStep = flagNextStep;
+    }
+
+    public Boolean getFlagSBS() {
+        return flagSBS;
+    }
+
+    public Boolean getFlagNextStep() {
+        return flagNextStep;
     }
     
     public void addToPlugBoard(String s){

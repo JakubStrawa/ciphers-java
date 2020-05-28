@@ -98,8 +98,11 @@ public class MainController {
                         enigmaModel.setDeflector(2);
                     }
                     enigmaModel.addToPlugBoard(view.getPlugboard());
+                    enigmaModel.setFlagNextStep(false);
+                    enigmaModel.setFlagSBS(view.getIfSBS());
                     enigmaModel.changeMessage();
                     view.setAnswer(enigmaModel.getMessage());
+                    view.setIfVisibleSBSEnigma(true);
                     break;
                 case 3:
                     blowfishModel.setMessage(view.getMessage());
@@ -304,7 +307,37 @@ public class MainController {
                     }
                     break;
                 case 2:
-                    
+                    if (!enigmaModel.getFlagNextStep()) {
+                        enigmaModel.clearPlugBoard();
+                        enigmaModel.clearRotorList();
+                        enigmaModel.setMessage(view.getMessage());
+                        if (view.getRotor1Index() != -1) {
+                            enigmaModel.addRotor(view.getRotor1Index() + 1);
+                            enigmaModel.getRotor(view.getRotor1Index() + 1).setRotation(view.getRotor1Offset() + 1);
+                        }
+                        if (view.getRotor2Index() != -1) {
+                            enigmaModel.addRotor(view.getRotor2Index() + 1);
+                            enigmaModel.getRotor(view.getRotor2Index() + 1).setRotation(view.getRotor2Offset() + 1);
+                        }
+                        if (view.getRotor3Index() != -1) {
+                            enigmaModel.addRotor(view.getRotor3Index() + 1);
+                            enigmaModel.getRotor(view.getRotor3Index() + 1).setRotation(view.getRotor3Offset() + 1);
+                        }
+                        if (view.getIfreflectorBUsed()) {
+                            enigmaModel.setDeflector(1);
+                        } else {
+                            enigmaModel.setDeflector(2);
+                        }
+                        enigmaModel.addToPlugBoard(view.getPlugboard());
+                        enigmaModel.setFlagNextStep(true);
+                        enigmaModel.setFlagSBS(view.getIfSBS());
+                        enigmaModel.changeMessage();
+                        view.setAnswer(enigmaModel.getMessage());
+                        view.setIfVisibleSBSEnigma(false);
+                    } else {
+                        enigmaModel.changeMessage();
+                        view.setAnswer(enigmaModel.getMessage());
+                    }
                     break;
                 case 3:
                     

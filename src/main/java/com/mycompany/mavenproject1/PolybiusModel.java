@@ -172,8 +172,6 @@ public class PolybiusModel {
                 //currentChar--;
             }
         }
-        
-        //return tmp_string;
     }
      
     public void changeMessage(){
