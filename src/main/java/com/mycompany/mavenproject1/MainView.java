@@ -783,16 +783,20 @@ public class MainView extends javax.swing.JFrame {
             }
         });
     }
+    public void setIfVisibleSBSCaesar(boolean f){
+        offsetCaesarSpinner.setEnabled(f);
+    }
+    public void setIfVisibleSBSPolybius(boolean f){
+        customKeyPolybiusCheckBox.setEnabled(f);
+        customKeyPolybiusTextField.setEditable(f);
+    }
     public void setIfVisibleSBSButtons(boolean f){
         nextStepMenuItem.setEnabled(f);
         nextStepButton.setEnabled(f);
         runButton.setEnabled(!f);
         runMenuItem.setEnabled(!f);
-        offsetCaesarSpinner.setEnabled(!f);
         decodeCheckBox.setEnabled(!f);
         decodeCheckBoxMenuItem.setEnabled(!f);
-        customKeyPolybiusCheckBox.setEnabled(!f);
-        customKeyPolybiusTextField.setEditable(!f);
     }
     public boolean getIfSBS(){
         return runSBSCheckBox.isSelected();

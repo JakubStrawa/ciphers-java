@@ -96,7 +96,7 @@ public class PolybiusModel {
     public Character[] getTable(){
         return table;
     }
-    
+        
     private int search(Character[] table, Character key){
         for (int i = 0; i < table.length; i++) {
             if (table[i] == key) {

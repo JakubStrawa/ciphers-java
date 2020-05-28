@@ -60,6 +60,7 @@ public class MainController {
                     caesarModel.setFlagNextStep(false);
                     caesarModel.changeMessage();
                     view.setAnswer(caesarModel.getMessage());
+                    view.setIfVisibleSBSCaesar(true);
                     break;
                 case 1:
                     polybiusModel.setMessage(view.getMessage());
@@ -72,6 +73,7 @@ public class MainController {
                         polybiusModel.setTable("");
                     }
                     polybiusModel.changeMessage();
+                    view.setIfVisibleSBSPolybius(true);
                     view.setAnswer(polybiusModel.getMessage());
                     break;
                 case 2:
@@ -276,6 +278,7 @@ public class MainController {
                         caesarModel.setFlagNextStep(true);
                         caesarModel.changeMessage();
                         view.setAnswer(caesarModel.getMessage());
+                        view.setIfVisibleSBSCaesar(false);
                     } else {
                         caesarModel.changeMessage();
                         view.setAnswer(caesarModel.getMessage());
@@ -293,6 +296,7 @@ public class MainController {
                             polybiusModel.setTable("");
                         }
                         polybiusModel.changeMessage();
+                        view.setIfVisibleSBSPolybius(false);
                         view.setAnswer(polybiusModel.getMessage());
                     } else {
                         polybiusModel.changeMessage();
