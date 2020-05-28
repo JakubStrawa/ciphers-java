@@ -70,6 +70,7 @@ public class MainView extends javax.swing.JFrame {
         answerTextArea = new javax.swing.JTextArea();
         messageScrollPane = new javax.swing.JScrollPane();
         messageTextArea = new javax.swing.JTextArea();
+        nextStepButton = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -86,6 +87,7 @@ public class MainView extends javax.swing.JFrame {
         blowfishMenuItem = new javax.swing.JMenuItem();
         runMenu = new javax.swing.JMenu();
         runMenuItem = new javax.swing.JMenuItem();
+        nextStepMenuItem = new javax.swing.JMenuItem();
         runSBSCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
         aboutMenu = new javax.swing.JMenu();
         aboutCipherMenuItem = new javax.swing.JMenuItem();
@@ -127,7 +129,7 @@ public class MainView extends javax.swing.JFrame {
                 .addGroup(caesarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chooseOffsetCaesarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(offsetCaesarSpinner))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
 
         mainPanel.add(caesarPanel, "caesar");
@@ -420,6 +422,14 @@ public class MainView extends javax.swing.JFrame {
         messageTextArea.setWrapStyleWord(true);
         messageScrollPane.setViewportView(messageTextArea);
 
+        nextStepButton.setText("Next step");
+        nextStepButton.setEnabled(false);
+        nextStepButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextStepButtonActionPerformed(evt);
+            }
+        });
+
         fileMenu.setText("File");
 
         openMenuItem.setText("Open");
@@ -518,6 +528,10 @@ public class MainView extends javax.swing.JFrame {
         });
         runMenu.add(runMenuItem);
 
+        nextStepMenuItem.setText("Next step");
+        nextStepMenuItem.setEnabled(false);
+        runMenu.add(nextStepMenuItem);
+
         runSBSCheckBoxMenuItem.setText("Run step by step");
         runSBSCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -552,17 +566,19 @@ public class MainView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(answerScrollPane2)
                 .addGap(12, 12, 12))
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(cipherComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nextStepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(runButton, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                 .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(decodeCheckBox, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(runSBSCheckBox, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(decodeCheckBox)
+                    .addComponent(runSBSCheckBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(56, 56, 56))
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -584,8 +600,9 @@ public class MainView extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cipherComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 19, Short.MAX_VALUE)))
-                .addGap(0, 10, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nextStepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(17, Short.MAX_VALUE))))
         );
 
         pack();
@@ -641,6 +658,7 @@ public class MainView extends javax.swing.JFrame {
         } else {
             runSBSCheckBox.setSelected(true);
         }
+        setIfVisibleSBSButtons(runSBSCheckBox.isSelected());
     }//GEN-LAST:event_runSBSCheckBoxMenuItemActionPerformed
 
     private void aboutCipherMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutCipherMenuItemActionPerformed
@@ -719,11 +737,16 @@ public class MainView extends javax.swing.JFrame {
         } else {
             runSBSCheckBoxMenuItem.setSelected(true);
         }
+        setIfVisibleSBSButtons(runSBSCheckBoxMenuItem.isSelected());
     }//GEN-LAST:event_runSBSCheckBoxActionPerformed
 
     private void showPolybiusTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPolybiusTableButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_showPolybiusTableButtonActionPerformed
+
+    private void nextStepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextStepButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nextStepButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -760,7 +783,24 @@ public class MainView extends javax.swing.JFrame {
             }
         });
     }
-        
+    public void setIfVisibleSBSButtons(boolean f){
+        nextStepMenuItem.setEnabled(f);
+        nextStepButton.setEnabled(f);
+        runButton.setEnabled(!f);
+        runMenuItem.setEnabled(!f);
+        offsetCaesarSpinner.setEnabled(!f);
+        decodeCheckBox.setEnabled(!f);
+        decodeCheckBoxMenuItem.setEnabled(!f);
+    }
+    public boolean getIfSBS(){
+        return runSBSCheckBox.isSelected();
+    }
+    public void addNextStepMenuItemActionListener(ActionListener a){
+        nextStepMenuItem.addActionListener(a);
+    }
+    public void addNextStepActionListener(ActionListener a){
+        nextStepButton.addActionListener(a);
+    }
     public void addRunActionListener(ActionListener a){
         runButton.addActionListener(a);
     }
@@ -876,6 +916,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JScrollPane messageScrollPane;
     private javax.swing.JTextArea messageTextArea;
+    private javax.swing.JButton nextStepButton;
+    private javax.swing.JMenuItem nextStepMenuItem;
     private javax.swing.JComboBox<String> offset1ComboBox;
     private javax.swing.JComboBox<String> offset2ComboBox;
     private javax.swing.JComboBox<String> offset3ComboBox;

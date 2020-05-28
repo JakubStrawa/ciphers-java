@@ -107,4 +107,83 @@ public class CaesarModelTest {
         kod4.changeMessage();
         assertEquals("fghi34 jk", kod4.getMessage());
     }    
+     /**
+     * Test of getFlagNextStep method, of class CaesarModel.
+     */
+    @Test
+    public void testGetFlagNextStep(){
+        CaesarModel kod = new CaesarModel();
+        assertFalse(kod.getFlagNextStep());
+        kod.setFlagNextStep(true);
+        assertTrue(kod.getFlagNextStep());
+    }
+    /**
+     * Test of setFlagNextStep method, of class CaesarModel.
+     */
+    @Test    
+    public void testSetFlagNextStep(){
+        CaesarModel kod = new CaesarModel();
+        kod.setFlagNextStep(true);
+        assertTrue(kod.getFlagNextStep());
+        kod.setFlagNextStep(false);
+        assertFalse(kod.getFlagNextStep());
+    }
+    /**
+     * Test of getSBSFlag method, of class CaesarModel.
+     */
+    @Test    
+    public void testGetSBSFlag(){
+        CaesarModel kod = new CaesarModel();
+        assertFalse(kod.getSBSFlag());
+        kod.setSBSFlag(true);
+        assertTrue(kod.getSBSFlag());
+    }
+    /**
+     * Test of setSBSFlag method, of class CaesarModel.
+     */
+    @Test    
+    public void testSetSBSFlag(){
+        CaesarModel kod = new CaesarModel();
+        kod.setSBSFlag(true);
+        assertTrue(kod.getSBSFlag());
+        kod.setSBSFlag(false);
+        assertFalse(kod.getSBSFlag());
+    }
+    /**
+     * Test of changeChar method, of class CaesarModel.
+     */
+    @Test    
+    public void testChangeChar(){
+        CaesarModel kod = new CaesarModel();
+        CaesarModel kod2 = new CaesarModel();
+        kod.setIsEncrypted(false);
+        kod2.setIsEncrypted(true);
+        kod.setKey(5);
+        kod2.setKey(5);
+        kod.setMessage("k");
+        kod2.setMessage("k");
+        assertEquals("k", kod.getMessage());
+        assertEquals("k", kod2.getMessage());
+        kod.changeMessage();
+        kod2.changeMessage();
+        assertEquals("p", kod.getMessage());
+        assertEquals("f", kod2.getMessage());
+    }
+    /**
+     * Test of changeMessageStep method, of class CaesarModel.
+     */
+    @Test
+    public void testChangeMessageStep(){
+        CaesarModel kod = new CaesarModel();
+        kod.setIsEncrypted(false);
+        kod.setKey(3);
+        kod.setMessage("abcdefghijkl");
+        kod.changeMessageStep();
+        assertEquals("dbcdefghijkl", kod.getMessage());
+        kod.changeMessageStep();
+        assertEquals("decdefghijkl", kod.getMessage());
+        kod.changeMessageStep();
+        kod.changeMessageStep();
+        assertEquals("defgefghijkl", kod.getMessage());
+    }
 }

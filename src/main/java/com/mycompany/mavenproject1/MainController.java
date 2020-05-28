@@ -34,14 +34,16 @@ public class MainController {
         this.enigmaModel = eModel;
         this.blowfishModel = bModel;
         this.view = v;
-        v.addRunActionListener(new RunButtonListener());
-        v.addRunMenuActionListener(new RunButtonListener());
-        v.addShowTablePolybiusActionListener(new ShowTableListener());
-        v.addShowTableEnigmaActionlistener(new ShowTableListener());
-        v.addAboutCipherActionListener(new AboutCipherListener());
-        v.addCopyActionListener(new CopyResultListener());
-        v.addSaveActionListener(new SaveResultListener());
-        v.addOpenActionListener(new OpenFileListener());
+        view.addRunActionListener(new RunButtonListener());
+        view.addRunMenuActionListener(new RunButtonListener());
+        view.addShowTablePolybiusActionListener(new ShowTableListener());
+        view.addShowTableEnigmaActionlistener(new ShowTableListener());
+        view.addAboutCipherActionListener(new AboutCipherListener());
+        view.addCopyActionListener(new CopyResultListener());
+        view.addSaveActionListener(new SaveResultListener());
+        view.addOpenActionListener(new OpenFileListener());
+        view.addNextStepActionListener(new NextStepListener());
+        view.addNextStepMenuItemActionListener(new NextStepListener());
     }
     
     
@@ -54,6 +56,8 @@ public class MainController {
                     caesarModel.setKey(view.getCaesarKey());
                     caesarModel.setIsEncrypted(view.getIsEncrypted());
                     caesarModel.setMessage(view.getMessage());
+                    caesarModel.setSBSFlag(view.getIfSBS());
+                    caesarModel.setFlagNextStep(false);
                     caesarModel.changeMessage();
                     view.setAnswer(caesarModel.getMessage());
                     break;
@@ -254,5 +258,41 @@ public class MainController {
         } catch (Exception e) {
         }
         out.close();
+    }
+    
+    class NextStepListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            switch(view.getCipherType()){
+                case 0:
+                    if (!caesarModel.getFlagNextStep()) {
+                        caesarModel.setKey(view.getCaesarKey());
+                        caesarModel.setIsEncrypted(view.getIsEncrypted());
+                        caesarModel.setMessage(view.getMessage());
+                        caesarModel.setSBSFlag(view.getIfSBS());
+                        caesarModel.setFlagNextStep(true);
+                        caesarModel.changeMessage();
+                        view.setAnswer(caesarModel.getMessage());
+                    } else {
+                        caesarModel.changeMessage();
+                        view.setAnswer(caesarModel.getMessage());
+                    }
+                    break;
+                case 1:
+                    AboutPolybiusView pView = new AboutPolybiusView();
+                    pView.setVisible(true);
+                    break;
+                case 2:
+                    AboutEnigmaView eView = new AboutEnigmaView();
+                    eView.setVisible(true);
+                    break;
+                case 3:
+                    AboutBlowfishView bView = new AboutBlowfishView();
+                    bView.setVisible(true);
+                    break;
+            }
+            
+        }
     }
 }
