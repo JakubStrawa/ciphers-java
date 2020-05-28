@@ -64,6 +64,8 @@ public class MainController {
                 case 1:
                     polybiusModel.setMessage(view.getMessage());
                     polybiusModel.setIsEncrypted(view.getIsEncrypted());
+                    polybiusModel.setFlagSBS(view.getIfSBS());
+                    polybiusModel.setFlagNextStep(false);
                     if (view.getIfCustomKeyUsedPolybius()) {
                         polybiusModel.setTable(view.getCustomKeyPolybius());
                     } else {
@@ -280,16 +282,28 @@ public class MainController {
                     }
                     break;
                 case 1:
-                    AboutPolybiusView pView = new AboutPolybiusView();
-                    pView.setVisible(true);
+                    if (!polybiusModel.getFlagNextStep()) {
+                        polybiusModel.setMessage(view.getMessage());
+                        polybiusModel.setIsEncrypted(view.getIsEncrypted());
+                        polybiusModel.setFlagSBS(view.getIfSBS());
+                        polybiusModel.setFlagNextStep(true);
+                        if (view.getIfCustomKeyUsedPolybius()) {
+                            polybiusModel.setTable(view.getCustomKeyPolybius());
+                        } else {
+                            polybiusModel.setTable("");
+                        }
+                        polybiusModel.changeMessage();
+                        view.setAnswer(polybiusModel.getMessage());
+                    } else {
+                        polybiusModel.changeMessage();
+                        view.setAnswer(polybiusModel.getMessage());
+                    }
                     break;
                 case 2:
-                    AboutEnigmaView eView = new AboutEnigmaView();
-                    eView.setVisible(true);
+                    
                     break;
                 case 3:
-                    AboutBlowfishView bView = new AboutBlowfishView();
-                    bView.setVisible(true);
+                    
                     break;
             }
             

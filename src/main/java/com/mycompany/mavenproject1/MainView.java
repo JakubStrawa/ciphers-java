@@ -791,6 +791,8 @@ public class MainView extends javax.swing.JFrame {
         offsetCaesarSpinner.setEnabled(!f);
         decodeCheckBox.setEnabled(!f);
         decodeCheckBoxMenuItem.setEnabled(!f);
+        customKeyPolybiusCheckBox.setEnabled(!f);
+        customKeyPolybiusTextField.setEditable(!f);
     }
     public boolean getIfSBS(){
         return runSBSCheckBox.isSelected();

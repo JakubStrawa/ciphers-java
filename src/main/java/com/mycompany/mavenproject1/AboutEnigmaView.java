@@ -32,6 +32,7 @@ public class AboutEnigmaView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        aboutTextArea.setEditable(false);
         aboutTextArea.setColumns(20);
         aboutTextArea.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         aboutTextArea.setLineWrap(true);

@@ -32,6 +32,7 @@ public class AboutBlowfishView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jTextArea1.setLineWrap(true);
