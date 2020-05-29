@@ -230,4 +230,68 @@ public class EnigmaModelTest {
         enigma.clearRotorList();
     }
     
+    /**
+     * Test of setFlagSBS method, of class EnigmaModel.
+     */
+    @Test
+    public void testSetFlagSBS() {
+        EnigmaModel enigma = new EnigmaModel();
+        assertFalse(enigma.getFlagSBS());
+        enigma.setFlagSBS(true);
+        assertTrue(enigma.getFlagSBS());
+    }
+    
+    /**
+     * Test of setFlagNextStep method, of class EnigmaModel.
+     */
+    @Test
+    public void testSetFlagNextStep() {
+        EnigmaModel enigma = new EnigmaModel();
+        assertFalse(enigma.getFlagNextStep());
+        enigma.setFlagNextStep(true);
+        assertTrue(enigma.getFlagNextStep());
+    }
+    
+    /**
+     * Test of getFlagSBS method, of class EnigmaModel.
+     */
+    @Test
+    public void testGetFlagSBS() {
+        EnigmaModel enigma = new EnigmaModel();
+        assertFalse(enigma.getFlagSBS());
+        enigma.setFlagSBS(true);
+        assertTrue(enigma.getFlagSBS());
+    }
+    
+    /**
+     * Test of getFlagNextStep method, of class EnigmaModel.
+     */
+    @Test
+    public void testGetFlagNextStep() {
+        EnigmaModel enigma = new EnigmaModel();
+        assertFalse(enigma.getFlagNextStep());
+        enigma.setFlagNextStep(true);
+        assertTrue(enigma.getFlagNextStep());
+    }
+    
+    /**
+     * Test of changeChar method, of class EnigmaModel.
+     */
+    @Test
+    public void testChangeChar() {
+        EnigmaModel enigma = new EnigmaModel();
+        enigma.setFlagNextStep(true);
+        enigma.setFlagSBS(true);
+        enigma.setMessage("testmessage");
+        enigma.addRotor(1);
+        enigma.addRotor(2);
+        enigma.addRotor(3);
+        enigma.setDeflector(2);
+        enigma.addToPlugBoard('s', 't');
+        enigma.addToPlugBoard('m', 'a');
+        enigma.changeMessage();
+        assertEquals("sestmessage", enigma.getMessage());
+        enigma.changeMessage();
+        assertEquals("gestmessage", enigma.getMessage());
+    }
 }

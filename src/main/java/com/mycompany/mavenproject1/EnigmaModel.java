@@ -50,6 +50,7 @@ public class EnigmaModel {
     private Boolean flagSBS;
     private Boolean flagNextStep;
     private int currentChar;
+    private int currentStatus;
     
     public EnigmaModel(){
         msg = "";
@@ -67,6 +68,7 @@ public class EnigmaModel {
         flagSBS = false;
         flagNextStep = false;
         currentChar = 0;
+        currentStatus = 0;
     }
 
     public void setFlagSBS(Boolean flagSBS) {
@@ -214,63 +216,127 @@ public class EnigmaModel {
         return c;
     }
     
+    private char plugboard(char c){
+        char tmp_char = c;
+        for (Pair<Character> p : plugBoard) {
+            if (p.getFirst() == tmp_char) {
+                tmp_char = p.getSecond();
+                break;
+            }
+            if (p.getSecond() == tmp_char) {
+                tmp_char = p.getFirst();
+                break;
+            }
+        }
+        return tmp_char;
+    }
+    
+    private char deflector(char c){
+        char tmp_char = c;
+        if (deflectorUsed == 1) {
+            tmp_char = addRotation(tmp_char, deflector1.getRotatation());
+            tmp_char = deflector1.getChar(tmp_char - 97);
+            tmp_char = subRotation(tmp_char, deflector1.getRotatation()-1);
+        } else {
+            tmp_char = addRotation(tmp_char, deflector2.getRotatation());
+            tmp_char = deflector2.getChar(tmp_char - 97);
+            tmp_char = subRotation(tmp_char, deflector2.getRotatation()-1);
+        }
+        return tmp_char;
+    }
+    
+    private char rotationForward(char c, int j){
+        char tmp_char = c;
+        // char adjustion to rotor rotation
+        tmp_char = addRotation(tmp_char, rotorList.get(j).getRotatation());
+        // finding char on the other side of rotor
+        tmp_char = rotorList.get(j).getChar(tmp_char - 97);
+        // rotation substraction
+        tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation()-1);
+        // zmiana chara
+        return tmp_char;
+    }
+    
+    private char rotationBackwards(char c, int j){
+        char tmp_char = c;
+        // char adjustion to rotor rotation
+        tmp_char = addRotation(tmp_char, rotorList.get(j).getRotatation());
+        // finding char on the other side of rotor
+        tmp_char = rotorList.get(j).getCounterChar(tmp_char);
+        // rotation substraction
+        tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation()-1);
+        // zmiana chara
+        return tmp_char;
+    }
+    
     public char changeChar(char c){
         char tmp_char = c;
             if (tmp_char >= 'a' && tmp_char <= 'z') {
+                
                 // Plugboard
-                for (Pair<Character> p : plugBoard) {
-                    if (p.getFirst() == tmp_char) {
-                        tmp_char = p.getSecond();
-                        break;
-                    }
-                    if (p.getSecond() == tmp_char) {
-                        tmp_char = p.getFirst();
-                        break;
-                    }
+                if (currentStatus == 0){
+                    tmp_char = plugboard(tmp_char);
                 }
+                
                 // Iteration through rotors to deflector
-                for (int j = rotorList.size() - 1; j >= 0; j--) {
-                    // char adjustion to rotor rotation
-                    tmp_char = addRotation(tmp_char, rotorList.get(j).getRotatation());
-                    // finding char on the other side of rotor
-                    tmp_char = rotorList.get(j).getChar(tmp_char - 97);
-                    // rotation substraction
-                    tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation()-1);
+                if (currentStatus == 1) {
+                    if (rotorList.size() == 3) {
+                        tmp_char = rotationForward(tmp_char, 2);
+                    } else {
+                        currentStatus++;
+                    }
                 }
+                if (currentStatus == 2) {
+                    if (rotorList.size() >= 2) {
+                        tmp_char = rotationForward(tmp_char, 1);
+                    } else {
+                        currentStatus++;
+                    }
+                }
+                if (currentStatus == 3) {
+                    if (rotorList.size() >= 1) {
+                        tmp_char = rotationForward(tmp_char, 0);
+                    } else {
+                        currentStatus++;
+                    }
+                }
+               
                 // Going through deflector
-                if (deflectorUsed == 1) {
-                    tmp_char = addRotation(tmp_char, deflector1.getRotatation());
-                    tmp_char = deflector1.getChar(tmp_char - 97);
-                    tmp_char = subRotation(tmp_char, deflector1.getRotatation()-1);
-                } else {
-                    tmp_char = addRotation(tmp_char, deflector2.getRotatation());
-                    tmp_char = deflector2.getChar(tmp_char - 97);
-                    tmp_char = subRotation(tmp_char, deflector2.getRotatation()-1);
+                if (currentStatus == 4) {
+                    tmp_char = deflector(tmp_char);
                 }
+                
                 // Iteration through rotors from deflector
-                for (int j = 0; j < rotorList.size(); j++) {
-                    // char adjustion to rotor rotation
-                    tmp_char = addRotation(tmp_char, rotorList.get(j).getRotatation());
-                    // finding char on the other side of rotor
-                    tmp_char = rotorList.get(j).getCounterChar(tmp_char);
-                    // rotation substraction
-                    tmp_char = subRotation(tmp_char, rotorList.get(j).getRotatation()-1);
+                if (currentStatus == 5) {
+                    if (rotorList.size() >= 1) {
+                        tmp_char = rotationBackwards(tmp_char, 0);
+                    } else {
+                        currentStatus++;
+                    }
+                }
+                if (currentStatus == 6) {
+                    if (rotorList.size() >= 2) {
+                        tmp_char = rotationBackwards(tmp_char, 1);
+                    } else {
+                        currentStatus++;
+                    }
+                }
+                if (currentStatus == 7) {
+                    if (rotorList.size() == 3) {
+                        tmp_char = rotationBackwards(tmp_char, 2);
+                    } else {
+                        currentStatus++;
+                    }
                 }
 
                 // Plugboad
-                for (Pair<Character> p : plugBoard) {
-                    if (p.getFirst() == tmp_char) {
-                        tmp_char = p.getSecond();
-                        break;
-                    }
-                    if (p.getSecond() == tmp_char) {
-                        tmp_char = p.getFirst();
-                        break;
-                    }
+                if (currentStatus == 8) {
+                    tmp_char = plugboard(tmp_char);
+                    moveRotors();
                 }
-                //tmp_string += tmp_char;
-                moveRotors();
             
+        } else {
+                currentStatus = currentStatus + 8;
         }
         return tmp_char;
     }
@@ -281,19 +347,41 @@ public class EnigmaModel {
             currentChar = 0;
             for (currentChar = 0; currentChar < msg.length(); currentChar++) {
                 tmp_char = msg.charAt(currentChar);
-                tmp_char = changeChar(tmp_char);
+                if (tmp_char >= 'a' && tmp_char <= 'z') {
+                    // Plugboard
+                    tmp_char = plugboard(tmp_char);
+                    // Iteration through rotors to deflector
+                    for (int j = rotorList.size() - 1; j >= 0; j--) {
+                        tmp_char = rotationForward(tmp_char, j);
+                    }
+                    // Going through deflector
+                    tmp_char = deflector(tmp_char);
+                    // Iteration through rotors from deflector
+                    for (int j = 0; j < rotorList.size(); j++) {
+                        tmp_char = rotationBackwards(tmp_char, j);
+                    }
+                    // Plugboad
+                    tmp_char = plugboard(tmp_char);
+                    moveRotors();
+                }
                 char[] msgChars = msg.toCharArray();
                 msgChars[currentChar] = tmp_char;
                 msg = String.valueOf(msgChars);
             }
             currentChar = 0;
+            currentStatus = 0;
         } else {
             tmp_char = msg.charAt(currentChar);
             tmp_char = changeChar(tmp_char);
             char[] msgChars = msg.toCharArray();
             msgChars[currentChar] = tmp_char;
             msg = String.valueOf(msgChars);
-            currentChar++;
+            currentStatus++;
+            if (currentStatus == 9) {
+                currentChar++;
+                currentStatus = 0;
+            }
+            
             if (currentChar == msg.length()) {
                 currentChar = 0;
                 flagNextStep = false;
