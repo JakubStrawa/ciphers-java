@@ -108,11 +108,10 @@ public class MainController {
                     blowfishModel.setMessage(view.getMessage());
                     blowfishModel.setKey(view.getKeyBlowfish());
                     blowfishModel.setIsEncrypted(view.getIsEncrypted());
-                    if (!blowfishModel.getIsEncrypted()) {
-                        blowfishModel.encryptMessage();
-                    } else {
-                        blowfishModel.decryptMessage();
-                    }
+                    blowfishModel.setFlagNextStep(false);
+                    blowfishModel.setFlagSBS(view.getIfSBS());
+                    
+                    blowfishModel.changeMessage();
 
                     if (view.getOutputTypeBlowfish()== 0) {
                         view.setAnswer(blowfishModel.getEncodedList());
@@ -123,6 +122,7 @@ public class MainController {
                     } else {
                         view.setAnswer(blowfishModel.getHexList());
                     }
+                    view.setIfVisibleSBSBlowfish(true);
                     break;
             }
         }
@@ -340,10 +340,41 @@ public class MainController {
                     }
                     break;
                 case 3:
-                    
+                    if (!blowfishModel.getFlagNextStep()) {
+                        blowfishModel.setMessage(view.getMessage());
+                        blowfishModel.setKey(view.getKeyBlowfish());
+                        blowfishModel.setIsEncrypted(view.getIsEncrypted());
+                        blowfishModel.setFlagNextStep(true);
+                        blowfishModel.setFlagSBS(view.getIfSBS());
+                        
+                        blowfishModel.changeMessage();
+                        
+                        if (view.getOutputTypeBlowfish()== 0) {
+                            view.setAnswer(blowfishModel.getEncodedList());
+                        } else if(view.getOutputTypeBlowfish()== 1) {
+                            view.setAnswer(blowfishModel.getCharList());
+                        } else if(view.getOutputTypeBlowfish()== 2) {
+                            view.setAnswer(blowfishModel.getBinaryList());
+                        } else {
+                            view.setAnswer(blowfishModel.getHexList());
+                        }
+                        view.setIfVisibleSBSBlowfish(false);
+                    } else {
+                        
+                        blowfishModel.changeMessage();
+
+                        if (view.getOutputTypeBlowfish()== 0) {
+                            view.setAnswer(blowfishModel.getEncodedList());
+                        } else if(view.getOutputTypeBlowfish()== 1) {
+                            view.setAnswer(blowfishModel.getCharList());
+                        } else if(view.getOutputTypeBlowfish()== 2) {
+                            view.setAnswer(blowfishModel.getBinaryList());
+                        } else {
+                            view.setAnswer(blowfishModel.getHexList());
+                        }
+                    }
                     break;
             }
-            
         }
     }
 }

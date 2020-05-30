@@ -276,7 +276,12 @@ public class MainView extends javax.swing.JFrame {
         blowfishPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         keyBlowfishTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        keyBlowfishTextField.setText("Enter your key");
+        keyBlowfishTextField.setText("My new key");
+        keyBlowfishTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keyBlowfishTextFieldActionPerformed(evt);
+            }
+        });
 
         blowfishLabel.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         blowfishLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -748,6 +753,10 @@ public class MainView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nextStepButtonActionPerformed
 
+    private void keyBlowfishTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keyBlowfishTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_keyBlowfishTextFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -800,6 +809,10 @@ public class MainView extends javax.swing.JFrame {
         plugboardTextArea.setEditable(f);
         reflectorBCheckBox.setEnabled(f);
         reflectorCCheckBox.setEnabled(f);
+    }
+    public void setIfVisibleSBSBlowfish(boolean f){
+        keyBlowfishTextField.setEditable(f);
+        outputTypeBlowfishComboBox.setEnabled(f);
     }
     public void setIfVisibleSBSButtons(boolean f){
         nextStepMenuItem.setEnabled(f);

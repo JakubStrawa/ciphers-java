@@ -235,8 +235,16 @@ public class BlowfishModel {
     private ArrayList<String> encodedList;
     private ArrayList<Pair<Long>> valueList;
     private ArrayList<Character> charList;
+    private Boolean flagSBS;
+    private Boolean flagNextStep;
+    private int currentChar;
+    private int currentStatus;
     
     public BlowfishModel(){
+        flagSBS = false;
+        flagNextStep = false;
+        currentChar = 0;
+        currentStatus = 0;
         isEncrypted = false;
         Lval = 0L;
         Rval = 0L;
@@ -262,6 +270,22 @@ public class BlowfishModel {
         }
         setup();
     }
+
+    public void setFlagSBS(Boolean flagSBS) {
+        this.flagSBS = flagSBS;
+    }
+
+    public void setFlagNextStep(Boolean flagNextStep) {
+        this.flagNextStep = flagNextStep;
+    }
+
+    public Boolean getFlagSBS() {
+        return flagSBS;
+    }
+
+    public Boolean getFlagNextStep() {
+        return flagNextStep;
+    }
     
     public String getMessageList(){
         //System.out.println("MessageList:");
@@ -274,16 +298,27 @@ public class BlowfishModel {
     }
     
     public String getEncodedList(){
+        String tmp_msg = "";
+        for (String s : messageList) {
+            tmp_msg += s;
+        }
+        tmp_msg = tmp_msg.substring(4*currentChar);
         //System.out.println("EncodedList:");
         String tmp = "";
         for (String s : encodedList) {
             //System.out.println(s);
             tmp += s;
         }
+        if (tmp_msg.length() > 0 && flagNextStep) tmp += ", " + tmp_msg;
         return tmp;
     }
     
     public String getCharList(){
+        String tmp_msg = "";
+        for (String s : messageList) {
+            tmp_msg += s;
+        }
+        tmp_msg = tmp_msg.substring(4*currentChar);
         //System.out.println("CharList:");
         String tmp = "";
         int i = 0;
@@ -293,10 +328,17 @@ public class BlowfishModel {
             tmp += i + ", ";
         }
         tmp = tmp.substring(0, tmp.length() - 2);
+        if (tmp_msg.length() > 0 && flagNextStep) tmp += ", " + tmp_msg;
         return  tmp;
     }
     
     public String getBinaryList(){
+        
+        String tmp_msg = "";
+        for (String s : messageList) {
+            tmp_msg += s;
+        }
+        tmp_msg = tmp_msg.substring(4*currentChar);
         //System.out.println("BinaryList:");
         String tmp = "";
         long l = 0L;
@@ -319,11 +361,17 @@ public class BlowfishModel {
             }
         }
         tmp = tmp.substring(0, tmp.length() - 2);
+        if (tmp_msg.length() > 0 && flagNextStep) tmp += ", " + tmp_msg;
         //System.out.println(tmp);
         return tmp;
     }
     
     public String getHexList(){
+        String tmp_msg = "";
+        for (String s : messageList) {
+            tmp_msg += s;
+        }
+        tmp_msg = tmp_msg.substring(4*currentChar);
         //System.out.println("HexList:");
         String tmp = "";
         int i = 0;
@@ -336,6 +384,7 @@ public class BlowfishModel {
             }
         }
         tmp = tmp.substring(0, tmp.length() - 2);
+        if (tmp_msg.length() > 0 && flagNextStep) tmp += ", " + tmp_msg;
         //System.out.println(tmp);
         return tmp;
     }
@@ -458,8 +507,8 @@ public class BlowfishModel {
             size = 28;
         }
         if ((size % 2) == 1) {
-            tmp = tmp.substring(0, size - 1);
-            size--;
+            tmp += "#";
+            size++;
         }
         long [] tableKey = new long [size/2];
         long sum = 0L;
@@ -486,36 +535,67 @@ public class BlowfishModel {
         return h % max_int;
     }
     
-    public void encryptMessage(){
+    public void changeMessage(){
         if (isEncrypted == false) {
-            encodedList.clear();
-            for (Pair<Long> lp : valueList) {
-                Lval = lp.getFirst();
-                Rval = lp.getSecond();
+            if (!flagSBS) {
+                encodedList.clear();
+                for (Pair<Long> lp : valueList) {
+                    Lval = lp.getFirst();
+                    Rval = lp.getSecond();
+                    encrypt(Lval, Rval);
+                    encodedList.add(createMessage(Lval, Rval));
+                    lp.setFirst(Lval);
+                    lp.setSecond(Rval);
+                    //System.out.println("First: " + lp.getFirst() + " Second: " + lp.getSecond());
+                    //System.out.println(encodedList);
+                }
+                isEncrypted = true;
+                currentChar = 0;
+            } else {
+                //encodedList.clear();
+                Lval = valueList.get(currentChar).getFirst();
+                Rval = valueList.get(currentChar).getSecond();
                 encrypt(Lval, Rval);
                 encodedList.add(createMessage(Lval, Rval));
-                lp.setFirst(Lval);
-                lp.setSecond(Rval);
+                valueList.get(currentChar).setFirst(Lval);
+                valueList.get(currentChar).setSecond(Rval);
+                //System.out.println("First: " + valueList.get(currentChar).getFirst() + " Second: " + valueList.get(currentChar).getSecond());
+                //System.out.println(encodedList);
+                currentChar++;
+                if (currentChar == valueList.size()) {
+                    currentChar = 0;
+                    flagNextStep = false;
+                }
             }
-            isEncrypted = true;
+        } else {
+            if (!flagSBS) {
+                encodedList.clear();
+                for (Pair<Long> lp : valueList) {
+                    Lval = lp.getFirst();
+                    Rval = lp.getSecond();
+                    decrypt(Lval, Rval);
+                    encodedList.add(createMessage(Lval, Rval));
+                    lp.setFirst(Lval);
+                    lp.setSecond(Rval);
+                }
+                isEncrypted = false;
+                currentChar = 0;
+            } else {
+                Lval = valueList.get(currentChar).getFirst();
+                Rval = valueList.get(currentChar).getSecond();
+                decrypt(Lval, Rval);
+                encodedList.add(createMessage(Lval, Rval));
+                valueList.get(currentChar).setFirst(Lval);
+                valueList.get(currentChar).setSecond(Rval);
+                currentChar++;
+                if (currentChar == valueList.size()) {
+                    currentChar = 0;
+                    flagNextStep = false;
+                }
+            }
         }
     }
     
-    public void decryptMessage(){
-        if (isEncrypted == true) {
-            encodedList.clear();
-            for (Pair<Long> lp : valueList) {
-                Lval = lp.getFirst();
-                Rval = lp.getSecond();
-                decrypt(Lval, Rval);
-                encodedList.add(createMessage(Lval, Rval));
-                lp.setFirst(Lval);
-                lp.setSecond(Rval);
-            }
-            isEncrypted = false;
-        }
-    }
-
     private void encrypt (long L, long R) {
         for (int i=0 ; i<16 ; i += 2) {
             L = L ^ P[i];
@@ -568,5 +648,6 @@ public class BlowfishModel {
         }
         Lval = 0;
         Rval = 0;
+        currentChar = 0;
     }
 }

@@ -26,7 +26,7 @@ public class BlowfishModelTest {
         blowfish.setMessage("abcdefgh");
         blowfish.setKey("12345678");
         blowfish.setIsEncrypted(false);
-        blowfish.encryptMessage();
+        blowfish.changeMessage();
         assertEquals("abcdefgh", blowfish.getMessageList());
     }
 
@@ -39,7 +39,7 @@ public class BlowfishModelTest {
         blowfish.setMessage("abcd");
         blowfish.setKey("12345678");
         blowfish.setIsEncrypted(false);
-        blowfish.encryptMessage();
+        blowfish.changeMessage();
         assertEquals("鼚쪀ꗰ랯", blowfish.getEncodedList());
     }
 
@@ -52,7 +52,7 @@ public class BlowfishModelTest {
         blowfish.setMessage("abcd");
         blowfish.setKey("12345678");
         blowfish.setIsEncrypted(false);
-        blowfish.encryptMessage();
+        blowfish.changeMessage();
         assertEquals("40730, 51840, 42480, 47023", blowfish.getCharList());
     }
 
@@ -65,7 +65,7 @@ public class BlowfishModelTest {
         blowfish.setMessage("abcd");
         blowfish.setKey("12345678");
         blowfish.setIsEncrypted(false);
-        blowfish.encryptMessage();
+        blowfish.changeMessage();
         assertEquals("1001111100011010110010101000000010100101111100001011011110101111", blowfish.getBinaryList());
     }
 
@@ -78,7 +78,7 @@ public class BlowfishModelTest {
         blowfish.setMessage("abcd");
         blowfish.setKey("12345678");
         blowfish.setIsEncrypted(false);
-        blowfish.encryptMessage();
+        blowfish.changeMessage();
         assertEquals("9f1aca80a5f0b7af", blowfish.getHexList());
     }
 
@@ -158,15 +158,15 @@ public class BlowfishModelTest {
     }
 
     /**
-     * Test of encryptMessage method, of class BlowfishModel.
+     * Test of changeMessage method, of class BlowfishModel.
      */
     @Test
-    public void testEncryptMessage() {
+    public void testChangeMessage() {
         BlowfishModel blowfish = new BlowfishModel();
         blowfish.setMessage("abcd");
         blowfish.setKey("12345678");
         blowfish.setIsEncrypted(false);
-        blowfish.encryptMessage();
+        blowfish.changeMessage();
         assertEquals("9f1aca80a5f0b7af", blowfish.getHexList());
         assertEquals("1001111100011010110010101000000010100101111100001011011110101111", blowfish.getBinaryList());
     }
@@ -180,9 +180,50 @@ public class BlowfishModelTest {
         blowfish.setMessage("鼚쪀ꗰ랯");
         blowfish.setKey("12345678");
         blowfish.setIsEncrypted(true);
-        blowfish.decryptMessage();
+        blowfish.changeMessage();
         assertEquals("61626364", blowfish.getHexList());
         assertEquals("0000000001100001000000000110001000000000011000110000000001100100", blowfish.getBinaryList());
     }
+    /**
+     * Test of setFlagSBS method, of class BlowfishModel.
+     */
+    @Test
+    public void testSetFlagSBS() {
+        BlowfishModel blowfish = new BlowfishModel();
+        assertFalse(blowfish.getFlagSBS());
+        blowfish.setFlagSBS(true);
+        assertTrue(blowfish.getFlagSBS());
+    }
+    /**
+     * Test of setFlagNextStep method, of class BlowfishModel.
+     */
+    @Test
+    public void testSetFlagNextStep() {
+        BlowfishModel blowfish = new BlowfishModel();
+        assertFalse(blowfish.getFlagNextStep());
+        blowfish.setFlagNextStep(true);
+        assertTrue(blowfish.getFlagNextStep());
+    }
+    /**
+     * Test of getFlagSB method, of class BlowfishModel.
+     */
+    @Test
+    public void testGetFlagSBS() {
+        BlowfishModel blowfish = new BlowfishModel();
+        assertFalse(blowfish.getFlagSBS());
+        blowfish.setFlagSBS(true);
+        assertTrue(blowfish.getFlagSBS());
+    }
+    /**
+     * Test of getFlagNextStep method, of class BlowfishModel.
+     */
+    @Test
+    public void testGetFlagNextStep() {
+        BlowfishModel blowfish = new BlowfishModel();
+        assertFalse(blowfish.getFlagNextStep());
+        blowfish.setFlagNextStep(true);
+        assertTrue(blowfish.getFlagNextStep());
+    }
+
     
 }
