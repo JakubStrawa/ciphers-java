@@ -508,7 +508,7 @@ public class BlowfishModel {
         }
         if ((size % 2) == 1) {
             tmp += "#";
-            size++;
+            size++;          
         }
         long [] tableKey = new long [size/2];
         long sum = 0L;

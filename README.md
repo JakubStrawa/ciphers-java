@@ -8,9 +8,9 @@ Done:
 - "about cipher" section
 - all algorithms diplay in one window
 - Save result, Read input from .txt file, Copy result to clipboard
+- Step by step mode
 
 To Do:
-- Step by step mode
 - comments fixes and documentation
 - further GUI development
 
