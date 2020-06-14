@@ -14,7 +14,7 @@ Done:
 About project:
 Ciphers is a simple testing environment for 4 encyption algorithms:
 Caesar Cipher, Polybius Square, Enigma and Blowfish.
-Project wrritten in Java with Swing library.
+Project written in Java with Swing library.
 
 Instalation process (Maven necessary):
 1. Clone current master branch.
