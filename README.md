@@ -10,8 +10,6 @@ Done:
 - Save result, Read input from .txt file, Copy result to clipboard
 - Step by step mode
 
-To Do:
-- comments fixes and documentation
 
 About project:
 Ciphers is a simple testing environment for 4 encyption algorithms:

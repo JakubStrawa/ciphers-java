@@ -6,7 +6,6 @@
 package com.mycompany.mavenproject1;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -44,7 +43,7 @@ public class PolybiusModel {
         return flagNextStep;
     }
     
-    public void setTable(String str){  //uzyc array list
+    public void setTable(String str){
         char tmp_char;
         ArrayList<Character> tmp_table = new ArrayList<Character>();
         try {
