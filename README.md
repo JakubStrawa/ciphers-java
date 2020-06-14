@@ -12,7 +12,6 @@ Done:
 
 To Do:
 - comments fixes and documentation
-- further GUI development
 
 About project:
 Ciphers is a simple testing environment for 4 encyption algorithms:

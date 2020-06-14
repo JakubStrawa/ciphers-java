@@ -470,7 +470,7 @@ public class BlowfishModel {
             try {
                 messageList.add(m.substring(4*i, 4*i + 4));
             } catch (Exception e) {
-                String tmp = m.substring(4*i, m.length()) + "####";
+                String tmp = m.substring(4*i, m.length()) + "    ";
                 tmp = tmp.substring(0, 4);
                 messageList.add(tmp);
             }
@@ -480,7 +480,7 @@ public class BlowfishModel {
     private void createMessage(String m){
         String tmp = m;
         if (tmp.length() < 4) {
-            tmp += "####";
+            tmp += "    ";
         }
         tmp = tmp.substring(0, 4);
         message = tmp;
@@ -497,7 +497,7 @@ public class BlowfishModel {
         int size = tmp.length();
         if (size < 2) {
             System.out.println("Key too short!");
-            tmp = k + "##";
+            tmp = k + "  ";
             tmp = tmp.substring(0, 2);
             size = 2;
         }
@@ -507,7 +507,7 @@ public class BlowfishModel {
             size = 28;
         }
         if ((size % 2) == 1) {
-            tmp += "#";
+            tmp += " ";
             size++;          
         }
         long [] tableKey = new long [size/2];
